@@ -1,6 +1,14 @@
 syntax on
 
+filetype on
+
 colorscheme desert
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set backspace=indent,eol,start
+filetype indent on
 set path+=**
 set wildmenu
 set splitright
