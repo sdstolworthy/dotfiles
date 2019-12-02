@@ -2,7 +2,12 @@ syntax on
 
 filetype on
 
-colorscheme desert
+colorscheme molokai
+set tabstop=8
+set expandtab
+set shiftwidth=4
+set autoindent
+set smartindent
 set hlsearch
 set incsearch
 set ignorecase
@@ -21,11 +26,9 @@ let g:lsc_enable_autocomplete = v:true
 call plug#begin('~/.vim/plugged')
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
-
+Plug 'mcmartelle/vim-monokai-bold'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'tomasiser/vim-code-dark'
-
-
 call plug#end()
 
 let g:lsc_auto_map = v:true
