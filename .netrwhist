@@ -1,3 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/sdstolworthy/.vim/.git'
+let g:netrw_dirhist_2='/home/sdstolworthy/Projects/gratitude_journal_flutter/lib/src'
+let g:netrw_dirhist_3='/home/sdstolworthy/Projects/gratitude_journal_flutter/lib/src/blocs'
+let g:netrw_dirhist_4='/home/sdstolworthy/Projects/gratitude_journal_flutter/lib/src'
+let g:netrw_dirhist_5='/home/sdstolworthy/Projects/gratitude_journal_flutter/lib'
+let g:netrw_dirhist_6='/home/sdstolworthy/Projects/gratitude_journal_flutter/lib/src'
+let g:netrw_dirhist_7='/home/sdstolworthy/Projects/survey-frontend'
+let g:netrw_dirhist_8='/home/sdstolworthy/Projects/survey-frontend/src'
