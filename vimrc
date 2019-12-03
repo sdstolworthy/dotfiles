@@ -2,8 +2,8 @@ syntax on
 
 filetype on
 
+set tabstop=2
 colorscheme codedark
-set tabstop=4
 set expandtab
 set shiftwidth=2
 set autoindent
