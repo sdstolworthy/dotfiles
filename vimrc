@@ -29,7 +29,6 @@ Plug 'natebosch/vim-lsc-dart'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'yuezk/vim-js'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
 
