@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/sdstolworthy/.vim'
-let g:netrw_dirhist_2='/home/sdstolworthy'
-let g:netrw_dirhist_3='/home/sdstolworthy/.vim'
-let g:netrw_dirhist_4='/home/sdstolworthy/Projects/survey-frontend/src'
-let g:netrw_dirhist_5='/home/sdstolworthy/Projects/survey-frontend/src/models'
