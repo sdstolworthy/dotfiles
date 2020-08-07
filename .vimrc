@@ -11,21 +11,26 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'jparise/vim-graphql'
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-python'
   \ ]
 Plug 'sainnhe/sonokai'
-
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
-colo sonokai
+colo gruvbox
 syntax on
+
+let g:gruvbox_bold='1'
+
+
+set bg=dark
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,**/node_modules/**     " MacOSX/Linux
+set wildmode=list:longest,full
+set wildmenu
 set nu
 set tabstop=2
 set shiftwidth=2
@@ -113,17 +118,6 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -208,4 +202,3 @@ endfunction
 
 autocmd CursorHoldI * :call <SID>show_hover_doc()
 autocmd CursorHold * :call <SID>show_hover_doc()
-
