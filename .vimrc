@@ -13,29 +13,42 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
+  \ 'coc-go',
   \ 'coc-python'
   \ ]
 Plug 'sainnhe/sonokai'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 colo gruvbox
 syntax on
 
 let g:gruvbox_bold='1'
+let g:netrw_banner = 0
+" let g:netrw_browse_split = 2
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
 
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
 
+set statusline+=%F
+set title
 set bg=dark
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,**/node_modules/**     " MacOSX/Linux
+let g:gruvbox_guisp_fallback = 'bg'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/coverage/**     " MacOSX/Linux
 set wildmode=list:longest,full
 set wildmenu
 set nu
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set statusline^=%{coc#status()}
+set laststatus=2
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
@@ -171,7 +184,6 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
@@ -200,5 +212,5 @@ function! s:show_hover_doc()
   call timer_start(500, 'ShowDocIfNoDiagnostic')
 endfunction
 
-autocmd CursorHoldI * :call <SID>show_hover_doc()
-autocmd CursorHold * :call <SID>show_hover_doc()
+" autocmd CursorHoldI * :call <SID>show_hover_doc()
+" autocmd CursorHold * :call <SID>show_hover_doc()
