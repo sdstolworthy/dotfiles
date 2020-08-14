@@ -17,26 +17,23 @@ let g:coc_global_extensions = [
   \ 'coc-python'
   \ ]
 Plug 'sainnhe/sonokai'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
-colo gruvbox
+colo dracula
 syntax on
 
 let g:gruvbox_bold='1'
 let g:netrw_banner = 0
-" let g:netrw_browse_split = 2
+let g:netrw_browse_split = 2
 let g:netrw_liststyle = 3
-let g:netrw_winsize = 25
 
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore
-augroup END
-
+let g:molokai_original = 1
 set statusline+=%F
 set title
 set bg=dark
@@ -130,6 +127,13 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
