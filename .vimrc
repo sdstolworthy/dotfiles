@@ -19,6 +19,7 @@ let g:coc_global_extensions = [
   \ 'coc-python',
   \ 'coc-flutter'
   \ ]
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
 Plug 'sainnhe/sonokai'
