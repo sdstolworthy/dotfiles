@@ -18,6 +18,7 @@ let g:coc_global_extensions = [
   \ 'coc-go',
   \ 'coc-python',
   \ 'coc-flutter'
+  \ 'coc-angular'
   \ ]
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
