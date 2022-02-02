@@ -30,6 +30,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
