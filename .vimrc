@@ -17,8 +17,9 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-go',
   \ 'coc-python',
-  \ 'coc-flutter'
-  \ 'coc-angular'
+  \ 'coc-flutter',
+  \ 'coc-angular',
+  \ 'coc-vetur'
   \ ]
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
@@ -35,16 +36,13 @@ call plug#end()
 colo dracula
 syntax on
 
-let g:gruvbox_bold='1'
 let g:netrw_banner = 0
 let g:netrw_browse_split = 2
 let g:netrw_liststyle = 3
 
-let g:molokai_original = 1
 set statusline+=%F
 set title
 set bg=dark
-let g:gruvbox_guisp_fallback = 'bg'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/coverage/**     " MacOSX/Linux
 set wildmode=list:longest,full
 set wildmenu
