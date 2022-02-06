@@ -19,7 +19,7 @@ let g:coc_global_extensions = [
   \ 'coc-python',
   \ 'coc-flutter',
   \ 'coc-angular',
-  \ 'coc-vetur'
+  \ '@yaegassy/coc-volar'
   \ ]
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
@@ -53,9 +53,9 @@ set shiftwidth=2
 set expandtab
 set laststatus=2
 
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
+" if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+"   let g:coc_global_extensions += ['coc-prettier']
+" endif
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
