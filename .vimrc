@@ -1,9 +1,13 @@
-" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
+" Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
@@ -29,6 +33,7 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
 Plug 'sainnhe/sonokai'
+Plug 'sainnhe/everforest'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tomasr/molokai'
@@ -38,7 +43,7 @@ Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
-colo dracula
+colo everforest
 syntax on
 
 let g:netrw_banner = 0
