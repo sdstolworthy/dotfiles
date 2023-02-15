@@ -24,21 +24,18 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-flutter',
   \ 'coc-rust-analyzer',
-  \ 'coc-java',
-  \ '@yaegassy/coc-volar',
-  \ 'coc-xml'
+  \ 'coc-xml',
+  \ 'coc-json'
   \ ]
 Plug 'markvincze/panda-vim'
+Plug 'mfussenegger/nvim-dap'
 Plug 'rust-lang/rust'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
-Plug 'sainnhe/sonokai'
 Plug 'sainnhe/everforest'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
