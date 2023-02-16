@@ -29,6 +29,7 @@ let g:coc_global_extensions = [
   \ 'coc-xml',
   \ 'coc-json'
   \ ]
+Plug 'kdheepak/lazygit.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'MunifTanjim/nui.nvim'
@@ -51,6 +52,7 @@ Plug 'natebosch/vim-lsc-dart'
 Plug 'sainnhe/everforest'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
@@ -184,6 +186,7 @@ nmap <leader>cf  <Plug>(coc-format-selected)
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>as  <Plug>(coc-format)
+nnoremap <silent> <leader>gg :LazyGit<CR>
 
 
 " Remap keys for applying codeAction to the current buffer.
