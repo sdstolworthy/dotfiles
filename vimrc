@@ -263,6 +263,6 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 command! -nargs=0 EL :call CocAction('runCommand', 'eslint.lintProject')
 
 lua <<EOF
-require('lua/config')
+require('config')
 EOF
 
