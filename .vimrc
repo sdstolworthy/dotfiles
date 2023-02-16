@@ -1,5 +1,6 @@
 " Install vim-plug if not found
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+set encoding=UTF-8
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -21,25 +22,39 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-go',
+  \ 'coc-eslint',
   \ 'coc-pyright',
   \ 'coc-flutter',
   \ 'coc-rust-analyzer',
   \ 'coc-xml',
   \ 'coc-json'
   \ ]
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'markvincze/panda-vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'f-person/git-blame.nvim'
 Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'nvim-neotest/neotest'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'mxsdev/nvim-dap-vscode-js'
 Plug 'rust-lang/rust'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
 Plug 'sainnhe/everforest'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
+let mapleader = " "
 
 colo everforest
 syntax on
@@ -59,7 +74,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set laststatus=2
-set autochdir
+" set autochdir
 
 " if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
 "   let g:coc_global_extensions += ['coc-prettier']
@@ -118,6 +133,18 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+noremap <leader>d <Cmd>lua require("dapui").toggle()<CR>
+noremap <leader>b <Cmd>lua require('dap').toggle_breakpoint()<CR>
+noremap <F1> <Cmd>lua require('dap').step_over()<CR>
+noremap <F2> <Cmd>lua require('dap').step_into()<CR>
+noremap <F3> <Cmd>lua require('dap').step_out()<CR>
+noremap <F9> <Cmd>lua require('dap').continue()<CR>
+noremap <F4> <Cmd>lua require('dapui').toggle()<CR>
+noremap <F5> <Cmd>lua require('dap').toggle_breakpoint()<CR>
+noremap <Leader>dsc <Cmd>lua require('dap').continue()<CR>
+noremap <leader>e <Cmd>Neotree reveal<cr>
+
+
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -132,6 +159,11 @@ endif
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>fw <cmd>lua require('telescope.builtin').live_grep()<cr>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -153,8 +185,8 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cf  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -168,6 +200,8 @@ augroup end
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>as  <Plug>(coc-format)
+
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -199,6 +233,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" Run Eslint
+command! -nargs=0 EL   :call     CocAction('runCommand', 'eslint.lintProject')
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
@@ -207,7 +243,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
@@ -252,6 +288,63 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
+lua <<EOF
+local dap = require('dap')
+dap.adapters.node2 = {
+  type = 'executable',
+  command = 'node',
+  args = {os.getenv('HOME') .. '/dev/microsoft/vscode-node-debug2/out/src/nodeDebug.js'},
+}
+dap.configurations.typescript = {
+  {
+    name = 'Amplify',
+    type = 'node2',
+    request = 'launch',
+    program = function()
+      return os.getenv('HOME') .. '/.yarn/bin/amplify-dev'
+    end,
+    args = function()
+      local argument_string = vim.fn.input('Program arguments: ')
+      return vim.fn.split(argument_string, " ", true)
+    end,
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = 'inspector',
+    console = 'integratedTerminal',
+  },
+  {
+    name = 'Launch',
+    type = 'node2',
+    request = 'launch',
+    program = '$HOME/.yarn/bin/amplify-dev',
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = 'inspector',
+    console = 'integratedTerminal',
+  },
+  {
+    name = 'Attach to process',
+    type = 'node2',
+    request = 'attach',
+    processId = require'dap.utils'.pick_process,
+  },
+}
+dap.configurations.default = dap.configurations.typescript
+
+dap.configurations.netrw = dap.configurations.typescript
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+require('telescope').setup{ defaults = { file_ignore_patterns = {"node_modules"} } }
+EOF
 
 " autocmd CursorHoldI * :call <SID>show_hover_doc()
 " autocmd CursorHold * :call <SID>show_hover_doc()
