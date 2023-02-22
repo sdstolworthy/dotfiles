@@ -29,11 +29,12 @@ let g:coc_global_extensions = [
   \ 'coc-xml',
   \ 'coc-json'
   \ ]
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'markvincze/panda-vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
@@ -55,6 +56,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'startup-nvim/startup.nvim'
+Plug 'github/copilot.vim'
 call plug#end()
 let mapleader = " "
 
@@ -115,6 +118,11 @@ else
   set signcolumn=yes
 endif
 
+lua <<EOF
+require('config')
+EOF
+
+" ------- Keymaps --------
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -129,7 +137,8 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
+
+
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
@@ -145,8 +154,14 @@ noremap <F4> <Cmd>lua require('dapui').toggle()<CR>
 noremap <F5> <Cmd>lua require('dap').toggle_breakpoint()<CR>
 noremap <Leader>dsc <Cmd>lua require('dap').continue()<CR>
 noremap <leader>e <Cmd>Neotree reveal<cr>
+noremap <leader>l <C-w><C-l>
+noremap <leader>h <C-w><C-h>
 
-
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <M-[> <Esc>
+  tnoremap <C-v><Esc> <Esc>
+endif
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -157,7 +172,6 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
-" ------- Keymaps --------
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -187,6 +201,7 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>as  <Plug>(coc-format)
 nnoremap <silent> <leader>gg :LazyGit<CR>
+nnoremap <silent> <leader>qq :q<CR>
 
 
 " Remap keys for applying codeAction to the current buffer.
@@ -239,6 +254,10 @@ inoremap <silent><expr> <Tab>
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+nnoremap gn <cmd>Neotree toggle current reveal_force_cwd<CR>
+nnoremap \| <cmd>Neotree reveal<CR>
+nnoremap <leader>b <cmd>Neotree toggle show buffers right<CR>
+nnoremap <leader>s <cmd>Neotree float git_status<CR>
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -265,7 +284,4 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 " Run Eslint
 command! -nargs=0 EL :call CocAction('runCommand', 'eslint.lintProject')
 
-lua <<EOF
-require('config')
-EOF
 
