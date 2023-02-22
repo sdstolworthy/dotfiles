@@ -1,8 +1,9 @@
+-- DAP
 local dap = require('dap')
 dap.adapters.node2 = {
   type = 'executable',
   command = 'node',
-  args = {os.getenv('HOME') .. '/dev/microsoft/vscode-node-debug2/out/src/nodeDebug.js'},
+  args = { os.getenv('HOME') .. '/dev/microsoft/vscode-node-debug2/out/src/nodeDebug.js' },
 }
 dap.configurations.typescript = {
   {
@@ -35,7 +36,7 @@ dap.configurations.typescript = {
     name = 'Attach to process',
     type = 'node2',
     request = 'attach',
-    processId = require'dap.utils'.pick_process,
+    processId = require 'dap.utils'.pick_process,
   },
 }
 dap.configurations.default = dap.configurations.typescript
@@ -53,4 +54,21 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
-require('telescope').setup{ defaults = { file_ignore_patterns = {"node_modules"} } }
+
+-- Telescope
+require('telescope').setup { defaults = { file_ignore_patterns = { "node_modules" } } }
+
+-- Startup
+require("startup").setup({ theme = "startify" }) -- put theme name here
+
+-- Neo-Tree
+require("neo-tree").setup({
+  window = {
+    mappings = {
+      ["P"] = { "toggle_preview", config = { use_float = false } },
+    }
+  },
+})
+
+-- ToggleTerm
+require("toggleterm").setup()
