@@ -1,3 +1,8 @@
 plugged/*
 *.swp
 .netrwhist
+**/node_modules/
+node_modules/
+coc/extensions/
+coc/list_history.dat
+coc/memos.json

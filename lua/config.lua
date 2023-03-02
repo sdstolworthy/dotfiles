@@ -56,13 +56,30 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 -- Telescope
-require('telescope').setup { defaults = { file_ignore_patterns = { "node_modules" } } }
+require('telescope').setup {
+  pickers = {
+    find_files = {
+      hidden = true
+    }
+  },
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules"
+    }
+  }
+}
 
 -- Startup
 require("startup").setup({ theme = "startify" }) -- put theme name here
 
 -- Neo-Tree
 require("neo-tree").setup({
+  filesystem = {
+    filtered_items = {
+      visible = true,
+      hide_dotfiles = false,
+    }
+  },
   window = {
     mappings = {
       ["P"] = { "toggle_preview", config = { use_float = false } },
