@@ -1,0 +1,9 @@
+{
+  "prettier.prettierPath": "node_modules/prettier-eslint-cli/dist",
+  "inlayHint.enable": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "inlayHint.enableParameter": true
+}
