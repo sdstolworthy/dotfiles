@@ -34,6 +34,7 @@ Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'ruifm/gitlinker.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'markvincze/panda-vim'
 Plug 'nvim-lua/plenary.nvim'
@@ -156,6 +157,10 @@ noremap <Leader>dsc <Cmd>lua require('dap').continue()<CR>
 noremap <leader>e <Cmd>Neotree reveal<cr>
 noremap <leader>l <C-w><C-l>
 noremap <leader>h <C-w><C-h>
+noremap <leader>s <Cmd>split<CR>
+noremap <leader>v <Cmd>vsplit<CR>
+noremap <leader>tn <Cmd>tabnew<CR>
+noremap <leader>tr <Cmd>term<CR>
 
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>

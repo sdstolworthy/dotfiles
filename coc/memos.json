@@ -7,47 +7,47 @@
       "http://json.schemastore.org/prettierrc": {
         "etag": "\"80e08ca9849bd81:0\"",
         "fileName": "b2ed7a7b6c79e58baf94e4ce160282de.schema.json",
-        "updateTime": 1677623354167
+        "updateTime": 1678217656956
       },
       "https://json.schemastore.org/package.json": {
         "etag": "\"0ff6ca2e030d91:0\"",
         "fileName": "473f72b44c2905902dfbcc770aab7f7a.schema.json",
-        "updateTime": 1677623354238
+        "updateTime": 1678217657036
       },
       "https://json.schemastore.org/jscpd.json": {
         "etag": "\"80bec5ba1984d81:0\"",
         "fileName": "22bfc1ab1ff56aae62322f6ce45dab5a.schema.json",
-        "updateTime": 1677623354413
+        "updateTime": 1678217657220
       },
       "https://json.schemastore.org/semantic-release.json": {
         "etag": "\"808cdec3a9a4d81:0\"",
         "fileName": "fbc95702ba6eddb3e2de4f52e31ca82a.schema.json",
-        "updateTime": 1677623354426
+        "updateTime": 1678217657229
       },
       "https://json.schemastore.org/prettierrc.json": {
         "etag": "\"80e08ca9849bd81:0\"",
         "fileName": "ea5ab10330a3ab77dfd6d00a735b0925.schema.json",
-        "updateTime": 1677623354418
+        "updateTime": 1678217657228
       },
       "https://json.schemastore.org/ava.json": {
         "etag": "\"80cdbd40989d91:0\"",
         "fileName": "635f57185b22bce9d3a56c68f5da4ad7.schema.json",
-        "updateTime": 1677623354432
+        "updateTime": 1678217657224
       },
       "https://json.schemastore.org/eslintrc.json": {
         "etag": "\"09c10cf5f2bd91:0\"",
         "fileName": "c5064f140d4cfdbf4d6fbe68f68abbb1.schema.json",
-        "updateTime": 1677623354420
+        "updateTime": 1678217657226
       },
       "https://json.schemastore.org/stylelintrc.json": {
         "etag": "\"80e08ca9849bd81:0\"",
         "fileName": "000bfbdd14d2fb8ec5b0d59bec32ef98.schema.json",
-        "updateTime": 1677623354426
+        "updateTime": 1678217657227
       },
       "https://json.schemastore.org/tsconfig.json": {
         "etag": "\"80cc784ccf34d91:0\"",
         "fileName": "a28507e42e8bfd5fba830538461d5db3.schema.json",
-        "updateTime": 1677122612141
+        "updateTime": 1678230197280
       }
     }
   }
