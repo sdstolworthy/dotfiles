@@ -17,8 +17,28 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 call plug#begin('~/.vim/plugged')
 let g:coc_disable_startup_warning = 1
 
-
+" Core
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'kdheepak/lazygit.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'f-person/git-blame.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-neotest/neotest'
+Plug 'sainnhe/everforest'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'startup-nvim/startup.nvim'
+Plug 'github/copilot.vim'
+Plug 'mfussenegger/nvim-dap'
+Plug 'mxsdev/nvim-dap-vscode-js'
+
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-go',
@@ -29,47 +49,13 @@ let g:coc_global_extensions = [
   \ 'coc-xml',
   \ 'coc-json'
   \ ]
-Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
-Plug 'MunifTanjim/nui.nvim'
-Plug 'nvim-neo-tree/neo-tree.nvim'
-Plug 'kdheepak/lazygit.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'ruifm/gitlinker.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'markvincze/panda-vim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
-Plug 'f-person/git-blame.nvim'
-Plug 'mfussenegger/nvim-dap'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'antoinemadec/FixCursorHold.nvim'
-Plug 'nvim-neotest/neotest'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'mxsdev/nvim-dap-vscode-js'
-Plug 'rust-lang/rust'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
-Plug 'sainnhe/everforest'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'https://github.com/tpope/vim-vinegar.git'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'startup-nvim/startup.nvim'
-Plug 'github/copilot.vim'
+
 call plug#end()
 let mapleader = " "
 
 colo everforest
 syntax on
 
-let g:netrw_banner = 0
-let g:netrw_browse_split = 2
-let g:netrw_liststyle = 3
-
-set statusline+=%F
 set title
 set bg=dark
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/coverage/**     " MacOSX/Linux
@@ -82,16 +68,12 @@ set expandtab
 set laststatus=2
 " set autochdir
 
-" if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-"   let g:coc_global_extensions += ['coc-prettier']
-" endif
-
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
 " key mappings for Coc
-"
+
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -123,28 +105,24 @@ lua <<EOF
 require('config')
 EOF
 
-" ------- Keymaps --------
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-
-
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" ------- Keymaps --------
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+"
+
 noremap <leader>d <Cmd>lua require("dapui").toggle()<CR>
 noremap <leader>b <Cmd>lua require('dap').toggle_breakpoint()<CR>
 noremap <F1> <Cmd>lua require('dap').step_over()<CR>
@@ -154,13 +132,15 @@ noremap <F9> <Cmd>lua require('dap').continue()<CR>
 noremap <F4> <Cmd>lua require('dapui').toggle()<CR>
 noremap <F5> <Cmd>lua require('dap').toggle_breakpoint()<CR>
 noremap <Leader>dsc <Cmd>lua require('dap').continue()<CR>
-noremap <leader>e <Cmd>Neotree reveal<cr>
+noremap <leader>e <Cmd>NvimTreeToggle<cr>
 noremap <leader>l <C-w><C-l>
 noremap <leader>h <C-w><C-h>
 noremap <leader>s <Cmd>split<CR>
 noremap <leader>v <Cmd>vsplit<CR>
 noremap <leader>tn <Cmd>tabnew<CR>
-noremap <leader>tr <Cmd>term<CR>
+noremap <leader>tt <Cmd>ToggleTerm<CR>
+
+" Terminal normal mode shortcut
 
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
@@ -168,17 +148,11 @@ if has('nvim')
   tnoremap <C-v><Esc> <Esc>
 endif
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+
+
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -258,17 +232,7 @@ inoremap <silent><expr> <Tab>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nnoremap gn <cmd>Neotree toggle current reveal_force_cwd<CR>
-nnoremap \| <cmd>Neotree reveal<CR>
-nnoremap <leader>b <cmd>Neotree toggle show buffers right<CR>
-nnoremap <leader>s <cmd>Neotree float git_status<CR>
-
-" Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " use <tab> to trigger completion and navigate to the next complete item
 function! CheckBackspace() abort

@@ -8,5 +8,3 @@ export ANDROID_SDK_ROOT=/usr/lib/Android
 export PATH=$ANDROID_SDK_ROOT:$PATH
 export GOOGLE_APPLICATION_CREDENTIALS=~/key.json
 alias vim="nvim"
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  
