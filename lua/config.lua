@@ -89,3 +89,6 @@ require("neo-tree").setup({
 
 -- ToggleTerm
 require("toggleterm").setup()
+
+-- GitLinker
+require"gitlinker".setup()
