@@ -66,6 +66,8 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set laststatus=2
+set clipboard+=unnamed
+
 " REMAP ESC
 " esc in insert mode
 inoremap kj <esc>
