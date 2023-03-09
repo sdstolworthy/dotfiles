@@ -66,6 +66,17 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set laststatus=2
+" REMAP ESC
+" esc in insert mode
+inoremap kj <esc>
+" esc in visual mode
+vnoremap kj <esc>
+" esc in command mode
+cnoremap kj <C-C>
+
+
+
+
 " set autochdir
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
