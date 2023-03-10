@@ -31,13 +31,19 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'f-person/git-blame.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-neotest/neotest'
-Plug 'sainnhe/everforest'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'startup-nvim/startup.nvim'
 Plug 'github/copilot.vim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'mxsdev/nvim-dap-vscode-js'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" themes
+Plug 'ayu-theme/ayu-vim'
+Plug 'sainnhe/everforest'
+Plug 'jaredgorski/spacecamp'
 
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
@@ -53,7 +59,11 @@ let g:coc_global_extensions = [
 call plug#end()
 let mapleader = " "
 
-colo everforest
+colo spacecamp
+highlight LineNr ctermfg=grey
+let g:airline#extensions#tabline#enabled = 1
+
+
 syntax on
 
 set title
