@@ -86,6 +86,8 @@ vnoremap kj <esc>
 " esc in command mode
 cnoremap kj <C-C>
 
+" Enable pasting register in terminal mode
+tnoremap <expr> <C-V> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
 
 
@@ -156,8 +158,10 @@ noremap <F4> <Cmd>lua require('dapui').toggle()<CR>
 noremap <F5> <Cmd>lua require('dap').toggle_breakpoint()<CR>
 noremap <Leader>dsc <Cmd>lua require('dap').continue()<CR>
 noremap <leader>e <Cmd>NvimTreeToggle<cr>
-noremap <leader>l <C-w><C-l>
-noremap <leader>h <C-w><C-h>
+nnoremap <leader>l <C-w>l
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
 noremap <leader>s <Cmd>split<CR>
 noremap <leader>v <Cmd>vsplit<CR>
 noremap <leader>tn <Cmd>tabnew<CR>
@@ -226,9 +230,9 @@ nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 xmap <silent> <C-s> <Plug>(coc-range-select)
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
@@ -255,7 +259,7 @@ inoremap <silent><expr> <Tab>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " use <tab> to trigger completion and navigate to the next complete item
 function! CheckBackspace() abort
