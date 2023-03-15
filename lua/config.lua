@@ -9,6 +9,8 @@ require("nvim-tree").setup({
   },
 })
 
+require('neo-tree').setup({})
+
 -- DAP
 local dap = require('dap')
 dap.adapters.node2 = {
@@ -57,7 +59,8 @@ require('telescope').setup {
   },
   defaults = {
     file_ignore_patterns = {
-      "node_modules"
+      "node_modules",
+      ".git"
     }
   }
 }
