@@ -5,5 +5,7 @@
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.inlayHints.variableTypes.enabled": true,
-  "inlayHint.enableParameter": true
+  "inlayHint.enableParameter": true,
+  "eslint.nodePath": "~/.nvm/versions/node/v18.14.1/bin/node",
+  "tsserver.log": "normal"
 }

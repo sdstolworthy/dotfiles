@@ -21,10 +21,12 @@ let g:coc_disable_startup_warning = 1
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'MunifTanjim/nui.nvim'
 
 
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'kdheepak/lazygit.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
@@ -53,7 +55,8 @@ let g:coc_global_extensions = [
   \ 'coc-flutter',
   \ 'coc-rust-analyzer',
   \ 'coc-xml',
-  \ 'coc-json'
+  \ 'coc-json',
+  \ 'coc-prettier'
   \ ]
 
 call plug#end()
@@ -157,15 +160,23 @@ noremap <F9> <Cmd>lua require('dap').continue()<CR>
 noremap <F4> <Cmd>lua require('dapui').toggle()<CR>
 noremap <F5> <Cmd>lua require('dap').toggle_breakpoint()<CR>
 noremap <Leader>dsc <Cmd>lua require('dap').continue()<CR>
-noremap <leader>e <Cmd>NvimTreeToggle<cr>
+noremap <leader>e <Cmd>Neotree reveal toggle position=left<cr>
+noremap <leader>b <Cmd>Neotree buffers position=right toggle<cr>
+
+" Split navigation
 nnoremap <leader>l <C-w>l
 nnoremap <leader>h <C-w>h
 nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
+
+" Splitting
 noremap <leader>s <Cmd>split<CR>
 noremap <leader>v <Cmd>vsplit<CR>
 noremap <leader>tn <Cmd>tabnew<CR>
+
+" ToggleTerm keymaps
 noremap <leader>tt <Cmd>ToggleTerm<CR>
+noremap <leader>tl <Cmd>ToggleTerm direction=vertical size=100<CR>
 
 " Terminal normal mode shortcut
 
@@ -228,12 +239,19 @@ nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 " nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 xmap <silent> <C-s> <Plug>(coc-range-select)
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+" Run the Code Lens action on the current line
+nmap <leader>cl  <Plug>(coc-codelens-action)
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 function! ShowDocIfNoDiagnostic(timer_id)
