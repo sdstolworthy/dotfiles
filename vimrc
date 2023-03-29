@@ -22,6 +22,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'MunifTanjim/nui.nvim'
+Plug 'microsoft/vscode-js-debug', { 'do': 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out' }
 
 
 Plug 'rcarriga/nvim-dap-ui'
@@ -36,7 +37,7 @@ Plug 'nvim-neotest/neotest'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'startup-nvim/startup.nvim'
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'mxsdev/nvim-dap-vscode-js'
 Plug 'vim-airline/vim-airline'
@@ -48,6 +49,7 @@ Plug 'sainnhe/everforest'
 Plug 'jaredgorski/spacecamp'
 
 let g:coc_global_extensions = [
+  \ 'coc-java',
   \ 'coc-tsserver',
   \ 'coc-go',
   \ 'coc-eslint',
@@ -151,13 +153,13 @@ endif
 " other plugin before putting this into your config.
 "
 
-noremap <leader>d <Cmd>lua require("dapui").toggle()<CR>
-noremap <leader>b <Cmd>lua require('dap').toggle_breakpoint()<CR>
+noremap <leader>dd <Cmd>lua require("dapui").toggle()<CR>
+noremap <leader>bb <Cmd>lua require('dap').toggle_breakpoint()<CR>
 noremap <F1> <Cmd>lua require('dap').step_over()<CR>
 noremap <F2> <Cmd>lua require('dap').step_into()<CR>
 noremap <F3> <Cmd>lua require('dap').step_out()<CR>
 noremap <F9> <Cmd>lua require('dap').continue()<CR>
-noremap <F4> <Cmd>lua require('dapui').toggle()<CR>
+noremap <F4> <Cmd>lua require('dapui').toggle({ reset = true })<CR>
 noremap <F5> <Cmd>lua require('dap').toggle_breakpoint()<CR>
 noremap <Leader>dsc <Cmd>lua require('dap').continue()<CR>
 noremap <leader>e <Cmd>Neotree reveal toggle position=left<cr>
@@ -202,7 +204,7 @@ nnoremap <leader>fw <cmd>lua require('telescope.builtin').live_grep()<cr>
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <leader>gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Symbol renaming.
