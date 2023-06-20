@@ -13,6 +13,8 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
 
 call plug#begin('~/.vim/plugged')
 let g:coc_disable_startup_warning = 1
@@ -153,8 +155,12 @@ endif
 " other plugin before putting this into your config.
 "
 
+noremap <leader>ee <Cmd>CocCommand eslint.executeAutofix<CR>
 noremap <leader>dd <Cmd>lua require("dapui").toggle()<CR>
 noremap <leader>bb <Cmd>lua require('dap').toggle_breakpoint()<CR>
+noremap <leader>si <Cmd>lua require('dap').step_into()<CR>
+noremap <leader>so <Cmd>lua require('dap').step_over()<CR>
+noremap <leader>su <Cmd>lua require('dap').step_out()<CR>
 noremap <F1> <Cmd>lua require('dap').step_over()<CR>
 noremap <F2> <Cmd>lua require('dap').step_into()<CR>
 noremap <F3> <Cmd>lua require('dap').step_out()<CR>
@@ -219,6 +225,7 @@ nmap <leader>cf  <Plug>(coc-format-selected)
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>as  <Plug>(coc-format)
+nmap <leader>rr  <Plug>(coc-codeaction)
 nnoremap <silent> <leader>gg :LazyGit<CR>
 nnoremap <silent> <leader>qq :q<CR>
 
