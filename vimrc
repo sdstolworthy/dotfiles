@@ -46,6 +46,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " themes
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'navarasu/onedark.nvim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'sainnhe/everforest'
 Plug 'jaredgorski/spacecamp'
@@ -66,7 +68,7 @@ let g:coc_global_extensions = [
 call plug#end()
 let mapleader = " "
 
-colo spacecamp
+colo onedark
 highlight LineNr ctermfg=grey
 let g:airline#extensions#tabline#enabled = 1
 
