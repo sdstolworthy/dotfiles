@@ -2,6 +2,7 @@
 
 mkdir -p $HOME/.config/nvim
 
+ln -s `pwd`/tmux.conf $HOME/.tmux.conf
 ln -s `pwd`/coc.nvim $HOME/.config/nvim/coc.nvim
 ln -s `pwd`/coc-settings.json $HOME/.config/nvim/coc-settings.json
 ln -s `pwd`/vimrc $HOME/.config/nvim/init.vim
