@@ -11,3 +11,6 @@ export PATH="$HOME/bin:$HOME/.toolbox/bin:$PATH"
 
 export AWS_EC2_METADATA_DISABLED=true
 
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
