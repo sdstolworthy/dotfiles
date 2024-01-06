@@ -32,7 +32,7 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'kdheepak/lazygit.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'f-person/git-blame.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-neotest/neotest'
