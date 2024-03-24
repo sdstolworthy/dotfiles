@@ -32,6 +32,7 @@ if exists('+termguicolors')
 endif
 
 " Core
+Plug 'nvim-neotest/nvim-nio'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
