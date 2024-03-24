@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 let g:coc_disable_startup_warning = 1
 
 " Core
+Plug 'nvim-neotest/nvim-nio'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
