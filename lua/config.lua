@@ -1,10 +1,10 @@
 -- NVIM Tree setup
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 require("mason").setup()
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'lua_ls' }
 require("mason-lspconfig").setup {
-  ensure_installed = { "lua_ls", "rust_analyzer", "gopls" },
+  ensure_installed = servers
 }
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'lua_ls', 'gdscript' }
 local lspconfig = require('lspconfig')
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 for _, lsp in ipairs(servers) do
