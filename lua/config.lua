@@ -3,6 +3,7 @@ vim.keymap.set('n', '<leader>s', ':split <CR>')
 vim.keymap.set('n', '<leader>v', ':vsplit <CR>')
 
 -- NVIM Tree setup
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 require("mason").setup()
 local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'lua_ls' }
 local debuggers = { 'js-debug-adapter' }
