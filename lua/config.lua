@@ -1,9 +1,9 @@
 -- NVIM Tree setup
 require("mason").setup()
-require("mason-lspconfig").setup {
-  ensure_installed = { "lua_ls", "rust_analyzer", "gopls" },
-}
 local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'lua_ls' }
+require("mason-lspconfig").setup {
+  ensure_installed = servers
+}
 local lspconfig = require('lspconfig')
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 for _, lsp in ipairs(servers) do
