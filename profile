@@ -9,5 +9,6 @@ export PATH=$ANDROID_SDK_ROOT:$PATH
 export GOOGLE_APPLICATION_CREDENTIALS=~/key.json
 alias vim="nvim"
 export NVM_DIR="$HOME/.nvm"
-alias tmux="TERM=screen-256color-bce tmux"
 source $HOME/.amazonrc
+export TERM='xterm-256color'
+
