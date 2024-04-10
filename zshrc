@@ -10,4 +10,4 @@ export PATH="$HOME/bin:$HOME/.toolbox/bin:$PATH"
 # if you wish to use IMDS set AWS_EC2_METADATA_DISABLED=false
 
 export AWS_EC2_METADATA_DISABLED=true
-
+export TERM="screen-256color"
