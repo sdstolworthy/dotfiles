@@ -36,7 +36,6 @@ Plug 'nvim-neotest/nvim-nio'
 Plug 'sirtaj/vim-openscad'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'MunifTanjim/nui.nvim'
 Plug 'microsoft/vscode-js-debug', { 'do': 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out' }
 
