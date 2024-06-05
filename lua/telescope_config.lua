@@ -12,6 +12,7 @@ telescope.setup {
       '-u' -- thats the new thing
     },
     file_ignore_patterns = {
+      "package-lock.json",
       "node_modules",
       ".git"
     }
