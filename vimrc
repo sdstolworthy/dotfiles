@@ -32,6 +32,16 @@ if exists('+termguicolors')
 endif
 
 " Core
+" ===== PlantUML =====
+Plug 'aklt/plantuml-syntax'
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
+" ====================
+
+Plug 'stevearc/conform.nvim'
+Plug 'nvimtools/none-ls.nvim'
+Plug 'mfussenegger/nvim-lint'
+
 Plug 'nvim-neotest/nvim-nio'
 Plug 'sirtaj/vim-openscad'
 Plug 'nvim-lua/plenary.nvim'
@@ -91,7 +101,7 @@ call plug#end()
 let mapleader = " "
 
 " colo onedark
-colo tokyonight-day
+colo tokyonight-night
 highlight LineNr ctermfg=grey
 let g:airline#extensions#tabline#enabled = 1
 
