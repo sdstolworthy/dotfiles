@@ -26,7 +26,6 @@ call plug#begin('~/.vim/plugged')
 let g:coc_disable_startup_warning = 1
 
 " Core
-Plug 'nvim-neotest/nvim-nio'
 Plug 'sirtaj/vim-openscad'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
@@ -42,7 +41,8 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'f-person/git-blame.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-neotest/neotest'
+Plug 'mrcjkb/rustaceanvim'
+'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'startup-nvim/startup.nvim'
@@ -61,6 +61,11 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+
+" testing
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'nvim-neotest/neotest'
 
 " themes
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
@@ -87,7 +92,7 @@ call plug#end()
 let mapleader = " "
 
 " colo onedark
-colo tokyonight-day
+colo tokyonight-night
 highlight LineNr ctermfg=grey
 let g:airline#extensions#tabline#enabled = 1
 

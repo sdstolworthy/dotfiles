@@ -1,6 +1,6 @@
 require("mason").setup()
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'lua_ls', 'jdtls' }
-local debuggers = { 'js-debug-adapter' }
+local servers = { 'clangd', 'pyright', 'tsserver', 'gopls', 'lua_ls', 'jdtls', 'openscad_lsp' }
+local debuggers = { 'js-debug-adapter', 'codelldb', 'cpptools' }
 require("mason-lspconfig").setup {
   ensure_installed = servers
 }

@@ -9,6 +9,8 @@ vim.keymap.set('n', '<Leader>lp',
   function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
 vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end)
 vim.keymap.set('n', '<Leader>dl', function() dap.run_last() end)
+vim.keymap.set('n', '<Leader>dd', '<Cmd>lua require("dapui").toggle()<CR>')
+
 
 for _, language in ipairs({ "typescript", "javascript" }) do
   dap.configurations[language] = {
