@@ -12,7 +12,11 @@ local lspconfig = require('lspconfig')
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
+    on_attach = function(client)
+      if lsp == 'tsserver' then
+        client.resolved_capabilities.document_formatting = false
+      end
+    end,
     capabilities = capabilities,
   }
 end
@@ -113,8 +117,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>as', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
   end,
 })

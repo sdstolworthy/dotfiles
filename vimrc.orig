@@ -32,6 +32,8 @@ if exists('+termguicolors')
 endif
 
 " Core
+<<<<<<< HEAD
+=======
 " ===== PlantUML =====
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
@@ -43,6 +45,7 @@ Plug 'nvimtools/none-ls.nvim'
 Plug 'mfussenegger/nvim-lint'
 
 Plug 'nvim-neotest/nvim-nio'
+>>>>>>> 17c67900445c55ee7cbc24417af2b453123482f7
 Plug 'sirtaj/vim-openscad'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'

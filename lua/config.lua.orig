@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+for _, plugin in ipairs({ './dap_config', './filetree_config', './keymaps_config', './lsp_config', './neotest_config', './startup_config', './telescope_config', './terminal_config' }) do
+=======
+for _, plugin in ipairs({ './dap_config', './filetree_config', './keymaps_config', './formatter_config', './lsp_config', './startup_config', './telescope_config', './terminal_config' }) do
+>>>>>>> 17c67900445c55ee7cbc24417af2b453123482f7
+  require(plugin)
+end

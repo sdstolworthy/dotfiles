@@ -12,6 +12,11 @@ telescope.setup {
       '-u' -- thats the new thing
     },
     file_ignore_patterns = {
+      "dist",
+      "build",
+      "target",
+      "cdk.out",
+      "package-lock.json",
       "node_modules",
       ".git"
     }
