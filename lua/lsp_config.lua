@@ -1,6 +1,6 @@
 require("mason").setup()
-local servers = { 'clangd', 'pyright', 'tsserver', 'gopls', 'lua_ls', 'jdtls', 'openscad_lsp' }
-local debuggers = { 'js-debug-adapter', 'codelldb', 'cpptools' }
+local servers = { 'clangd', 'pyright', 'tsserver', 'gopls', 'lua_ls', 'jdtls', 'openscad_lsp', 'rust_analyzer' }
+local debuggers = { 'js-debug-adapter', 'codelldb', 'cpptools', 'vscode-js-debug' }
 require("mason-lspconfig").setup {
   ensure_installed = servers
 }
@@ -8,6 +8,17 @@ require("mason-nvim-dap").setup({
   ensure_installed = debuggers,
   automatic_installation = true,
 })
+local server_settings = {
+  rust_analyzer = {
+    cmd = { "/home/sstol/.toolbox/bin/rust-analyzer" },
+    ["rust-analyzer"] = {
+      ["server"] = {
+        ["path"] = "/home/sstol/.toolbox/bin/rust-analyzer"
+      }
+    }
+  }
+}
+
 local lspconfig = require('lspconfig')
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 for _, lsp in ipairs(servers) do
@@ -17,9 +28,14 @@ for _, lsp in ipairs(servers) do
         client.resolved_capabilities.document_formatting = false
       end
     end,
+    settings = server_settings[lsp],
     capabilities = capabilities,
   }
 end
+lspconfig.rust_analyzer.setup {
+  cmd = { "/home/sstol/.toolbox/bin/rust-analyzer" },
+  settings = server_settings['rust_analyzer']
+}
 -- luasnip setup
 local luasnip = require 'luasnip'
 -- nvim-cmp setup
@@ -119,3 +135,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   end,
 })
+function bemol()
+ local bemol_dir = vim.fs.find({ '.bemol' }, { upward = true, type = 'directory'})[1]
+ local ws_folders_lsp = {}
+ if bemol_dir then
+  local file = io.open(bemol_dir .. '/ws_root_folders', 'r')
+  if file then
+
+   for line in file:lines() do
+    table.insert(ws_folders_lsp, line)
+   end
+   file:close()
+  end
+ end
+
+ for _, line in ipairs(ws_folders_lsp) do
+  vim.lsp.buf.add_workspace_folder(line)
+ end
+
+end
+bemol()

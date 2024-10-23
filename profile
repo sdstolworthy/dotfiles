@@ -12,3 +12,8 @@ export NVM_DIR="$HOME/.nvm"
 source $HOME/.amazonrc
 export TERM='xterm-256color'
 
+export PATH="$HOME/.cargo/env:/apollo/env/envImprovement/bin:$PATH"
+export AWS_SDK_LOAD_CONFIG=1
+. "$HOME/.cargo/env"
+export DEV_ENDPOINT="https://0ejhwnu1sg.execute-api.us-west-2.amazonaws.com/test"
+export GAMMA_ENDPOINT="https://e3alza85jk.execute-api.us-west-2.amazonaws.com/gamma"

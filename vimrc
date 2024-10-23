@@ -41,6 +41,7 @@ Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'stevearc/conform.nvim'
 Plug 'nvimtools/none-ls.nvim'
 Plug 'mfussenegger/nvim-lint'
+Plug 'mfussenegger/nvim-jdtls'
 
 Plug 'nvim-neotest/nvim-nio'
 Plug 'sirtaj/vim-openscad'
@@ -48,6 +49,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'microsoft/vscode-js-debug', { 'do': 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out' }
+
 
 
 Plug 'rcarriga/nvim-dap-ui'
@@ -58,12 +60,10 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'f-person/git-blame.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'mrcjkb/rustaceanvim'
-'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'startup-nvim/startup.nvim'
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'mxsdev/nvim-dap-vscode-js'
 Plug 'vim-airline/vim-airline'

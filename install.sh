@@ -1,10 +1,10 @@
 #!/bin/bash
 
-mkdir -p $HOME/.config/nvim/lua
+mkdir -p $HOME/.config/nvim
 mkdir -p $HOME/.config/alacritty
-ln -s `pwd`/lua/*.lua $HOME/.config/nvim/lua/
+ln -s `pwd`/ftplugin $HOME/.config/nvim
+ln -s `pwd`/lua $HOME/.config/nvim/
 ln -s `pwd`/alacritty.toml $HOME/.config/alacritty/alacritty.toml
-
 ln -s `pwd`/tmux.conf $HOME/.tmux.conf
 ln -s `pwd`/coc.nvim $HOME/.config/nvim/coc.nvim
 ln -s `pwd`/coc-settings.json $HOME/.config/nvim/coc-settings.json
