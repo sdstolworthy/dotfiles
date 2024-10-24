@@ -1,0 +1,8 @@
+- name: Configure local
+  hosts: myhosts
+  tasks:
+   - name: Install Neovim
+     ansible.builtin.package:
+      name: neovim
+      state: present
+
