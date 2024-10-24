@@ -31,8 +31,10 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+let g:plantuml_previewer#plantuml_jar_path = '/opt/homebrew/Cellar/plantuml/1.2024.7/libexec/plantuml.jar'
 " Core
 " ===== PlantUML =====
+Plug 'previm/previm'
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'

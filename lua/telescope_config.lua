@@ -1,38 +1,23 @@
 local telescope = require('telescope')
 telescope.setup {
   defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case',
-      '-u' -- thats the new thing
-    },
     file_ignore_patterns = {
-      "dist",
-      "build",
-      "target",
-      "cdk.out",
-      "package-lock.json",
-      "node_modules",
-      ".git"
+      --      "lib",
+      --      "dist",
+      --      "build",
+      --      "target",
+      --      "cdk.out",
+      --      "package-lock.json",
+      --      "node_modules",
+      --      ".git"
     }
   },
   pickers = {
-    find_files = {
-      hidden = true
-    },
-    live_grep = {
-      additional_args = function(opts)
-        return { "--hidden" }
-      end
-    },
   },
 }
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
