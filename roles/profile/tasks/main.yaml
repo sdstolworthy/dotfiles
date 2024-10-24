@@ -1,0 +1,4 @@
+- name: copy profile
+  copy:
+    src: ./profile
+    dest: "{{ home }}/.profile"

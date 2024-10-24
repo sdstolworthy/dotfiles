@@ -1,0 +1,1 @@
+alacritty_config_dir: "{{ home }}/.config/alacritty"

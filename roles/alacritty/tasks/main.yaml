@@ -1,0 +1,9 @@
+- name: create alacritty directory
+  file:
+    path: "{{ alacritty_config_dir }}"
+    state: directory
+    mode: '0755'
+- name: copy alacritty.toml
+  copy:
+    src: ./alacritty.toml
+    dest: "{{ alacritty_config_dir }}/alacritty.toml"
