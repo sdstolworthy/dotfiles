@@ -2,3 +2,12 @@
   copy:
     src: ./zshrc
     dest: "{{ home }}/.zshrc"
+- name: remove zsh directory
+  file:
+    path: "{{ home }}/.oh-my-zsh"
+    state: absent
+- name: install oh-my-zsh
+  ignore_errors: true
+  shell:
+    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
