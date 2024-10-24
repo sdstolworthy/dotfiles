@@ -1,0 +1,4 @@
+- name: copy .zshrc
+  copy:
+    src: ./zshrc
+    dest: "{{ home }}/.zshrc"

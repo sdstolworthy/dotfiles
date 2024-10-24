@@ -20,5 +20,6 @@ To install workspace dependencies and configurations,
 run the `configure_all.yaml` playbook.
 
 ```
-ansible-playbook configure_all.yaml -i inventory.ini --connection=local -K
+ansible-playbook playbooks/configure_all.yaml -i inventory.ini --connection=local -K
 ```
+

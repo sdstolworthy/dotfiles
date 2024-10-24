@@ -1,4 +1,4 @@
 - name: Install Software
   hosts: all
   roles:
-    - install_software
+    - { role: ../roles/install_software }
