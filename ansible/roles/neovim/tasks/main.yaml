@@ -1,6 +1,8 @@
-- name: set home path
-  set_fact:
-    home: "{{ lookup('ansible.builtin.env', 'HOME') }}"
+- name: create neovim directory
+  file:
+    path: "{{ home }}/.neovim"
+    state: directory
+    mode: '0755'
 - name: copy neovim files to host
   copy:
     src: ./
