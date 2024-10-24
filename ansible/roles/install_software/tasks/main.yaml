@@ -1,9 +1,6 @@
 - name: Print os_family
   debug:
-    msg: "{{ ansible_facts['os_family'] }}"
-- name: Set should become fact
-  set_fact:
-    should_become: "{{ ansible_facts['os_family']|lower != 'darwin' }}"
+    msg: "OS Family: {{ ansible_facts['os_family'] }}. Should Become: {{ should_become }}"
 - name: Install Ripgrep
   become: "{{ should_become }}"
   ansible.builtin.package:
@@ -14,4 +11,5 @@
   ansible.builtin.package:
    name: neovim
    state: present
+
 

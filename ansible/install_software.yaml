@@ -1,4 +1,4 @@
 - name: Install Software
-  hosts: myhosts
+  hosts: all
   roles:
     - install_software
