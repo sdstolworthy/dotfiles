@@ -1,6 +1,11 @@
 - name: Configure local
   hosts: myhosts
+  become: true
   tasks:
+   - name: Install Ripgrep
+     ansible.builtin.package:
+      name: ripgrep
+      state: present
    - name: Install Neovim
      ansible.builtin.package:
       name: neovim
