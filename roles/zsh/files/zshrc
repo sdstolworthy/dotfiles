@@ -1,18 +1,9 @@
-# Use powerline
-USE_POWERLINE="true"
-# Has weird character width
-# Example:
-#    is not a diamond
-HAS_WIDECHARS="false"
-# Source manjaro-zsh-configuration
-if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-  source /usr/share/zsh/manjaro-zsh-config
-fi
-# Use manjaro zsh prompt
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
-fi
+export ZSH="$HOME/.oh-my-zsh"
 
-alias vim=nvim
-. /opt/asdf-vm/asdf.sh
-. "$HOME/.cargo/env"
+ZSH_THEME="wedisagree"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+source ~/.profile
+
