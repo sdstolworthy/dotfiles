@@ -1,0 +1,4 @@
+- name: Link files
+  hosts: myhosts
+  roles:
+    - neovim
