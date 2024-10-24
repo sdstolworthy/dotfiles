@@ -1,0 +1,27 @@
+- name: set home path
+  set_fact:
+    home: "{{ lookup('ansible.builtin.env', 'HOME') }}"
+- name: copy neovim files to host
+  copy:
+    src: ./
+    dest: "{{ home }}/.neovim"
+- name: create config file
+  file:
+    path: "{{ home }}/.config/nvim"
+    state: directory
+    mode: '0755'
+- name: Link init.lua
+  file:
+    src: "{{ home }}/.neovim/init.lua"
+    dest: "{{ home }}/.config/nvim/init.lua"
+    state: link
+- name: Link lua directory
+  file:
+    src: "{{ home }}/.neovim/lua"
+    dest: "{{ home }}/.config/nvim/lua"
+    state: link
+- name: Link ftplugin directory
+  file:
+    src: "{{ home }}/.neovim/ftplugin"
+    dest: "{{ home }}/.config/nvim/ftplugin"
+    state: link
