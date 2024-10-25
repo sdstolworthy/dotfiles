@@ -1,15 +1,1 @@
 alias vim="nvim"
-export TERM='xterm-256color'
-if [ -d ${HOME}/.profile.d/ ]; then
-  # sourcing *.sh
-  for i in ${HOME}/.profile.d/*; do
-    if [ -r "$i" ]; then
-      if [ "$PS1" ]; then
-        source $i
-      else
-        source $i &>/dev/null
-      fi
-    fi
-  done
-fi
-
