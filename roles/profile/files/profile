@@ -1,1 +1,13 @@
 alias vim="nvim"
+if [ -d ${HOME}/.profile.d/ ] -a [[ $(ls -1|wc -l) -gt 0 ]]; then
+  # sourcing *.sh
+  for i in ${HOME}/.profile.d/*; do
+    if [ -r "$i" ]; then
+      if [ "$PS1" ]; then
+        source $i
+      else
+        source $i &>/dev/null
+      fi
+    fi
+  done
+fi
