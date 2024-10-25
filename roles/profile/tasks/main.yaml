@@ -2,7 +2,7 @@
   file: 
     path: "{{ profiled_directory }}"
     state: directory
-    mode: '0755'
+    mode: '0555'
 - name: set profile.d directory fact
   set_fact:
     profiled_directory: "{{ profiled_directory }}"

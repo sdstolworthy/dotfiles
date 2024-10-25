@@ -3,9 +3,9 @@
   vars:
     home: "{{ ansible_env.HOME }}"
   roles:
+    - { role: ../roles/zsh }
+    - { role: ../roles/profile }
     - { role: ../roles/neovim }
     - { role: ../roles/tmux }
     - { role: ../roles/alacritty }
-    - { role: ../roles/zsh }
-    - { role: ../roles/profile }
     - { role: ../roles/workplace_directory }

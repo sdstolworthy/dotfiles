@@ -27,3 +27,10 @@
     src: "{{ home }}/.neovim/ftplugin"
     dest: "{{ home }}/.config/nvim/ftplugin"
     state: link
+- name: Add neovim profile file
+  when: profiled_directory is defined
+  become: true
+  file:
+    src: "{{ home }}/.neovim/profile"
+    dest: "{{ profiled_directory }}/neovim.sh"
+    state: link
