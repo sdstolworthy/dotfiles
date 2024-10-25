@@ -1,0 +1,5 @@
+- name: Create workplace directory
+  file:
+    path: "{{ workplace_dir }}"
+    state: directory
+    mode: '0755'
