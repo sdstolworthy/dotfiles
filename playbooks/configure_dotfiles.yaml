@@ -8,3 +8,4 @@
     - { role: ../roles/alacritty }
     - { role: ../roles/zsh }
     - { role: ../roles/profile }
+    - { role: ../roles/workplace_directory }
