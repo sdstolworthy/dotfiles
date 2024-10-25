@@ -1,0 +1,1 @@
+profiled_directory: "{{ home }}/.profile.d"
