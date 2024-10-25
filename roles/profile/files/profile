@@ -1,5 +1,4 @@
 alias vim="nvim"
-export TERM='xterm-256color'
 if [ -d ${HOME}/.profile.d/ ]; then
   # sourcing *.sh
   for i in ${HOME}/.profile.d/*; do
@@ -12,4 +11,3 @@ if [ -d ${HOME}/.profile.d/ ]; then
     fi
   done
 fi
-
