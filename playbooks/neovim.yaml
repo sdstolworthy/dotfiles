@@ -1,6 +1,0 @@
-- name: Configure neovim
-  hosts: all
-  vars:
-    home: "{{ ansible_env.HOME }}"
-  roles:
-    - { role: ../roles/neovim }
