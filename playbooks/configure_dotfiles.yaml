@@ -9,3 +9,4 @@
     - { role: ../roles/tmux }
     - { role: ../roles/alacritty }
     - { role: ../roles/workplace_directory }
+    - { role: ../roles/nvm }
