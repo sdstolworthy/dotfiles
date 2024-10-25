@@ -8,3 +8,5 @@ coc/list_history.dat
 coc/memos.json
 coc/memos.json
 coc/commands
+.*_inventory.ini
+
