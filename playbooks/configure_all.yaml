@@ -1,2 +1,16 @@
-- import_playbook: install_software.yaml
-- import_playbook: configure_dotfiles.yaml
+- name: Install Software
+  hosts: all
+  roles:
+    - { role: ../roles/install_software }
+- name: Configure dotfiles
+  hosts: all
+  vars:
+    home: "{{ ansible_env.HOME }}"
+  roles:
+    - { role: ../roles/zsh }
+    - { role: ../roles/profile }
+    - { role: ../roles/neovim }
+    - { role: ../roles/tmux }
+    - { role: ../roles/alacritty }
+    - { role: ../roles/workplace_directory }
+    - { role: ../roles/nvm }
