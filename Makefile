@@ -3,6 +3,6 @@ install:
 remote:
 	ansible-playbook playbooks/configure_all.yaml -i inventory/remote.ini 
 configure:
-	ansible-playbook playbooks/configure.yaml -i inventory.ini --connection=local -e config=${config}
+	ansible-playbook playbooks/configure.yaml -i inventory/local.ini --connection=local -e config=${config}
 
 
