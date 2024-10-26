@@ -23,5 +23,5 @@
 - name: Add neovim profile file
   when: profiled_directory is defined
   copy:
-    src: "{{ home }}/.neovim/profile"
+    src: "profile"
     dest: "{{ profiled_directory }}/neovim.sh"
