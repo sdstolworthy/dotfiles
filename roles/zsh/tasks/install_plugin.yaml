@@ -1,0 +1,5 @@
+- name: "add {{ plugin.name }} plugin"
+  git:
+    repo: "{{ plugin.git_url }}"
+    dest: "{{ ohmyzsh_dir }}/custom/plugins/{{ plugin.name }}"
+
