@@ -2,10 +2,11 @@
   file:
     path: "{{ home }}/.oh-my-zsh"
     state: absent
-- name: install oh-my-zsh
-  ignore_errors: true
-  shell:
-    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+- name: Download oh-my-zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: "{{ home }}/.oh-my-zsh"
+    depth: 1
 - name: copy .zshrc
   copy:
     src: ./zshrc
