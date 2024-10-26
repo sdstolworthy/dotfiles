@@ -12,7 +12,7 @@ See [Ansible's Installation Guide](https://docs.ansible.com/ansible/latest/insta
 To run the playbook against localhost, ensure that the inventory file is set up correctly
 
 ```
-# ansible/inventory.ini
+# inventory/local.ini
 [localhost]
 127.0.0.1
 ```
