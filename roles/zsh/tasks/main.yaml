@@ -7,16 +7,30 @@
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: "{{ home }}/.oh-my-zsh"
     depth: 1
-- name: add zsh custom plugins directory
+- name: add zsh custom {{ item }} directory
+  loop:
+    - plugins
+    - themes
   file:
-    path: "{{ ohmyzsh_dir }}/custom/plugins"
+    path: "{{ ohmyzsh_dir }}/custom/{{ item }}"
     state: directory
 - include_tasks:
     file: "install_plugin.yaml"
   vars:
+    install_directory: "{{ ohmyzsh_dir }}/custom/plugins"
     plugin: "{{ item }}"
   loop: "{{ zsh_plugins }}"
+- include_tasks:
+    file: "install_plugin.yaml"
+  vars:
+    install_directory: "{{ ohmyzsh_dir }}/custom/themes"
+    plugin: "{{ item }}"
+  loop: "{{ zsh_themes }}"
 - name: copy .zshrc
   template:
     src: zshrc
     dest: "{{ home }}/.zshrc"
+- name: copy p10k.zsh
+  copy:
+    src: p10k.zsh
+    dest: "{{ home }}/.p10k.zsh"
