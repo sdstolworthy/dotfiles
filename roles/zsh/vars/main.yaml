@@ -1,5 +1,7 @@
 ohmyzsh_dir: "{{ home }}/.oh-my-zsh"
 zsh_theme: wedisagree
+zsh_builtin_plugins:
+  - git
 zsh_plugins:
   - name: 'zsh-autosuggestions'
     git_url: 'https://github.com/zsh-users/zsh-autosuggestions.git'
