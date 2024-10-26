@@ -1,0 +1,7 @@
+ohmyzsh_dir: "{{ home }}/.oh-my-zsh"
+zsh_theme: wedisagree
+zsh_plugins:
+  - name: 'zsh-autosuggestions'
+    git_url: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+  - name: 'zsh-syntax-highlighting'
+    git_url: 'https://github.com/zsh-users/zsh-syntax-highlighting.git' 
