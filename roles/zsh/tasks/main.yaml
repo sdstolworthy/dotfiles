@@ -1,13 +1,22 @@
 - name: remove zsh directory
   file:
-    path: "{{ home }}/.oh-my-zsh"
+    path: "{{ ohmyzsh_dir }}"
     state: absent
 - name: Download oh-my-zsh
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: "{{ home }}/.oh-my-zsh"
     depth: 1
+- name: add zsh custom plugins directory
+  file:
+    path: "{{ ohmyzsh_dir }}/custom/plugins"
+    state: directory
+- include_tasks:
+    file: "install_plugin.yaml"
+  vars:
+    plugin: "{{ item }}"
+  loop: "{{ zsh_plugins }}"
 - name: copy .zshrc
-  copy:
-    src: ./zshrc
+  template:
+    src: zshrc
     dest: "{{ home }}/.zshrc"
