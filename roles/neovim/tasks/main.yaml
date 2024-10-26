@@ -3,33 +3,25 @@
     path: "{{ home }}/.neovim"
     state: directory
     mode: '0755'
-- name: copy neovim files to host
-  copy:
-    src: ./
-    dest: "{{ home }}/.neovim"
-- name: create config file
+- name: create config folder
   file:
     path: "{{ home }}/.config/nvim"
     state: directory
     mode: '0755'
-- name: Link init.lua
-  file:
-    src: "{{ home }}/.neovim/init.lua"
+- name: copy init.lua
+  copy:
+    src: "init.lua"
     dest: "{{ home }}/.config/nvim/init.lua"
-    state: link
-- name: Link lua directory
-  file:
-    src: "{{ home }}/.neovim/lua"
+- name: Copy lua directory
+  copy:
+    src: "lua"
     dest: "{{ home }}/.config/nvim/lua"
-    state: link
-- name: Link ftplugin directory
-  file:
-    src: "{{ home }}/.neovim/ftplugin"
+- name: Copy ftplugin directory
+  copy:
+    src: "ftplugin"
     dest: "{{ home }}/.config/nvim/ftplugin"
-    state: link
 - name: Add neovim profile file
   when: profiled_directory is defined
-  file:
+  copy:
     src: "{{ home }}/.neovim/profile"
     dest: "{{ profiled_directory }}/neovim.sh"
-    state: link
