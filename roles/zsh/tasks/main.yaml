@@ -26,7 +26,7 @@
     install_directory: "{{ ohmyzsh_dir }}/custom/themes"
     plugin: "{{ item }}"
   loop: "{{ zsh_themes }}"
-- name: copy .zshrc
+- name: template .zshrc
   template:
     src: zshrc
     dest: "{{ home }}/.zshrc"
