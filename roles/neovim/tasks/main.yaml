@@ -15,7 +15,7 @@
 - name: Copy lua directory
   copy:
     src: "lua"
-    dest: "{{ home }}/.config/nvim/lua"
+    dest: "{{ home }}/.config/nvim/"
 - name: Copy ftplugin directory
   copy:
     src: "ftplugin"
