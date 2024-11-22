@@ -37,7 +37,20 @@ return {
 
     local server_configs = {
       ts_ls = {},
-
+      ["rust-analyzer"] = function()
+        lspconfig.rust_analyzer.setup({
+            settings = {
+                ["rust-analyzer"] = {
+                    checkOnSave = {
+                        command = "clippy"
+                    },
+                    cargo = {
+                        features = "all"
+                    }
+                },
+            },
+        })
+      end,
       lua_ls = {
         settings = {
           Lua = {
