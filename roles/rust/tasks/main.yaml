@@ -1,0 +1,5 @@
+- name: Add rust profile file
+  when: profiled_directory is defined
+  copy:
+    src: "rust.sh"
+    dest: "{{ profiled_directory }}/rust.sh"

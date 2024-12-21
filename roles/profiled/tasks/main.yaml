@@ -1,0 +1,12 @@
+- name: create profile.d directory
+  file: 
+    path: "{{ profiled_directory }}"
+    state: directory
+    mode: '0700'
+- name: set profile.d directory fact
+  set_fact:
+    profiled_directory: "{{ profiled_directory }}"
+- ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ profiled_directory }}"
+  loop: "{{ query('fileglob', '*') }}"
