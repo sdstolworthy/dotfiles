@@ -5,13 +5,13 @@
   become: "{{ should_become }}"
   ignore_errors: true
   ansible.builtin.package:
-   name: ripgrep
-   state: present
+    name: ripgrep
+    state: present
 - name: Install Neovim
   ignore_errors: true
   become: "{{ should_become }}"
   ansible.builtin.package:
-   name: neovim
-   state: present
+    name: neovim
+    state: present
 
 
