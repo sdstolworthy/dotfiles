@@ -1,1 +1,1 @@
-workplace_dir: "/workplace"
+workplace_dir: "{{ lookup('ansible.builtin.env', 'WORKPLACE_DIR', default='/workplace') }}"
