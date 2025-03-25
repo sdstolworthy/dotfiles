@@ -1,0 +1,20 @@
+- name: Set mergetool
+  community.general.git_config:
+    name: merge.tool
+    scope: global
+    value: nvimdiff
+- name: Set email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ email_address }}"
+- name: Set name
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ full_name }}"
+- name: Set editor
+  community.general.git_config:
+    name: core.editor
+    scope: global
+    value: nvim
