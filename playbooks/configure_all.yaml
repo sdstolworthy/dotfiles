@@ -15,3 +15,4 @@
     - { role: ../roles/workplace_directory }
     - { role: ../roles/nvm }
     - { role: ../roles/zellij }
+    - { role: ../roles/gitconfig }
