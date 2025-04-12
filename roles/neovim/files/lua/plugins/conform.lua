@@ -14,6 +14,7 @@ return {
 				-- Use a sub-list to run only the first available formatter
 				javascript = { "prettier" },
 				typescript = { "prettier" },
+                                json = { "prettier" },
 			},
 		})
 	end,
