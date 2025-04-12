@@ -8,3 +8,13 @@
   copy:
     src: nvm_profile.sh
     dest: "{{ profiled_directory }}/nvm.sh"
+- name: Create npm global install directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.npm-global"
+    state: directory
+    mode: '0755'
+- name: Set npm global install directory
+  ansible.builtin.shell: >
+    npm config set prefix "{{ ansible_env.HOME }}/.npm-global"
+  args:
+    creates: "{{ ansible_env.HOME }}/.npm-global"
