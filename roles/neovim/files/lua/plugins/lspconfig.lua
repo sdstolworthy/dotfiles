@@ -35,6 +35,17 @@ return {
 		local server_configs = {
 			ts_ls = {},
 			templ = {},
+      ["kotlin-language-server"] = {
+        settings = {
+          kotlin = {
+            compiler = {
+              jvm = {
+                target = "1.8";
+              }
+            };
+          };
+      }
+      },
 			["rust-analyzer"] = function()
 				lspconfig.rust_analyzer.setup({
 					settings = {
@@ -72,6 +83,7 @@ return {
 			{
 				"stylua",
 				"jdtls",
+        "kotlin-language-server@1.3.3"
 			},
 		})
 		mason_tool_installer.setup({
