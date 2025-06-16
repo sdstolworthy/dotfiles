@@ -80,9 +80,9 @@ local config = {
         "-Dlog.level=ALL",
         "-Xmx1g",
         "-javaagent:" .. path_to_lombok,
-        "-add-opens",
-        "java.base/java.util=ALL-UNNAMED",
-        "java.base/java.lang=ALL-UNNAMED",
+        -- "-add-opens",
+        -- "java.base/java.util=ALL-UNNAMED",
+        -- "java.base/java.lang=ALL-UNNAMED",
 
         "-jar",
         path_to_jar,
