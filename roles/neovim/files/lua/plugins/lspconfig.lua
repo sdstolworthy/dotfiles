@@ -22,7 +22,6 @@ return {
 	},
 
 	config = function()
-		local lspconfig = require("lspconfig")
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
@@ -32,61 +31,49 @@ return {
 
 		default_capabilities = vim.tbl_deep_extend("force", default_capabilities, cmp_nvim_lsp.default_capabilities())
 
-		local server_configs = {
-			ts_ls = {},
-			templ = {},
-			["rust-analyzer"] = function()
-				lspconfig.rust_analyzer.setup({
-					settings = {
-						["rust-analyzer"] = {
-							checkOnSave = {
-								command = "clippy",
-							},
-							cargo = {
-								features = "all",
-							},
-						},
+		local servers = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls" }
+
+		for _, server in ipairs(servers) do
+			vim.lsp.enable(server)
+		end
+
+		vim.lsp.config("rust_analyzer", {
+			settings = {
+				["rust_analyzer"] = {
+					checkOnSave = {
+						command = "clippy",
 					},
-				})
-			end,
-			lua_ls = {
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-						diagnostics = {
-							disable = {
-								"missing-fields",
-							},
+					cargo = {
+						features = "all",
+					},
+				},
+			},
+		})
+
+		vim.lsp.config("lua_ls", {
+			settings = {
+				Lua = {
+					completion = {
+						callSnippet = "Replace",
+					},
+					diagnostics = {
+						disable = {
+							"missing-fields",
 						},
 					},
 				},
 			},
-		}
+		})
 
 		mason.setup()
 
-		local mason_ensure_installed = vim.tbl_keys(server_configs or {})
-		vim.list_extend(mason_ensure_installed, {
-			{
-				"stylua",
-				"jdtls",
-			},
-		})
 		mason_tool_installer.setup({
-			ensure_installed = mason_ensure_installed,
+			ensure_installed = servers,
 		})
 
 		mason_lspconfig.setup({
 			handlers = {
 				["jdtls"] = function() end,
-				function(server_name)
-					local server_config = server_configs[server_name] or {}
-					server_config.capabilities =
-						vim.tbl_deep_extend("force", default_capabilities, server_config.capabilities or {})
-					lspconfig[server_name].setup(server_config)
-				end,
 			},
 		})
 
