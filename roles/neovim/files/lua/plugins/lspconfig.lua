@@ -31,6 +31,7 @@ return {
 
 		default_capabilities = vim.tbl_deep_extend("force", default_capabilities, cmp_nvim_lsp.default_capabilities())
 
+<<<<<<< HEAD
 		local servers = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls" }
 
 		for _, server in ipairs(servers) do
@@ -42,6 +43,33 @@ return {
 				["rust_analyzer"] = {
 					checkOnSave = {
 						command = "clippy",
+=======
+		local server_configs = {
+			ts_ls = {},
+			templ = {},
+      ["kotlin-language-server"] = {
+        settings = {
+          kotlin = {
+            compiler = {
+              jvm = {
+                target = "1.8";
+              }
+            };
+          };
+      }
+      },
+			["rust-analyzer"] = function()
+				lspconfig.rust_analyzer.setup({
+					settings = {
+						["rust-analyzer"] = {
+							checkOnSave = {
+								command = "clippy",
+							},
+							cargo = {
+								features = "all",
+							},
+						},
+>>>>>>> 6b669370d87dfc73c90fb2d65e86f941a6147c86
 					},
 					cargo = {
 						features = "all",
@@ -67,8 +95,15 @@ return {
 
 		mason.setup()
 
+		local mason_ensure_installed = vim.tbl_keys(servers or {})
+		vim.list_extend(mason_ensure_installed, {
+			{
+				"stylua",
+        "kotlin-language-server@1.3.3"
+			},
+		})
 		mason_tool_installer.setup({
-			ensure_installed = servers,
+			ensure_installed = mason_ensure_installed,
 		})
 
 		mason_lspconfig.setup({
