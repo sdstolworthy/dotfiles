@@ -31,11 +31,12 @@ return {
 
 		default_capabilities = vim.tbl_deep_extend("force", default_capabilities, cmp_nvim_lsp.default_capabilities())
 
-		local servers = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls" }
+		local servers = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-ls" }
 
 		for _, server in ipairs(servers) do
 			vim.lsp.enable(server)
 		end
+
 
 		vim.lsp.config("rust_analyzer", {
 			settings = {
@@ -65,16 +66,18 @@ return {
 			},
 		})
 
+    vim.lsp.config["kotlin-ls"] = {
+        cmd = { "kotlin-ls", "--stdio" },
+        single_file_support = true,
+        filetypes = { "kotlin" },
+        root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
+    }
+
+
 		mason.setup()
 
-		local mason_ensure_installed = vim.tbl_values(servers or {})
-		vim.list_extend(mason_ensure_installed, {
-			{
-				"stylua",
-				"jdtls",
-        "kotlin-language-server@1.3.3"
-			},
-		})
+		local mason_ensure_installed = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-lsp" }
+
 		mason_tool_installer.setup({
 			ensure_installed = servers,
 		})
@@ -84,6 +87,7 @@ return {
 				["jdtls"] = function() end,
 			},
 		})
+
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach-keybinds", { clear = true }),
