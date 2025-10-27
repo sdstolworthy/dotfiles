@@ -1,4 +1,5 @@
 - name: Create workplace directory
+  become: "{{ should_become }}"
   file:
     path: "{{ workplace_dir }}"
     state: directory
