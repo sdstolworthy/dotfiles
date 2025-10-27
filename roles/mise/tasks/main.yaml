@@ -1,0 +1,13 @@
+- name: Print os_family
+  debug:
+    msg: "OS Family: {{ ansible_facts['os_family'] }}. Should Become: {{ should_become }}"
+- name: Install mise
+  become: "{{ should_become }}"
+  ignore_errors: true
+  ansible.builtin.package:
+    name: mise
+    state: present
+- name: Install Node.js with mise
+  ansible.builtin.shell: mise install node@latest
+  args:
+    chdir: "{{ ansible_facts.user_home }}" 

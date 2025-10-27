@@ -7,6 +7,12 @@
   ansible.builtin.package:
     name: ripgrep
     state: present
+- name: Install Fira Code Nord
+  become: "{{ should_become }}"
+  ignore_errors: true
+  ansible.builtin.package:
+    name: ttf-firacode-nerd 
+    state: present
 - name: Install Neovim
   ignore_errors: true
   become: "{{ should_become }}"
