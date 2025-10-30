@@ -31,25 +31,25 @@ return {
 
 		default_capabilities = vim.tbl_deep_extend("force", default_capabilities, cmp_nvim_lsp.default_capabilities())
 
-		local servers = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-ls" }
+		local servers = { "ts_ls", "templ","lua_ls", "stylua", "jdtls", "kotlin-ls" }
 
 		for _, server in ipairs(servers) do
 			vim.lsp.enable(server)
 		end
 
 
-		vim.lsp.config("rust_analyzer", {
-			settings = {
-				["rust_analyzer"] = {
-					checkOnSave = {
-						command = "clippy",
-					},
-					cargo = {
-						features = "all",
-					},
-				},
-			},
-		})
+		-- vim.lsp.config("rust_analyzer", {
+		-- 	settings = {
+		-- 		["rust_analyzer"] = {
+		-- 			checkOnSave = {
+		-- 				command = "clippy",
+		-- 			},
+		-- 			cargo = {
+		-- 				features = "all",
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
 
 		vim.lsp.config("lua_ls", {
 			settings = {

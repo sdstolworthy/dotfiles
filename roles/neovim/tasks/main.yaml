@@ -20,6 +20,10 @@
   copy:
     src: "ftplugin"
     dest: "{{ home }}/.config/nvim"
+- name: Copy "after" directory
+  copy:
+    src: "after"
+    dest: "{{ home }}/.config/nvim"
 - name: Add neovim profile file
   when: profiled_directory is defined
   copy:
