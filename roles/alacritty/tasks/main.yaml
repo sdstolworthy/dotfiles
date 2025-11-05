@@ -7,3 +7,8 @@
   copy:
     src: ./alacritty.toml
     dest: "{{ alacritty_config_dir }}/alacritty.toml"
+- name: install alacritty
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: alacritty
+    state: present
