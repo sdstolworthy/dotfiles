@@ -16,3 +16,28 @@ vim.keymap.set(
   end,
   { silent = true, buffer = bufnr }
 )
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {
+  },
+  -- LSP configuration
+  server = {
+    on_attach = function(client, bufnr)
+      -- you can also put keymaps in here
+    end,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ["rust-analyzer"] = {
+        cargo = {
+          features = {
+            "all"
+          },
+          allFeatures = true
+        },
+      },
+    },
+  },
+  -- DAP configuration
+  dap = {
+  },
+}
