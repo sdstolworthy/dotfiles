@@ -1,4 +1,8 @@
-
+- name: Install sway
+  become: true
+  ansible.builtin.package:
+    name: sway
+    state: present
 - name: create sway config directory
   file:
     path: "{{ swayconfig_dir }}"
