@@ -16,3 +16,4 @@
     - { role: ../roles/nvm }
     - { role: ../roles/zellij }
     - { role: ../roles/gitconfig }
+    - { role: ../roles/sway, when: ansible_system != 'Darwin' }
