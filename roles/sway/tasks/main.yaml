@@ -1,3 +1,4 @@
+
 - name: create sway config directory
   file:
     path: "{{ swayconfig_dir }}"
