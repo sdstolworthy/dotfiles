@@ -22,4 +22,4 @@ source $ZSH/oh-my-zsh.sh
 source ~/.profile
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-echo 'eval "$(mise activate zsh)"' >> "${ZDOTDIR-$HOME}/.zshrc"
+eval "$(mise activate zsh)" 
