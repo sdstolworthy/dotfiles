@@ -1,3 +1,4 @@
+export PATH="$HOME/.local/bin:$PATH"
 if [[ -z "$ZELLIJ" ]]; then
   zellij attach -c main
 fi
@@ -22,5 +23,5 @@ source $ZSH/oh-my-zsh.sh
 source ~/.profile
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval "$({{ ansible_env.HOME }}/.local/bin/mise activate zsh)" 
-export PATH="$HOME/.local/bin:$PATH"
+eval "$(mise activate zsh)" 
+

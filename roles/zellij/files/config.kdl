@@ -308,7 +308,7 @@ pane_frames false
 //   - detach (Default)
 //   - quit
 // 
-on_force_close "quit"
+on_force_close "detach"
  
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
@@ -354,13 +354,13 @@ on_force_close "quit"
 // otherwise this will error if such a session exists.
 // Default: <RANDOM>
 // 
-// session_name "My singleton session"
- 
+session_name "main"
+
 // When `session_name` is provided, attaches to that session
 // if it is already running or creates it otherwise.
 // Default: false
 // 
-// attach_to_session true
+attach_to_session true
  
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -374,7 +374,7 @@ on_force_close "quit"
 //   - true (default)
 //   - false
 // 
-// session_serialization false
+session_serialization true
  
 // Whether pane viewports are serialized along with the session, default is false
 // Options:
