@@ -1,3 +1,4 @@
+export PATH="$HOME/.local/bin:$PATH"
 if [[ -z "$ZELLIJ" ]]; then
   zellij attach -c main
 fi
@@ -23,3 +24,4 @@ source ~/.profile
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(mise activate zsh)" 
+

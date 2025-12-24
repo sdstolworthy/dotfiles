@@ -38,18 +38,19 @@ return {
 		end
 
 
-		-- vim.lsp.config("rust_analyzer", {
-		-- 	settings = {
-		-- 		["rust_analyzer"] = {
-		-- 			checkOnSave = {
-		-- 				command = "clippy",
-		-- 			},
-		-- 			cargo = {
-		-- 				features = "all",
-		-- 			},
-		-- 		},
-		-- 	},
-		-- })
+		vim.lsp.config("rust_analyzer", {
+      cmd = { "/home/sstol/.toolbox/bin/rust-analyzer" },
+			settings = {
+				["rust_analyzer"] = {
+					checkOnSave = {
+						command = "clippy",
+					},
+					cargo = {
+						features = "all",
+					},
+				},
+			},
+		})
 
 		vim.lsp.config("lua_ls", {
 			settings = {
