@@ -31,27 +31,9 @@ return {
 
 		default_capabilities = vim.tbl_deep_extend("force", default_capabilities, cmp_nvim_lsp.default_capabilities())
 
-		local servers = { "ts_ls", "templ","lua_ls", "stylua", "jdtls", "kotlin-ls" }
+		local configs = {}
 
-		for _, server in ipairs(servers) do
-			vim.lsp.enable(server)
-		end
-
-
-		-- vim.lsp.config("rust_analyzer", {
-		-- 	settings = {
-		-- 		["rust_analyzer"] = {
-		-- 			checkOnSave = {
-		-- 				command = "clippy",
-		-- 			},
-		-- 			cargo = {
-		-- 				features = "all",
-		-- 			},
-		-- 		},
-		-- 	},
-		-- })
-
-		vim.lsp.config("lua_ls", {
+		configs["lua_ls"] = {
 			settings = {
 				Lua = {
 					completion = {
@@ -64,14 +46,14 @@ return {
 					},
 				},
 			},
-		})
+		}
 
-    vim.lsp.config["kotlin-ls"] = {
-        cmd = { "kotlin-ls", "--stdio" },
-        single_file_support = true,
-        filetypes = { "kotlin" },
-        root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
-    }
+		configs["kotlin-ls"] = {
+			cmd = { "kotlin-ls", "--stdio" },
+			single_file_support = true,
+			filetypes = { "kotlin" },
+			root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
+		}
 
 
 		mason.setup()
@@ -84,6 +66,11 @@ return {
 
 		mason_lspconfig.setup({
 			handlers = {
+				function(server_name)
+					local config = configs[server_name] or {}
+					config.capabilities = default_capabilities
+					require("lspconfig")[server_name].setup(config)
+				end,
 				["jdtls"] = function() end,
 			},
 		})
