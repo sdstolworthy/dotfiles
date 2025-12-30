@@ -13,6 +13,7 @@
     - { role: ../roles/tmux }
     - { role: ../roles/alacritty }
     - { role: ../roles/workplace_directory }
+    - { role: ../roles/mise }
     - { role: ../roles/nvm }
     - { role: ../roles/zellij }
     - { role: ../roles/gitconfig }

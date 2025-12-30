@@ -10,4 +10,4 @@
 - name: Install Node.js with mise
   ansible.builtin.shell: mise install node@latest
   args:
-    chdir: "{{ ansible_facts.user_home }}" 
+    chdir: "{{ ansible_env.HOME }}" 
