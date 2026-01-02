@@ -1,0 +1,13 @@
+---
+# asdf configuration
+asdf_version: "v0.14.1"
+asdf_plugins:
+  - name: nodejs
+    repo: https://github.com/asdf-vm/asdf-nodejs.git
+    install_latest: true
+  - name: deno
+    repo: https://github.com/asdf-community/asdf-deno.git
+    install_latest: true
+
+# Rust configuration (currently managed by rustup)
+# No version configuration needed - rustup manages versions

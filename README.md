@@ -70,7 +70,7 @@ Role-specific variables are defined in each role's `vars/main.yaml` file.
 ### Updating Tool Versions
 
 Tool versions are defined in role variable files:
-- **asdf**: `roles/asdf/vars/main.yaml` - `asdf_version`
+- **Language managers**: `roles/language_managers/vars/main.yaml` - `asdf_version` and plugin configurations
 - **FiraCode font**: `roles/install_software/vars/main.yaml` - `firacode_version`
 
 To update a tool version, edit the corresponding vars file and re-run the playbook.
@@ -78,9 +78,8 @@ To update a tool version, edit the corresponding vars file and re-run the playbo
 ### Role Dependencies
 
 Some roles automatically depend on the `profile` role to set up `~/.profile.d`:
-- **asdf** - For asdf shell integration
-- **neovim** - For neovim PATH configuration  
-- **rust** - For cargo PATH configuration
+- **language_managers** - For asdf and cargo/rustup shell integration
+- **neovim** - For neovim PATH configuration
 
 These dependencies are declared in each role's `meta/main.yaml` file. The profile role will run automatically before any role that depends on it, without needing to be explicitly listed in playbooks.
 
@@ -89,3 +88,24 @@ These dependencies are declared in each role's `meta/main.yaml` file. The profil
 **Version Managers**:
 - `asdf`: Used for Node.js, Deno, and other language version management
 - `rustup`: Used specifically for Rust toolchain management
+
+Both are managed through the `language_managers` role.
+
+### Using the Language Managers Role
+
+The `language_managers` role supports tags for selective installation:
+
+```bash
+# Install all language managers
+make configure config=language_managers
+
+# Install only asdf (Node.js, Deno)
+ansible-playbook playbooks/configure.yaml -i inventory/local.ini --connection=local \
+  -e config=language_managers --tags asdf -K
+
+# Install only rust
+ansible-playbook playbooks/configure.yaml -i inventory/local.ini --connection=local \
+  -e config=language_managers --tags rust -K
+```
+
+Available tags: `asdf`, `nodejs`, `deno`, `rust`, `cargo`
