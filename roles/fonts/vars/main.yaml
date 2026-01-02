@@ -1,0 +1,4 @@
+---
+nerd_fonts_version: "v3.4.0"
+firacode_url: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ nerd_fonts_version }}/FiraCode.zip"
+monaspace_url: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ nerd_fonts_version }}/Monaspace.zip"
