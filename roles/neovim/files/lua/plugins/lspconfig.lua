@@ -34,7 +34,6 @@ return {
 		local configs = {}
 
 		vim.lsp.config("rust_analyzer", {
-      cmd = { "/home/sstol/.toolbox/bin/rust-analyzer" },
 			settings = {
 				["rust_analyzer"] = {
 					checkOnSave = {
