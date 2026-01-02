@@ -33,11 +33,6 @@ return {
 
 		local configs = {}
 
-		for _, server in ipairs(servers) do
-			vim.lsp.enable(server)
-		end
-
-
 		vim.lsp.config("rust_analyzer", {
       cmd = { "/home/sstol/.toolbox/bin/rust-analyzer" },
 			settings = {
@@ -88,7 +83,8 @@ return {
 				function(server_name)
 					local config = configs[server_name] or {}
 					config.capabilities = default_capabilities
-					require("lspconfig")[server_name].setup(config)
+					vim.lsp.config(server_name, config)
+					vim.lsp.enable(server_name)
 				end,
 				["jdtls"] = function() end,
 			},

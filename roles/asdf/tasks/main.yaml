@@ -1,0 +1,37 @@
+- name: Clone asdf
+  ansible.builtin.git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: "{{ ansible_env.HOME }}/.asdf"
+    version: v0.14.1
+    update: no
+- name: Create asdf profile
+  when: profiled_directory is defined
+  copy:
+    src: asdf_profile.sh
+    dest: "{{ profiled_directory }}/asdf.sh"
+- name: Add nodejs plugin
+  ansible.builtin.shell: |
+    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
+  args:
+    executable: /bin/bash
+- name: Add deno plugin
+  ansible.builtin.shell: |
+    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    asdf plugin add deno https://github.com/asdf-community/asdf-deno.git || true
+  args:
+    executable: /bin/bash
+- name: Install latest Node.js
+  ansible.builtin.shell: |
+    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    asdf install nodejs latest
+    asdf global nodejs latest
+  args:
+    executable: /bin/bash
+- name: Install latest Deno
+  ansible.builtin.shell: |
+    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    asdf install deno latest
+    asdf global deno latest
+  args:
+    executable: /bin/bash

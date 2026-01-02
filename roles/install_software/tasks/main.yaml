@@ -7,12 +7,59 @@
   ansible.builtin.package:
     name: ripgrep
     state: present
-- name: Install Fira Code Nord
+- name: Install FiraCode Nerd Font (Mac)
+  when: is_mac
+  ignore_errors: true
+  community.general.homebrew_cask:
+    name: font-fira-code-nerd-font
+    state: present
+
+- name: Install unzip (Linux)
+  when: not is_mac
   become: "{{ should_become }}"
   ignore_errors: true
   ansible.builtin.package:
-    name: ttf-firacode-nerd 
+    name: unzip
     state: present
+
+- name: Create fonts directory (Linux)
+  when: not is_mac
+  become: "{{ should_become }}"
+  ignore_errors: true
+  file:
+    path: /usr/local/share/fonts/FiraCodeNerdFont
+    state: directory
+    mode: '0755'
+
+- name: Download FiraCode Nerd Font (Linux)
+  when: not is_mac
+  ignore_errors: true
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip
+    dest: /tmp/FiraCode.zip
+    mode: '0644'
+
+- name: Extract FiraCode Nerd Font (Linux)
+  when: not is_mac
+  become: "{{ should_become }}"
+  ignore_errors: true
+  unarchive:
+    src: /tmp/FiraCode.zip
+    dest: /usr/local/share/fonts/FiraCodeNerdFont
+    remote_src: yes
+
+- name: Refresh font cache (Linux)
+  when: not is_mac
+  become: "{{ should_become }}"
+  ignore_errors: true
+  command: fc-cache -fv
+
+- name: Cleanup downloaded zip (Linux)
+  when: not is_mac
+  ignore_errors: true
+  file:
+    path: /tmp/FiraCode.zip
+    state: absent
 - name: Install Neovim
   ignore_errors: true
   become: "{{ should_become }}"

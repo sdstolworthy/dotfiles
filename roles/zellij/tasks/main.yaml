@@ -1,9 +1,66 @@
-- name: Install Zellij
+- name: Check if zellij is already installed
+  ansible.builtin.shell: command -v zellij
+  register: zellij_check
   ignore_errors: true
+  changed_when: false
+- name: Check if zellij is available in package manager
+  when: zellij_check.rc != 0
+  ansible.builtin.shell: |
+    {% if is_mac %}
+    brew info zellij > /dev/null 2>&1 && echo "available" || echo "unavailable"
+    {% else %}
+    {{ 'apt-cache show zellij' if ansible_facts['os_family'] == 'Debian' else 'dnf info zellij' if ansible_facts['os_family'] == 'RedHat' else 'pacman -Si zellij' }} > /dev/null 2>&1 && echo "available" || echo "unavailable"
+    {% endif %}
+  register: zellij_package_check
+  ignore_errors: true
+  changed_when: false
+- name: Set fact for package manager availability
+  when: zellij_check.rc != 0
+  set_fact:
+    zellij_in_package_manager: "{{ zellij_package_check.stdout == 'available' }}"
+- name: Install Zellij from package manager
+  when: zellij_check.rc != 0 and zellij_in_package_manager
   become: "{{ should_become }}"
   ansible.builtin.package:
     name: zellij
     state: present
+- name: Download and install Zellij from GitHub releases
+  when: zellij_check.rc != 0 and not zellij_in_package_manager
+  block:
+    - name: Determine architecture
+      set_fact:
+        zellij_arch: "{{ 'x86_64' if ansible_architecture == 'x86_64' else 'aarch64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else ansible_architecture }}"
+    - name: Determine OS
+      set_fact:
+        zellij_os: "{{ 'apple-darwin' if ansible_system == 'Darwin' else 'unknown-linux-musl' }}"
+    - name: Create .local/bin directory
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.local/bin"
+        state: directory
+        mode: '0755'
+    - name: Download Zellij binary
+      ansible.builtin.get_url:
+        url: "https://github.com/zellij-org/zellij/releases/latest/download/zellij-{{ zellij_arch }}-{{ zellij_os }}.tar.gz"
+        dest: "/tmp/zellij.tar.gz"
+        mode: '0644'
+    - name: Extract Zellij binary
+      ansible.builtin.unarchive:
+        src: "/tmp/zellij.tar.gz"
+        dest: "/tmp/"
+        remote_src: yes
+    - name: Install Zellij to user bin
+      ansible.builtin.copy:
+        src: "/tmp/zellij"
+        dest: "{{ ansible_env.HOME }}/.local/bin/zellij"
+        mode: '0755'
+        remote_src: yes
+    - name: Clean up temporary files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "/tmp/zellij.tar.gz"
+        - "/tmp/zellij"
 - name: create zellij config directory
   file:
     path: "{{ home }}/.config/zellij"
