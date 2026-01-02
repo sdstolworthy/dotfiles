@@ -19,7 +19,7 @@
     - zellij_pkg_install.failed | default(false)
   block:
     - name: Set architecture facts
-      set_fact:
+      ansible.builtin.set_fact:
         zellij_arch: "{{ 'x86_64' if ansible_architecture == 'x86_64' else 'aarch64' }}"
         zellij_os: "{{ 'apple-darwin' if ansible_system == 'Darwin' else 'unknown-linux-musl' }}"
     
@@ -33,17 +33,17 @@
       ansible.builtin.unarchive:
         src: "https://github.com/zellij-org/zellij/releases/latest/download/zellij-{{ zellij_arch }}-{{ zellij_os }}.tar.gz"
         dest: "{{ ansible_facts['user_dir'] }}/.local/bin"
-        remote_src: yes
+        remote_src: true
         mode: '0755'
 
 - name: Create zellij config directory
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_facts['user_dir'] }}/.config/zellij"
     state: directory
     mode: '0755'
 
 - name: Symlink config.kdl
-  file:
+  ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/zellij/files/config.kdl"
     dest: "{{ ansible_facts['user_dir'] }}/.config/zellij/config.kdl"
     state: link

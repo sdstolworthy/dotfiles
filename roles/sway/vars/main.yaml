@@ -1,1 +1,1 @@
-swayconfig_dir: "{{ home }}/.config/sway"
+sway_swayconfig_dir: "{{ home }}/.config/sway"

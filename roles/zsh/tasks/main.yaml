@@ -1,16 +1,19 @@
 ---
 - name: Ensure zinit directory exists
-  file:
+  ansible.builtin.file:
     path: "{{ home }}/.local/share/zinit/zinit.git"
     state: directory
+    mode: '0755'
 
 - name: Install zinit
-  git:
+  ansible.builtin.git:
     repo: https://github.com/zdharma-continuum/zinit.git
     dest: "{{ home }}/.local/share/zinit/zinit.git"
     depth: 1
+    version: HEAD
 
 - name: Template .zshrc
-  template:
+  ansible.builtin.template:
     src: zshrc
     dest: "{{ home }}/.zshrc"
+    mode: '0644'

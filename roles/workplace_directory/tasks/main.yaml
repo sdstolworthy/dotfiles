@@ -1,6 +1,6 @@
 - name: Create workplace directory
   become: "{{ should_become }}"
-  file:
-    path: "{{ workplace_dir }}"
+  ansible.builtin.file:
+    path: "{{ workplace_directory_workplace_dir }}"
     state: directory
     mode: '0755'

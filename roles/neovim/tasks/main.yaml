@@ -1,41 +1,42 @@
-- name: create neovim directory
-  file:
+- name: Create neovim directory
+  ansible.builtin.file:
     path: "{{ home }}/.neovim"
     state: directory
     mode: '0755'
 
-- name: create config folder
-  file:
+- name: Create config folder
+  ansible.builtin.file:
     path: "{{ home }}/.config/nvim"
     state: directory
     mode: '0755'
 
 - name: Symlink init.lua
-  file:
+  ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/neovim/files/init.lua"
     dest: "{{ home }}/.config/nvim/init.lua"
     state: link
 
 - name: Symlink lua directory
-  file:
+  ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/neovim/files/lua"
     dest: "{{ home }}/.config/nvim/lua"
     state: link
 
 - name: Symlink ftplugin directory
-  file:
+  ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/neovim/files/ftplugin"
     dest: "{{ home }}/.config/nvim/ftplugin"
     state: link
 
 - name: Symlink after directory
-  file:
+  ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/neovim/files/after"
     dest: "{{ home }}/.config/nvim/after"
     state: link
 
 - name: Add neovim profile file
-  when: profiled_directory is defined
-  copy:
+  when: profile_profiled_directory is defined
+  ansible.builtin.copy:
     src: "profile"
-    dest: "{{ profiled_directory }}/neovim.sh"
+    dest: "{{ profile_profiled_directory }}/neovim.sh"
+    mode: '0644'

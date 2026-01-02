@@ -3,14 +3,14 @@
   ansible.builtin.package:
     name: sway
     state: present
-- name: create sway config directory
-  file:
-    path: "{{ swayconfig_dir }}"
+- name: Create sway config directory
+  ansible.builtin.file:
+    path: "{{ sway_swayconfig_dir }}"
     state: directory
     mode: '0755'
 - name: Symlink sway config
-  file:
+  ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/sway/files/swayconfig"
-    dest: "{{ swayconfig_dir }}/config"
+    dest: "{{ sway_swayconfig_dir }}/config"
     state: link
 

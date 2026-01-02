@@ -1,8 +1,8 @@
 ---
 - name: Include mise tasks
-  include_tasks: mise.yaml
+  ansible.builtin.include_tasks: mise.yaml
   tags: [mise, nodejs, deno]
 
 - name: Include rust tasks
-  include_tasks: rust.yaml
+  ansible.builtin.include_tasks: rust.yaml
   tags: [rust, cargo]
