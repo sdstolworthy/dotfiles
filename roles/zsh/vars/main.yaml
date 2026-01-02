@@ -1,10 +1,8 @@
 ohmyzsh_dir: "{{ home }}/.oh-my-zsh"
-zsh_theme: powerlevel10k/powerlevel10k
+zsh_theme: robbyrussell
 zsh_builtin_plugins:
   - git
-zsh_themes:
-  - name: 'powerlevel10k'
-    git_url: 'https://github.com/romkatv/powerlevel10k.git'
+zsh_themes: []
 zsh_plugins:
   - name: 'zsh-autosuggestions'
     git_url: 'https://github.com/zsh-users/zsh-autosuggestions.git'

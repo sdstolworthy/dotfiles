@@ -30,7 +30,3 @@
   template:
     src: zshrc
     dest: "{{ home }}/.zshrc"
-- name: copy p10k.zsh
-  copy:
-    src: p10k.zsh
-    dest: "{{ home }}/.p10k.zsh"

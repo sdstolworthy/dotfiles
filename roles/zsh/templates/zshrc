@@ -1,9 +1,6 @@
 if [[ -z "$ZELLIJ" ]]; then
   zellij attach -c main
 fi
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -39,6 +36,8 @@ if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
 fi
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Initialize starship prompt
+eval "$(starship init zsh)"
+
 export PATH="$HOME/.local/bin:$PATH"
 
