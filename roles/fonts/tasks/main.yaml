@@ -5,10 +5,10 @@
       - font-fira-code-nerd-font
       - font-monaspace-nf
     state: present
-  register: font_install_mac
+  register: fonts_font_install_mac
   failed_when:
-    - font_install_mac.failed
-    - "'already installed' not in font_install_mac.msg | default('')"
+    - fonts_font_install_mac.failed
+    - "'already installed' not in fonts_font_install_mac.msg | default('')"
 
 - name: Install FiraCode Nerd Font (Linux)
   when: not is_mac
@@ -29,10 +29,10 @@
     - name: Check if font already installed
       ansible.builtin.stat:
         path: /usr/local/share/fonts/FiraCodeNerdFont/FiraCodeNerdFont-Regular.ttf
-      register: font_check
+      register: fonts_font_check
     
     - name: Download and install FiraCode font
-      when: not font_check.stat.exists
+      when: not fonts_font_check.stat.exists
       block:
         - name: Download FiraCode Nerd Font
           ansible.builtin.get_url:
@@ -81,10 +81,10 @@
     - name: Check if Monaspace font already installed
       ansible.builtin.stat:
         path: /usr/local/share/fonts/MonaspaceNerdFont/MonaspiceNeNerdFont-Regular.otf
-      register: monaspace_check
+      register: fonts_monaspace_check
     
     - name: Download and install Monaspace font
-      when: not monaspace_check.stat.exists
+      when: not fonts_monaspace_check.stat.exists
       block:
         - name: Download Monaspace Nerd Font
           ansible.builtin.get_url:
