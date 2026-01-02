@@ -1,3 +1,0 @@
----
-firacode_version: "v3.4.0"
-firacode_url: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ firacode_version }}/FiraCode.zip"
