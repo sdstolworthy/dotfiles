@@ -1,6 +1,0 @@
-- name: "add {{ plugin.name }} plugin"
-  git:
-    repo: "{{ plugin.git_url }}"
-    dest: "{{ install_directory }}/{{ plugin.name }}"
-    depth: 1
-

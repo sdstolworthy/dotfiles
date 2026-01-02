@@ -1,7 +1,7 @@
 ---
-- name: Include asdf tasks
-  include_tasks: asdf.yaml
-  tags: [asdf, nodejs, deno]
+- name: Include mise tasks
+  include_tasks: mise.yaml
+  tags: [mise, nodejs, deno]
 
 - name: Include rust tasks
   include_tasks: rust.yaml
