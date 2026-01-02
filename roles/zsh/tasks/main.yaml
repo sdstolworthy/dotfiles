@@ -10,7 +10,7 @@
     repo: https://github.com/zdharma-continuum/zinit.git
     dest: "{{ home }}/.local/share/zinit/zinit.git"
     depth: 1
-    version: HEAD
+    version: "{{ zinit_version | default('HEAD') }}"
 
 - name: Template .zshrc
   ansible.builtin.template:

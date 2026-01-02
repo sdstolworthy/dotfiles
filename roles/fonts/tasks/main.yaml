@@ -21,7 +21,7 @@
     
     - name: Create fonts directory
       become: "{{ should_become }}"
-      file:
+      ansible.builtin.file:
         path: /usr/local/share/fonts/FiraCodeNerdFont
         state: directory
         mode: '0755'
@@ -35,25 +35,25 @@
       when: not font_check.stat.exists
       block:
         - name: Download FiraCode Nerd Font
-          get_url:
-            url: "{{ firacode_url }}"
+          ansible.builtin.get_url:
+            url: "{{ fonts_firacode_url }}"
             dest: /tmp/FiraCode.zip
             mode: '0644'
         
         - name: Extract FiraCode Nerd Font
           become: "{{ should_become }}"
-          unarchive:
+          ansible.builtin.unarchive:
             src: /tmp/FiraCode.zip
             dest: /usr/local/share/fonts/FiraCodeNerdFont
-            remote_src: yes
+            remote_src: true
         
         - name: Refresh font cache
           become: "{{ should_become }}"
-          command: fc-cache -fv
+          ansible.builtin.command: fc-cache -fv
           changed_when: true
         
         - name: Cleanup downloaded zip
-          file:
+          ansible.builtin.file:
             path: /tmp/FiraCode.zip
             state: absent
   
@@ -63,7 +63,7 @@
         msg: "WARNING: FiraCode font installation failed. Terminal may not display correctly."
     
     - name: Cleanup on failure
-      file:
+      ansible.builtin.file:
         path: /tmp/FiraCode.zip
         state: absent
       failed_when: false
@@ -73,7 +73,7 @@
   block:
     - name: Create Monaspace fonts directory
       become: "{{ should_become }}"
-      file:
+      ansible.builtin.file:
         path: /usr/local/share/fonts/MonaspaceNerdFont
         state: directory
         mode: '0755'
@@ -87,25 +87,25 @@
       when: not monaspace_check.stat.exists
       block:
         - name: Download Monaspace Nerd Font
-          get_url:
-            url: "{{ monaspace_url }}"
+          ansible.builtin.get_url:
+            url: "{{ fonts_monaspace_url }}"
             dest: /tmp/Monaspace.zip
             mode: '0644'
         
         - name: Extract Monaspace Nerd Font
           become: "{{ should_become }}"
-          unarchive:
+          ansible.builtin.unarchive:
             src: /tmp/Monaspace.zip
             dest: /usr/local/share/fonts/MonaspaceNerdFont
-            remote_src: yes
+            remote_src: true
         
         - name: Refresh font cache
           become: "{{ should_become }}"
-          command: fc-cache -fv
+          ansible.builtin.command: fc-cache -fv
           changed_when: true
         
         - name: Cleanup downloaded zip
-          file:
+          ansible.builtin.file:
             path: /tmp/Monaspace.zip
             state: absent
   
@@ -115,7 +115,7 @@
         msg: "WARNING: Monaspace font installation failed."
     
     - name: Cleanup on failure
-      file:
+      ansible.builtin.file:
         path: /tmp/Monaspace.zip
         state: absent
       failed_when: false

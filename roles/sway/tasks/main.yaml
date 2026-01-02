@@ -13,4 +13,3 @@
     src: "{{ playbook_dir }}/../roles/sway/files/swayconfig"
     dest: "{{ sway_swayconfig_dir }}/config"
     state: link
-
