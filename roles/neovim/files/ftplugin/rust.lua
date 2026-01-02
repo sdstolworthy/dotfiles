@@ -1,3 +1,1 @@
-vim.keymap.set("n", "gd", function()
-  vim.cmd.RustLsp({ "hover", "actions" })
-end, { buffer = true })
+-- Rust ftplugin keymaps are in after/ftplugin/rust.lua
