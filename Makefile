@@ -5,6 +5,10 @@ remote:
 configure:
 	ansible-playbook playbooks/configure.yaml -i inventory/local.ini --connection=local -e config=${config} --ask-become-pass
 guard-%:
-	@#$(or ${$*}, $(error $* is not set))
-# guard-%:
-# 	if [ -z '${${*}}' ]; then echo 'Environment variable $* not set' && exit 1; fi
+	@if [ -z '${${*}}' ]; then \
+		echo 'Error: Environment variable $* is not set'; \
+		echo 'Please set it before running make install:'; \
+		echo '  export FULL_NAME="Your Name"'; \
+		echo '  export EMAIL="your.email@example.com"'; \
+		exit 1; \
+	fi
