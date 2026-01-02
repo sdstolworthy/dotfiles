@@ -37,7 +37,7 @@ fi
 eval "$(starship init zsh)"
 
 # Aliases
-alias cat='bat'
+alias cat='bat -p'
 alias ls='eza'
 alias ll='eza -l'
 alias la='eza -la'
