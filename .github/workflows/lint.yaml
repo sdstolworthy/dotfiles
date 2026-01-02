@@ -22,6 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible-core>=2.15.0
           pip install ansible-lint>=6.0.0
+          ansible-galaxy collection install community.general
 
       - name: Run ansible-lint
         run: ansible-lint
