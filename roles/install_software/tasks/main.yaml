@@ -55,7 +55,7 @@
       block:
         - name: Download FiraCode Nerd Font
           get_url:
-            url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip
+            url: "{{ firacode_url }}"
             dest: /tmp/FiraCode.zip
             mode: '0644'
         
