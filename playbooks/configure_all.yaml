@@ -9,7 +9,7 @@
     home: "{{ ansible_env.HOME }}"
   roles:
     - role: zsh
-    - role: profile
+    # profile role is included via meta dependencies in neovim, asdf, and rust
     - role: neovim
     - role: tmux
     - role: alacritty
