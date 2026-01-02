@@ -75,6 +75,15 @@ Tool versions are defined in role variable files:
 
 To update a tool version, edit the corresponding vars file and re-run the playbook.
 
+### Role Dependencies
+
+Some roles automatically depend on the `profile` role to set up `~/.profile.d`:
+- **asdf** - For asdf shell integration
+- **neovim** - For neovim PATH configuration  
+- **rust** - For cargo PATH configuration
+
+These dependencies are declared in each role's `meta/main.yaml` file. The profile role will run automatically before any role that depends on it, without needing to be explicitly listed in playbooks.
+
 ### Technology Choices
 
 **Version Managers**:
