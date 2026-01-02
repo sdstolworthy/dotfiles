@@ -2,9 +2,13 @@ return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     dependencies = {
-        "nvim-lua/plenary.nvim"
+        "nvim-lua/plenary.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
-    cmd = "Telescope",
+    config = function()
+        require("telescope").setup({})
+        require("telescope").load_extension("fzf")
+    end,
     keys = {
         { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
         { "<leader>sn", function() require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") }) end, desc = "Search Neovim config" },
