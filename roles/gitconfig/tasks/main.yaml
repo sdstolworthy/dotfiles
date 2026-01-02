@@ -1,3 +1,10 @@
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - full_name | length > 0
+      - email_address | length > 0
+    fail_msg: "full_name and email_address must be set. Create inventory/group_vars/all/secrets.yaml or set FULL_NAME/EMAIL env vars."
+
 - name: Set mergetool
   community.general.git_config:
     name: merge.tool
