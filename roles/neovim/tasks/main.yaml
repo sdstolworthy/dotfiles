@@ -3,27 +3,37 @@
     path: "{{ home }}/.neovim"
     state: directory
     mode: '0755'
+
 - name: create config folder
   file:
     path: "{{ home }}/.config/nvim"
     state: directory
     mode: '0755'
-- name: copy init.lua
-  copy:
-    src: "init.lua"
+
+- name: Symlink init.lua
+  file:
+    src: "{{ playbook_dir }}/../roles/neovim/files/init.lua"
     dest: "{{ home }}/.config/nvim/init.lua"
-- name: Copy lua directory
-  copy:
-    src: "lua"
-    dest: "{{ home }}/.config/nvim/"
-- name: Copy ftplugin directory
-  copy:
-    src: "ftplugin"
-    dest: "{{ home }}/.config/nvim"
-- name: Copy "after" directory
-  copy:
-    src: "after"
-    dest: "{{ home }}/.config/nvim"
+    state: link
+
+- name: Symlink lua directory
+  file:
+    src: "{{ playbook_dir }}/../roles/neovim/files/lua"
+    dest: "{{ home }}/.config/nvim/lua"
+    state: link
+
+- name: Symlink ftplugin directory
+  file:
+    src: "{{ playbook_dir }}/../roles/neovim/files/ftplugin"
+    dest: "{{ home }}/.config/nvim/ftplugin"
+    state: link
+
+- name: Symlink after directory
+  file:
+    src: "{{ playbook_dir }}/../roles/neovim/files/after"
+    dest: "{{ home }}/.config/nvim/after"
+    state: link
+
 - name: Add neovim profile file
   when: profiled_directory is defined
   copy:
