@@ -10,3 +10,9 @@
   copy:
     src: ./profile
     dest: "{{ home }}/.profile"
+- name: copy profile.d scripts
+  copy:
+    src: "{{ item }}"
+    dest: "{{ profiled_directory }}/"
+  with_fileglob:
+    - "files/*.sh"
