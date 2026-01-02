@@ -6,7 +6,7 @@
 - name: Configure dotfiles
   hosts: all
   vars:
-    home: "{{ ansible_env.HOME }}"
+    home: "{{ ansible_facts['ansible_user_dir'] }}"
   roles:
     - role: zsh
     # profile role is included via meta dependencies in neovim and language_managers
