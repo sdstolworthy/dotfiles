@@ -28,6 +28,17 @@
     asdf global nodejs latest
   args:
     executable: /bin/bash
+- name: Create npm global install directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.npm-global"
+    state: directory
+    mode: '0755'
+- name: Configure npm global prefix
+  ansible.builtin.shell: |
+    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    npm config set prefix "{{ ansible_env.HOME }}/.npm-global"
+  args:
+    executable: /bin/bash
 - name: Install latest Deno
   ansible.builtin.shell: |
     . {{ ansible_env.HOME }}/.asdf/asdf.sh
