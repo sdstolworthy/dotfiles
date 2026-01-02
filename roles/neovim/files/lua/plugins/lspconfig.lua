@@ -76,7 +76,9 @@ return {
 		})
 
 		mason_lspconfig.setup({
-			automatic_enable = mason_ensure_installed,
+			automatic_enable = {
+				exclude = { "rust_analyzer" }, -- Handled by rustaceanvim
+			},
 		})
 
 
