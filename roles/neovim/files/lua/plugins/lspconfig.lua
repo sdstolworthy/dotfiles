@@ -90,7 +90,7 @@ return {
 				end
 				local builtin = require("telescope.builtin")
 
-				keymap("gd", builtin.lsp_definitions)
+				keymap("gd", vim.lsp.buf.definition)
 				keymap("gD", vim.lsp.buf.declaration)
 				keymap("gr", builtin.lsp_references)
 				keymap("gI", builtin.lsp_implementations)
