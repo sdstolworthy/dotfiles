@@ -3,4 +3,4 @@
   vars:
     home: "{{ ansible_env.HOME }}"
   roles:
-    - { role: "../roles/{{ config }}" }
+    - role: "{{ config }}"
