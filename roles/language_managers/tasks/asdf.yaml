@@ -73,7 +73,7 @@
   failed_when: false
 
 - name: Configure npm global prefix
-  when: npm_prefix.stdout != ansible_user_dir + "/.npm-global"
+  when: npm_prefix.stdout != ansible_facts['user_dir'] + "/.npm-global"
   ansible.builtin.shell: |
     . {{ ansible_facts['user_dir'] }}/.asdf/asdf.sh
     npm config set prefix "{{ ansible_facts['user_dir'] }}/.npm-global"
