@@ -27,6 +27,8 @@
       tags: zellij
     - role: gitconfig
       tags: gitconfig
+    - role: editorconfig
+      tags: editorconfig
     # - role: sway
     #   tags: sway
     #   when: ansible_system != 'Darwin'

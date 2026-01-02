@@ -1,0 +1,5 @@
+- name: Symlink .editorconfig
+  file:
+    src: "{{ playbook_dir }}/../roles/editorconfig/files/editorconfig"
+    dest: "{{ ansible_facts['user_dir'] }}/.editorconfig"
+    state: link

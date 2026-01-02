@@ -85,7 +85,6 @@ Role-specific defaults are in each role's `defaults/main.yaml` (overridable) or 
 ### Updating Tool Versions
 
 - **Nerd Fonts**: `roles/fonts/defaults/main.yaml` - `nerd_fonts_version`
-- **Language managers**: `roles/language_managers/vars/main.yaml` - `asdf_version`
 
 ### Role Dependencies
 
@@ -113,6 +112,6 @@ Some roles have automatic dependencies declared in `meta/main.yaml`:
 - `starship` - Starship prompt
 - `zellij` - Zellij terminal multiplexer
 - `gitconfig` - Git configuration
-- `language_managers` - asdf and rustup
+- `language_managers` - rustup
 - `workplace_directory` - Create workspace directory
 - `profile` - Shell profile setup
