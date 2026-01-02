@@ -33,6 +33,27 @@
     state: present
   ignore_errors: true
 
+- name: Install bat
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: bat
+    state: present
+  ignore_errors: true
+
+- name: Install eza
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: eza
+    state: present
+  ignore_errors: true
+
+- name: Install delta
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: git-delta
+    state: present
+  ignore_errors: true
+
 - name: Install Neovim
   become: "{{ should_become }}"
   ansible.builtin.package:
