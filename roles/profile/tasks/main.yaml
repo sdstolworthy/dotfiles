@@ -1,18 +1,20 @@
-- name: create profile.d directory
-  file: 
-    path: "{{ profiled_directory }}"
+- name: Create profile.d directory
+  ansible.builtin.file:
+    path: "{{ profile_profiled_directory }}"
     state: directory
     mode: '0700'
-- name: set profile.d directory fact
-  set_fact:
-    profiled_directory: "{{ profiled_directory }}"
-- name: copy profile
-  copy:
+- name: Set profile.d directory fact
+  ansible.builtin.set_fact:
+    profile_profiled_directory: "{{ profile_profiled_directory }}"
+- name: Copy profile
+  ansible.builtin.copy:
     src: ./profile
     dest: "{{ home }}/.profile"
-- name: copy profile.d scripts
-  copy:
+    mode: '0644'
+- name: Copy profile.d scripts
+  ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ profiled_directory }}/"
+    dest: "{{ profile_profiled_directory }}/"
+    mode: '0644'
   with_fileglob:
     - "files/*.sh"

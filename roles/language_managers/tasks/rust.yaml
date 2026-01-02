@@ -1,30 +1,42 @@
+- name: Download rustup installer
+  ansible.builtin.get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/rustup_install.sh
+    mode: '0755'
+
 - name: Install rustup
   ansible.builtin.shell: |
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+    set -o pipefail
+    /tmp/rustup_install.sh -y --no-modify-path
   args:
     creates: "{{ ansible_facts['user_dir'] }}/.cargo/bin/rustup"
     executable: /bin/bash
+
 - name: Check if stable toolchain is installed
   ansible.builtin.shell: |
+    set -o pipefail
     . "{{ ansible_facts['user_dir'] }}/.cargo/env"
     rustup toolchain list | grep -q "^stable" && echo "installed" || echo "not_installed"
   args:
     executable: /bin/bash
-  register: stable_toolchain
+  register: language_managers_stable_toolchain
   changed_when: false
   failed_when: false
 
 - name: Install stable Rust toolchain
-  when: stable_toolchain.stdout == "not_installed"
+  when: language_managers_stable_toolchain.stdout == "not_installed"
   ansible.builtin.shell: |
+    set -o pipefail
     . "{{ ansible_facts['user_dir'] }}/.cargo/env"
     rustup toolchain install stable
     rustup default stable
   args:
     executable: /bin/bash
+  changed_when: true
 
 - name: Add rust profile file
-  when: profiled_directory is defined
-  copy:
+  when: profile_profiled_directory is defined
+  ansible.builtin.copy:
     src: "rust.sh"
-    dest: "{{ profiled_directory }}/rust.sh"
+    dest: "{{ profile_profiled_directory }}/rust.sh"
+    mode: '0644'

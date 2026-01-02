@@ -1,5 +1,5 @@
 ---
 # mise configuration
-mise_tools:
+language_managers_mise_tools:
   - node
   - deno

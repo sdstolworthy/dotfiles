@@ -1,2 +1,2 @@
 ---
-workplace_dir: "{{ is_mac | ternary(ansible_facts['user_dir'] ~ '/workplace', '/workplace') }}"
+workplace_directory_workplace_dir: "{{ is_mac | ternary(ansible_facts['user_dir'] ~ '/workplace', '/workplace') }}"

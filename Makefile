@@ -23,6 +23,7 @@ help:
 	@echo "  install              Install all configs locally"
 	@echo "  configure            Install specific role (config=<role>)"
 	@echo "  test                 Dry-run all configs locally"
+	@echo "  lint                 Run ansible-lint"
 	@echo "  install-remote       Install all configs to remote.ini hosts"
 	@echo "  configure-remote     Install specific role to remote.ini hosts"
 	@echo ""
@@ -33,6 +34,9 @@ help:
 	@ls -1 roles | sed 's/^/  /'
 
 # Targets
+lint:
+	ansible-lint
+
 test:
 	$(ANSIBLE) playbooks/configure_all.yaml $(LOCAL) $(TAGS) --check
 
@@ -60,4 +64,4 @@ guard-%:
 		exit 1; \
 	fi
 
-.PHONY: install install-remote install-remote-host configure configure-remote configure-remote-host test
+.PHONY: install install-remote install-remote-host configure configure-remote configure-remote-host test lint
