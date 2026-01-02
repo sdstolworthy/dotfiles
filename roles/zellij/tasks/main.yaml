@@ -25,24 +25,24 @@
     
     - name: Create .local/bin directory
       ansible.builtin.file:
-        path: "{{ ansible_facts['ansible_user_dir'] }}/.local/bin"
+        path: "{{ ansible_facts['user_dir'] }}/.local/bin"
         state: directory
         mode: '0755'
     
     - name: Download and extract zellij
       ansible.builtin.unarchive:
         src: "https://github.com/zellij-org/zellij/releases/latest/download/zellij-{{ zellij_arch }}-{{ zellij_os }}.tar.gz"
-        dest: "{{ ansible_facts['ansible_user_dir'] }}/.local/bin"
+        dest: "{{ ansible_facts['user_dir'] }}/.local/bin"
         remote_src: yes
         mode: '0755'
 
 - name: Create zellij config directory
   file:
-    path: "{{ ansible_facts['ansible_user_dir'] }}/.config/zellij"
+    path: "{{ ansible_facts['user_dir'] }}/.config/zellij"
     state: directory
     mode: '0755'
 
 - name: Copy config.kdl
   copy:
     src: "config.kdl"
-    dest: "{{ ansible_facts['ansible_user_dir'] }}/.config/zellij/config.kdl"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/zellij/config.kdl"
