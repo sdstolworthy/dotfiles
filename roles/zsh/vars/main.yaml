@@ -1,14 +1,2 @@
-ohmyzsh_dir: "{{ home }}/.oh-my-zsh"
-zsh_theme: robbyrussell
-zsh_builtin_plugins:
-  - git
-zsh_themes: []
-zsh_plugins:
-  - name: 'zsh-autosuggestions'
-    git_url: 'https://github.com/zsh-users/zsh-autosuggestions.git'
-  - name: 'zsh-syntax-highlighting'
-    git_url: 'https://github.com/zsh-users/zsh-syntax-highlighting.git' 
-  - name: 'zsh-completions'
-    git_url: 'https://github.com/zsh-users/zsh-completions.git'
-  - name: 'zsh-history-substring-search'
-    git_url: 'https://github.com/zsh-users/zsh-history-substring-search.git' 
+---
+# No longer needed - zinit handles plugins directly

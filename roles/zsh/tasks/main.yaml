@@ -1,32 +1,16 @@
-- name: remove zsh directory
+---
+- name: Ensure zinit directory exists
   file:
-    path: "{{ ohmyzsh_dir }}"
-    state: absent
-- name: Download oh-my-zsh
-  git:
-    repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: "{{ home }}/.oh-my-zsh"
-    depth: 1
-- name: add zsh custom directories
-  loop:
-    - plugins
-    - themes
-  file:
-    path: "{{ ohmyzsh_dir }}/custom/{{ item }}"
+    path: "{{ home }}/.local/share/zinit/zinit.git"
     state: directory
-- include_tasks:
-    file: "install_plugin.yaml"
-  vars:
-    install_directory: "{{ ohmyzsh_dir }}/custom/plugins"
-    plugin: "{{ item }}"
-  loop: "{{ zsh_plugins }}"
-- include_tasks:
-    file: "install_plugin.yaml"
-  vars:
-    install_directory: "{{ ohmyzsh_dir }}/custom/themes"
-    plugin: "{{ item }}"
-  loop: "{{ zsh_themes }}"
-- name: template .zshrc
+
+- name: Install zinit
+  git:
+    repo: https://github.com/zdharma-continuum/zinit.git
+    dest: "{{ home }}/.local/share/zinit/zinit.git"
+    depth: 1
+
+- name: Template .zshrc
   template:
     src: zshrc
     dest: "{{ home }}/.zshrc"

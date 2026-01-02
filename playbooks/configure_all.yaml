@@ -11,8 +11,8 @@
     - role: zsh
     # profile role is included via meta dependencies in neovim and language_managers
     - role: neovim
-    - role: tmux
     - role: alacritty
+    - role: starship
     - role: workplace_directory
     - role: language_managers
     - role: zellij

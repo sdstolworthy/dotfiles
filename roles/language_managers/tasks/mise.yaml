@@ -1,0 +1,28 @@
+---
+- name: Install mise (Mac)
+  when: is_mac
+  community.general.homebrew:
+    name: mise
+    state: present
+
+- name: Install mise (Linux)
+  when: not is_mac
+  ansible.builtin.shell: curl https://mise.run | sh
+  args:
+    creates: "{{ ansible_facts['user_dir'] }}/.local/bin/mise"
+
+- name: Create mise profile
+  when: profiled_directory is defined
+  copy:
+    src: mise.sh
+    dest: "{{ profiled_directory }}/mise.sh"
+
+- name: Install tools with mise
+  loop: "{{ mise_tools }}"
+  ansible.builtin.shell: |
+    export PATH="$HOME/.local/bin:$PATH"
+    mise use -g {{ item }}@latest
+  args:
+    executable: /bin/bash
+  register: mise_install
+  changed_when: "'installed' in mise_install.stdout"
