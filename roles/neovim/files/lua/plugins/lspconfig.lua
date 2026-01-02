@@ -34,7 +34,7 @@ return {
 		local configs = {
 			rust_analyzer = {
 				settings = {
-					["rust_analyzer"] = {
+					["rust-analyzer"] = {
 						checkOnSave = {
 							command = "clippy",
 						},
@@ -104,6 +104,13 @@ return {
 				keymap("<leader>rn", vim.lsp.buf.rename)
 				keymap("<leader>ca", vim.lsp.buf.code_action)
 				keymap("K", vim.lsp.buf.hover)
+				keymap("<C-s>", vim.lsp.buf.signature_help)
+
+				-- Enable inlay hints if supported
+				local client = vim.lsp.get_client_by_id(e.data.client_id)
+				if client and client.server_capabilities.inlayHintProvider then
+					vim.lsp.inlay_hint.enable(true, { bufnr = e.buf })
+				end
 			end,
 		})
 	end,
