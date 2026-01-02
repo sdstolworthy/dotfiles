@@ -18,8 +18,8 @@
     state: directory
     mode: '0755'
 
-- name: Copy starship config
-  ansible.builtin.copy:
-    src: starship.toml
+- name: Symlink starship config
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/../roles/starship/files/starship.toml"
     dest: ~/.config/starship.toml
-    mode: '0644'
+    state: link

@@ -8,8 +8,9 @@
     path: "{{ swayconfig_dir }}"
     state: directory
     mode: '0755'
-- name: copy sway
-  copy:
-    src: ./swayconfig
+- name: Symlink sway config
+  file:
+    src: "{{ playbook_dir }}/../roles/sway/files/swayconfig"
     dest: "{{ swayconfig_dir }}/config"
+    state: link
 

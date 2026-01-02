@@ -2,71 +2,16 @@
   debug:
     msg: "OS Family: {{ ansible_facts['os_family'] }}. Should Become: {{ should_become }}"
 
-- name: Install Ripgrep
+- name: Install packages
   become: "{{ should_become }}"
   ansible.builtin.package:
-    name: ripgrep
-    state: present
-  register: ripgrep_install
-  failed_when:
-    - ripgrep_install.failed
-    - "'nothing provides' not in ripgrep_install.msg | default('')"
-    - "'No package matching' not in ripgrep_install.msg | default('')"
-    - "'Unable to locate package' not in ripgrep_install.msg | default('')"
-
-- name: Warn if ripgrep install failed
-  when: ripgrep_install.failed | default(false)
-  ansible.builtin.debug:
-    msg: "WARNING: ripgrep not available in package manager. Please install manually."
-
-- name: Install fzf
-  become: "{{ should_become }}"
-  ansible.builtin.package:
-    name: fzf
+    name:
+      - ripgrep
+      - fzf
+      - zoxide
+      - bat
+      - eza
+      - git-delta
+      - neovim
     state: present
   ignore_errors: true
-
-- name: Install zoxide
-  become: "{{ should_become }}"
-  ansible.builtin.package:
-    name: zoxide
-    state: present
-  ignore_errors: true
-
-- name: Install bat
-  become: "{{ should_become }}"
-  ansible.builtin.package:
-    name: bat
-    state: present
-  ignore_errors: true
-
-- name: Install eza
-  become: "{{ should_become }}"
-  ansible.builtin.package:
-    name: eza
-    state: present
-  ignore_errors: true
-
-- name: Install delta
-  become: "{{ should_become }}"
-  ansible.builtin.package:
-    name: git-delta
-    state: present
-  ignore_errors: true
-
-- name: Install Neovim
-  become: "{{ should_become }}"
-  ansible.builtin.package:
-    name: neovim
-    state: present
-  register: neovim_install
-  failed_when:
-    - neovim_install.failed
-    - "'nothing provides' not in neovim_install.msg | default('')"
-    - "'No package matching' not in neovim_install.msg | default('')"
-    - "'Unable to locate package' not in neovim_install.msg | default('')"
-
-- name: Warn if neovim install failed
-  when: neovim_install.failed | default(false)
-  ansible.builtin.debug:
-    msg: "WARNING: neovim not available in package manager. Install manually or from source."

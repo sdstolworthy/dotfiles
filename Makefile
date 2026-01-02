@@ -28,13 +28,13 @@ help:
 	@ls -1 roles | sed 's/^/  /'
 
 # Targets
-install: guard-FULL_NAME guard-EMAIL
+install:
 	$(ANSIBLE) playbooks/configure_all.yaml $(LOCAL)
 
-install-remote: guard-FULL_NAME guard-EMAIL
+install-remote:
 	$(ANSIBLE) playbooks/configure_all.yaml $(REMOTE)
 
-install-remote-host: guard-FULL_NAME guard-EMAIL guard-REMOTE_HOST guard-REMOTE_USER
+install-remote-host: guard-REMOTE_HOST guard-REMOTE_USER
 	$(ANSIBLE) playbooks/configure_all.yaml $(REMOTE_HOST_INV)
 
 configure: guard-config
