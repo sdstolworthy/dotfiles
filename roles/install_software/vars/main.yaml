@@ -1,2 +1,0 @@
-is_mac: "{{ ansible_facts['os_family']|lower == 'darwin' }}"
-should_become: "{{ is_mac|bool == false }}"

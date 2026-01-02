@@ -6,6 +6,17 @@
 
 See [Ansible's Installation Guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip).
 
+### Required Environment Variables
+
+Before running `make install`, set the following environment variables:
+
+```bash
+export FULL_NAME="Your Full Name"
+export EMAIL="your.email@example.com"
+```
+
+These are used to configure git user settings.
+
 ## Run plays
 ### Running the playbook
 
@@ -20,11 +31,17 @@ To run the playbook against localhost, ensure that the inventory file is set up 
 To install workspace dependencies and configurations,
 run the `configure_all.yaml` playbook.
 
-```
-ansible-playbook playbooks/configure_all.yaml -i inventory.ini --connection=local -K
-```
+```bash
+# Export environment variables first
+export FULL_NAME="Your Name"
+export EMAIL="your.email@example.com"
 
-Alternatively, run `make install` to run the `configure_all` play.
+# Run the playbook
+ansible-playbook playbooks/configure_all.yaml -i inventory/local.ini --connection=local -K
+
+# Or use make
+make install
+```
 
 ### Running specific roles
 
@@ -37,3 +54,21 @@ For example:
 ```bash
 make configure config=neovim
 ```
+
+## Configuration
+
+### Variable Configuration
+
+Global variables are defined in `inventory/group_vars/localhost/main.yaml`:
+- `is_mac`: Boolean indicating macOS
+- `should_become`: Whether to use sudo (false on Mac)
+- `full_name`: From FULL_NAME environment variable
+- `email_address`: From EMAIL environment variable
+
+Role-specific variables are defined in each role's `vars/main.yaml` file.
+
+### Technology Choices
+
+**Version Managers**:
+- `asdf`: Used for Node.js, Deno, and other language version management
+- `rustup`: Used specifically for Rust toolchain management
