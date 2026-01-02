@@ -7,7 +7,7 @@
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: "{{ home }}/.oh-my-zsh"
     depth: 1
-- name: add zsh custom {{ item }} directory
+- name: add zsh custom directories
   loop:
     - plugins
     - themes
