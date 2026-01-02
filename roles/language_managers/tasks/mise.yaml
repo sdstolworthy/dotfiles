@@ -11,10 +11,10 @@
     url: https://mise.run
     dest: /tmp/mise_install.sh
     mode: '0755'
-  register: mise_download
+  register: language_managers_mise_download
 
 - name: Execute mise installer (Linux)
-  when: not is_mac and mise_download is succeeded
+  when: not is_mac and language_managers_mise_download is succeeded
   ansible.builtin.shell: |
     set -o pipefail
     /tmp/mise_install.sh
