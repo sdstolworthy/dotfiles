@@ -11,9 +11,11 @@
     - { role: ../roles/profile }
     - { role: ../roles/neovim }
     - { role: ../roles/tmux }
-    # - { role: ../roles/alacritty }
-    # - { role: ../roles/workplace_directory }
+    - { role: ../roles/alacritty }
+    - { role: ../roles/workplace_directory }
+    - { role: ../roles/asdf }
     - { role: ../roles/nvm }
+    - { role: ../roles/rust }
     - { role: ../roles/zellij }
     - { role: ../roles/gitconfig }
     # - { role: ../roles/sway, when: ansible_system != 'Darwin' }

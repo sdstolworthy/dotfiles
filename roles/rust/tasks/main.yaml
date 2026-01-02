@@ -1,3 +1,16 @@
+- name: Install rustup
+  ansible.builtin.shell: |
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+  args:
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
+    executable: /bin/bash
+- name: Install stable Rust toolchain
+  ansible.builtin.shell: |
+    . "{{ ansible_env.HOME }}/.cargo/env"
+    rustup toolchain install stable
+    rustup default stable
+  args:
+    executable: /bin/bash
 - name: Add rust profile file
   when: profiled_directory is defined
   copy:
