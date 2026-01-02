@@ -1,16 +1,17 @@
+---
 - name: Create alacritty directory
   ansible.builtin.file:
     path: "{{ alacritty_config_dir }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Create alacritty themes directory
   ansible.builtin.file:
     path: "{{ alacritty_config_dir }}/themes"
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Clone alacritty-theme repository
   ansible.builtin.git:
-    repo: 'https://github.com/alacritty/alacritty-theme.git'
+    repo: "https://github.com/alacritty/alacritty-theme.git"
     dest: "{{ alacritty_config_dir }}/themes"
     version: master
     depth: 1
@@ -19,7 +20,7 @@
   ansible.builtin.template:
     src: alacritty.toml.j2
     dest: "{{ alacritty_config_dir }}/alacritty.toml"
-    mode: '0644'
+    mode: "0644"
 - name: Install alacritty
   become: "{{ should_become }}"
   ansible.builtin.package:

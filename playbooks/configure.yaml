@@ -1,3 +1,4 @@
+---
 - name: "Configure {{ config | default('unspecified') }}"
   hosts: all
   vars:

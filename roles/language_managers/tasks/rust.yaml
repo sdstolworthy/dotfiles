@@ -1,8 +1,9 @@
+---
 - name: Download rustup installer
   ansible.builtin.get_url:
     url: https://sh.rustup.rs
     dest: /tmp/rustup_install.sh
-    mode: '0755'
+    mode: "0755"
 
 - name: Install rustup
   ansible.builtin.shell: |
@@ -39,4 +40,4 @@
   ansible.builtin.copy:
     src: "rust.sh"
     dest: "{{ profile_profiled_directory }}/rust.sh"
-    mode: '0644'
+    mode: "0644"

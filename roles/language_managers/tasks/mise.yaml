@@ -10,7 +10,7 @@
   ansible.builtin.get_url:
     url: https://mise.run
     dest: /tmp/mise_install.sh
-    mode: '0755'
+    mode: "0755"
   register: language_managers_mise_download
 
 - name: Execute mise installer (Linux)
@@ -27,7 +27,7 @@
   ansible.builtin.copy:
     src: mise.sh
     dest: "{{ profile_profiled_directory }}/mise.sh"
-    mode: '0644'
+    mode: "0644"
 
 - name: Install tools with mise
   loop: "{{ language_managers_mise_tools }}"
