@@ -31,47 +31,44 @@ return {
 
 		default_capabilities = vim.tbl_deep_extend("force", default_capabilities, cmp_nvim_lsp.default_capabilities())
 
-		local configs = {}
-
-		vim.lsp.config("rust_analyzer", {
-			settings = {
-				["rust_analyzer"] = {
-					checkOnSave = {
-						command = "clippy",
-					},
-					cargo = {
-						features = "all",
-					},
-				},
-			},
-		})
-
-		vim.lsp.config("lua_ls", {
-			settings = {
-				Lua = {
-					completion = {
-						callSnippet = "Replace",
-					},
-					diagnostics = {
-						disable = {
-							"missing-fields",
+		local configs = {
+			rust_analyzer = {
+				settings = {
+					["rust_analyzer"] = {
+						checkOnSave = {
+							command = "clippy",
+						},
+						cargo = {
+							features = "all",
 						},
 					},
 				},
 			},
-		}
-
-		configs["kotlin-ls"] = {
-			cmd = { "kotlin-ls", "--stdio" },
-			single_file_support = true,
-			filetypes = { "kotlin" },
-			root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
+			lua_ls = {
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
+						diagnostics = {
+							disable = {
+								"missing-fields",
+							},
+						},
+					},
+				},
+			},
+			kotlin_language_server = {
+				single_file_support = true,
+				filetypes = { "kotlin" },
+				root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
+			},
 		}
 
 
 		mason.setup()
 
-		local mason_ensure_installed = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-lsp" }
+		local mason_ensure_installed = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-language-server" }
 
 		mason_tool_installer.setup({
 			ensure_installed = servers,
@@ -82,8 +79,7 @@ return {
 				function(server_name)
 					local config = configs[server_name] or {}
 					config.capabilities = default_capabilities
-					vim.lsp.config(server_name, config)
-					vim.lsp.enable(server_name)
+					require("lspconfig")[server_name].setup(config)
 				end,
 				["jdtls"] = function() end,
 			},

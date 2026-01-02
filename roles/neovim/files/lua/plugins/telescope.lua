@@ -4,30 +4,20 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim"
     },
-
-    config = function()
-        local keymap = function(keys, func)
-            vim.keymap.set("n", keys, func, {})
-        end
-
-        require("telescope").setup({})
-        local builtin = require("telescope.builtin")
-
-        keymap("<leader>ff", builtin.find_files)
-        keymap("<leader>sn", function()
-            builtin.find_files {
-                cwd = vim.fn.stdpath "config"
-            }
-        end)
-        keymap("<leader><leader>", builtin.buffers)
-        keymap("<leader>fw", builtin.live_grep)
-        keymap("<leader>/", function()
-            builtin.current_buffer_fuzzy_find(
+    cmd = "Telescope",
+    keys = {
+        { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+        { "<leader>sn", function() require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") }) end, desc = "Search Neovim config" },
+        { "<leader><leader>", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+        { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+        { "<leader>/", function()
+            require("telescope.builtin").current_buffer_fuzzy_find(
                 require('telescope.themes').get_dropdown {
                     winblend = 10,
                     previewer = false,
                 }
             )
-        end)
-    end
+        end, desc = "Fuzzy find in buffer" },
+    },
+    opts = {},
 }

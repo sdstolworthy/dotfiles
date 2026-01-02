@@ -7,6 +7,6 @@ return {
       "MunifTanjim/nui.nvim",
     },
     keys = {
-        {'<leader>tt', ':Neotree<CR>', 'Open NeoTree'}
+        { "<leader>tt", ":Neotree<CR>", desc = "Open NeoTree" }
     }
 }
