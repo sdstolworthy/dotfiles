@@ -36,4 +36,10 @@ fi
 # Initialize starship prompt
 eval "$(starship init zsh)"
 
+# Aliases
+alias cat='bat'
+alias ls='eza'
+alias ll='eza -l'
+alias la='eza -la'
+
 export PATH="$HOME/.local/bin:$PATH"
