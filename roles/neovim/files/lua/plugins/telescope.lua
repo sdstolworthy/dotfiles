@@ -28,6 +28,8 @@ return {
                 }
             )
         end, desc = "Fuzzy find in buffer" },
+        { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Git commits" },
+        { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git status" },
     },
     opts = {},
 }

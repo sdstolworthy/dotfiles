@@ -85,22 +85,22 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach-keybinds", { clear = true }),
 			callback = function(e)
-				local keymap = function(keys, func)
-					vim.keymap.set("n", keys, func, { buffer = e.buf })
+				local keymap = function(keys, func, desc)
+					vim.keymap.set("n", keys, func, { buffer = e.buf, desc = desc })
 				end
 				local builtin = require("telescope.builtin")
 
-				keymap("gd", vim.lsp.buf.definition)
-				keymap("gD", vim.lsp.buf.declaration)
-				keymap("gr", builtin.lsp_references)
-				keymap("gI", builtin.lsp_implementations)
-				keymap("<leader>D", builtin.lsp_type_definitions)
-				keymap("<leader>ds", builtin.lsp_document_symbols)
-				keymap("<leader>ws", builtin.lsp_dynamic_workspace_symbols)
-				keymap("<leader>rn", vim.lsp.buf.rename)
-				keymap("<leader>ca", vim.lsp.buf.code_action)
-				keymap("K", vim.lsp.buf.hover)
-				keymap("<C-s>", vim.lsp.buf.signature_help)
+				keymap("gd", vim.lsp.buf.definition, "Go to definition")
+				keymap("gD", vim.lsp.buf.declaration, "Go to declaration")
+				keymap("gr", builtin.lsp_references, "Find references")
+				keymap("gI", builtin.lsp_implementations, "Find implementations")
+				keymap("<leader>D", builtin.lsp_type_definitions, "Type definition")
+				keymap("<leader>ds", builtin.lsp_document_symbols, "Document symbols")
+				keymap("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "Workspace symbols")
+				keymap("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+				keymap("<leader>ca", vim.lsp.buf.code_action, "Code action")
+				keymap("K", vim.lsp.buf.hover, "Hover docs")
+				keymap("<C-s>", vim.lsp.buf.signature_help, "Signature help")
 
 				-- Enable inlay hints if supported
 				local client = vim.lsp.get_client_by_id(e.data.client_id)
