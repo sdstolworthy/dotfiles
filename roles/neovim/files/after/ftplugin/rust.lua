@@ -3,41 +3,23 @@ vim.keymap.set(
   "n", 
   "<leader>a", 
   function()
-    vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
-    -- or vim.lsp.buf.codeAction() if you don't want grouping.
+    vim.cmd.RustLsp('codeAction')
   end,
-  { silent = true, buffer = bufnr }
+  { silent = true, buffer = bufnr, desc = "Rust code action" }
 )
 vim.keymap.set(
   "n", 
-  "K",  -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+  "K",
   function()
     vim.cmd.RustLsp({'hover', 'actions'})
   end,
-  { silent = true, buffer = bufnr }
+  { silent = true, buffer = bufnr, desc = "Rust hover" }
 )
-vim.g.rustaceanvim = {
-  -- Plugin configuration
-  tools = {
-  },
-  -- LSP configuration
-  server = {
-    on_attach = function(client, bufnr)
-      -- you can also put keymaps in here
-    end,
-    default_settings = {
-      -- rust-analyzer language server configuration
-      ["rust-analyzer"] = {
-        cargo = {
-          features = {
-            "all"
-          },
-          allFeatures = true
-        },
-      },
-    },
-  },
-  -- DAP configuration
-  dap = {
-  },
-}
+vim.keymap.set(
+  "n",
+  "<leader>dd",
+  function()
+    vim.cmd.RustLsp('debuggables')
+  end,
+  { silent = true, buffer = bufnr, desc = "Rust debuggables" }
+)
