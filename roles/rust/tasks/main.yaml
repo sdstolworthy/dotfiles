@@ -4,13 +4,25 @@
   args:
     creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
     executable: /bin/bash
+- name: Check if stable toolchain is installed
+  ansible.builtin.shell: |
+    . "{{ ansible_env.HOME }}/.cargo/env"
+    rustup toolchain list | grep -q "^stable" && echo "installed" || echo "not_installed"
+  args:
+    executable: /bin/bash
+  register: stable_toolchain
+  changed_when: false
+  failed_when: false
+
 - name: Install stable Rust toolchain
+  when: stable_toolchain.stdout == "not_installed"
   ansible.builtin.shell: |
     . "{{ ansible_env.HOME }}/.cargo/env"
     rustup toolchain install stable
     rustup default stable
   args:
     executable: /bin/bash
+
 - name: Add rust profile file
   when: profiled_directory is defined
   copy:
