@@ -87,6 +87,20 @@
         state: absent
       failed_when: false
 
+- name: Install fzf
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: fzf
+    state: present
+  ignore_errors: true
+
+- name: Install zoxide
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: zoxide
+    state: present
+  ignore_errors: true
+
 - name: Install Neovim
   become: "{{ should_become }}"
   ansible.builtin.package:

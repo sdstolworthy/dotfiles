@@ -24,6 +24,22 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 source ~/.profile
 
+# History Substring Search bindings
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# Initialize zoxide if available
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+# Initialize fzf if available
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="$HOME/.local/bin:$PATH"
 
