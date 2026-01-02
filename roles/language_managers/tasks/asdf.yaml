@@ -1,4 +1,10 @@
+- name: Check if asdf directory exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.asdf"
+  register: asdf_dir
+
 - name: Clone asdf
+  when: not asdf_dir.stat.exists
   ansible.builtin.git:
     repo: https://github.com/asdf-vm/asdf.git
     dest: "{{ ansible_env.HOME }}/.asdf"
