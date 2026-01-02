@@ -1,3 +1,4 @@
+---
 - name: Check if zellij is already installed
   ansible.builtin.command: which zellij
   register: zellij_exists
@@ -27,20 +28,20 @@
       ansible.builtin.file:
         path: "{{ ansible_facts['user_dir'] }}/.local/bin"
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Download and extract zellij
       ansible.builtin.unarchive:
         src: "https://github.com/zellij-org/zellij/releases/latest/download/zellij-{{ zellij_arch }}-{{ zellij_os }}.tar.gz"
         dest: "{{ ansible_facts['user_dir'] }}/.local/bin"
         remote_src: true
-        mode: '0755'
+        mode: "0755"
 
 - name: Create zellij config directory
   ansible.builtin.file:
     path: "{{ ansible_facts['user_dir'] }}/.config/zellij"
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Symlink config.kdl
   ansible.builtin.file:

@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: "{{ home }}/.local/share/zinit/zinit.git"
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Install zinit
   ansible.builtin.git:
@@ -16,4 +16,4 @@
   ansible.builtin.template:
     src: zshrc
     dest: "{{ home }}/.zshrc"
-    mode: '0644'
+    mode: "0644"

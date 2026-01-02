@@ -1,14 +1,15 @@
+---
 - name: Create neovim directory
   ansible.builtin.file:
     path: "{{ home }}/.neovim"
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Create config folder
   ansible.builtin.file:
     path: "{{ home }}/.config/nvim"
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Symlink init.lua
   ansible.builtin.file:
@@ -39,4 +40,4 @@
   ansible.builtin.copy:
     src: "profile"
     dest: "{{ profile_profiled_directory }}/neovim.sh"
-    mode: '0644'
+    mode: "0644"

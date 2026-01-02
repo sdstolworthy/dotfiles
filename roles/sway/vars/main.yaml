@@ -1,1 +1,2 @@
+---
 sway_swayconfig_dir: "{{ home }}/.config/sway"

@@ -1,3 +1,4 @@
+---
 - name: Install sway
   become: true
   ansible.builtin.package:
@@ -7,7 +8,7 @@
   ansible.builtin.file:
     path: "{{ sway_swayconfig_dir }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
 - name: Symlink sway config
   ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/sway/files/swayconfig"

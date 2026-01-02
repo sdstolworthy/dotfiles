@@ -1,3 +1,4 @@
+---
 - name: Symlink .editorconfig
   ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/editorconfig/files/editorconfig"

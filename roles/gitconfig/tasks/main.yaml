@@ -1,3 +1,4 @@
+---
 - name: Validate required variables
   ansible.builtin.assert:
     that:

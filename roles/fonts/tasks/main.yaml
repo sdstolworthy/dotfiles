@@ -1,3 +1,4 @@
+---
 - name: Install Nerd Fonts (Mac)
   when: is_mac
   community.general.homebrew_cask:
@@ -24,7 +25,7 @@
       ansible.builtin.file:
         path: /usr/local/share/fonts/FiraCodeNerdFont
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Check if font already installed
       ansible.builtin.stat:
@@ -38,7 +39,7 @@
           ansible.builtin.get_url:
             url: "{{ fonts_firacode_url }}"
             dest: /tmp/FiraCode.zip
-            mode: '0644'
+            mode: "0644"
 
         - name: Extract FiraCode Nerd Font
           become: "{{ should_become }}"
@@ -76,7 +77,7 @@
       ansible.builtin.file:
         path: /usr/local/share/fonts/MonaspaceNerdFont
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Check if Monaspace font already installed
       ansible.builtin.stat:
@@ -90,7 +91,7 @@
           ansible.builtin.get_url:
             url: "{{ fonts_monaspace_url }}"
             dest: /tmp/Monaspace.zip
-            mode: '0644'
+            mode: "0644"
 
         - name: Extract Monaspace Nerd Font
           become: "{{ should_become }}"

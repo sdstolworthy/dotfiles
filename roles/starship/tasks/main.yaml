@@ -13,7 +13,7 @@
       ansible.builtin.get_url:
         url: https://starship.rs/install.sh
         dest: /tmp/starship_install.sh
-        mode: '0755'
+        mode: "0755"
 
     - name: Execute starship installer
       ansible.builtin.shell: |
@@ -27,7 +27,7 @@
   ansible.builtin.file:
     path: ~/.config
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Symlink starship config
   ansible.builtin.file:
