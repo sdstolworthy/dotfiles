@@ -21,6 +21,7 @@ help:
 	@echo "Targets:"
 	@echo "  install              Install all configs locally"
 	@echo "  configure            Install specific role (config=<role>)"
+	@echo "  test                 Dry-run all configs locally"
 	@echo "  install-remote       Install all configs to remote.ini hosts"
 	@echo "  configure-remote     Install specific role to remote.ini hosts"
 	@echo ""
@@ -28,6 +29,9 @@ help:
 	@ls -1 roles | sed 's/^/  /'
 
 # Targets
+test:
+	$(ANSIBLE) playbooks/configure_all.yaml $(LOCAL) --check
+
 install:
 	$(ANSIBLE) playbooks/configure_all.yaml $(LOCAL)
 
@@ -52,4 +56,4 @@ guard-%:
 		exit 1; \
 	fi
 
-.PHONY: install install-remote install-remote-host configure configure-remote configure-remote-host
+.PHONY: install install-remote install-remote-host configure configure-remote configure-remote-host test
