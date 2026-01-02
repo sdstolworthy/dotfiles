@@ -1,0 +1,18 @@
+# Example remote inventory file
+# Copy this to remote.ini and customize for your VM
+# 
+# Usage:
+#   1. Copy: cp inventory/remote.ini.example inventory/remote.ini
+#   2. Edit remote.ini with your VM's hostname/IP and username
+#   3. Run: make install-remote
+#
+# For multiple VMs, add more hosts under [remote]
+
+[remote]
+# Example formats:
+# hostname ansible_user=username
+# 192.168.1.100 ansible_user=spencer
+# my-vm.local ansible_user=spencer ansible_port=22
+
+# Add your VM details below:
+# your-vm-hostname ansible_user=your-username

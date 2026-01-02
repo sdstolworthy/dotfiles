@@ -1,0 +1,4 @@
+is_mac: "{{ ansible_facts['os_family']|lower == 'darwin' }}"
+should_become: "{{ is_mac|bool == false }}"
+full_name: "{{ lookup('ansible.builtin.env', 'FULL_NAME') }}"
+email_address: "{{ lookup('ansible.builtin.env', 'EMAIL') }}"
