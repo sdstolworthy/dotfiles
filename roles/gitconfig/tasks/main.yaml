@@ -33,3 +33,18 @@
     name: push.autoSetupRemote
     scope: global
     value: "true"
+- name: Set pager to delta
+  community.general.git_config:
+    name: core.pager
+    scope: global
+    value: delta
+- name: Set interactive diffFilter
+  community.general.git_config:
+    name: interactive.diffFilter
+    scope: global
+    value: delta --color-only
+- name: Enable delta navigate
+  community.general.git_config:
+    name: delta.navigate
+    scope: global
+    value: "true"
