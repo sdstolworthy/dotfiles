@@ -1,6 +1,6 @@
 - name: "Configure {{ config }}"
   hosts: all
   vars:
-    home: "{{ ansible_facts['ansible_user_dir'] }}"
+    home: "{{ ansible_facts['user_dir'] }}"
   roles:
     - role: "{{ config }}"
