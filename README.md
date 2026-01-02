@@ -1,4 +1,5 @@
 # Stolworthy Dotfiles
+[![Lint](https://github.com/sdstolworthy/dotfiles/actions/workflows/lint.yaml/badge.svg)](https://github.com/sdstolworthy/dotfiles/actions/workflows/lint.yaml)
 
 ## Getting Started
 
