@@ -18,3 +18,18 @@
     name: core.editor
     scope: global
     value: nvim
+- name: Set default branch
+  community.general.git_config:
+    name: init.defaultBranch
+    scope: global
+    value: main
+- name: Set pull rebase
+  community.general.git_config:
+    name: pull.rebase
+    scope: global
+    value: "true"
+- name: Set push autoSetupRemote
+  community.general.git_config:
+    name: push.autoSetupRemote
+    scope: global
+    value: "true"
