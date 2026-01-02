@@ -1,13 +1,13 @@
 - name: Check if asdf directory exists
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.asdf"
+    path: "{{ ansible_facts['ansible_user_dir'] }}/.asdf"
   register: asdf_dir
 
 - name: Clone asdf
   when: not asdf_dir.stat.exists
   ansible.builtin.git:
     repo: https://github.com/asdf-vm/asdf.git
-    dest: "{{ ansible_env.HOME }}/.asdf"
+    dest: "{{ ansible_facts['ansible_user_dir'] }}/.asdf"
     version: "{{ asdf_version }}"
     update: no
 - name: Create asdf profile
@@ -17,33 +17,33 @@
     dest: "{{ profiled_directory }}/asdf.sh"
 - name: Check if nodejs plugin exists
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.asdf/plugins/nodejs"
+    path: "{{ ansible_facts['ansible_user_dir'] }}/.asdf/plugins/nodejs"
   register: nodejs_plugin
 
 - name: Add nodejs plugin
   when: not nodejs_plugin.stat.exists
   ansible.builtin.shell: |
-    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    . {{ ansible_facts['ansible_user_dir'] }}/.asdf/asdf.sh
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   args:
     executable: /bin/bash
 
 - name: Check if deno plugin exists
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.asdf/plugins/deno"
+    path: "{{ ansible_facts['ansible_user_dir'] }}/.asdf/plugins/deno"
   register: deno_plugin
 
 - name: Add deno plugin
   when: not deno_plugin.stat.exists
   ansible.builtin.shell: |
-    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    . {{ ansible_facts['ansible_user_dir'] }}/.asdf/asdf.sh
     asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
   args:
     executable: /bin/bash
 
 - name: Get current nodejs version
   ansible.builtin.shell: |
-    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    . {{ ansible_facts['ansible_user_dir'] }}/.asdf/asdf.sh
     asdf current nodejs 2>/dev/null | awk '{print $2}' || echo "none"
   args:
     executable: /bin/bash
@@ -54,7 +54,7 @@
 - name: Install latest Node.js
   when: current_nodejs.stdout == "none" or current_nodejs.stdout == ""
   ansible.builtin.shell: |
-    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    . {{ ansible_facts['ansible_user_dir'] }}/.asdf/asdf.sh
     asdf install nodejs latest
     asdf global nodejs latest
   args:
@@ -62,7 +62,7 @@
 
 - name: Create npm global install directory
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.npm-global"
+    path: "{{ ansible_facts['ansible_user_dir'] }}/.npm-global"
     state: directory
     mode: '0755'
 
@@ -73,16 +73,16 @@
   failed_when: false
 
 - name: Configure npm global prefix
-  when: npm_prefix.stdout != ansible_env.HOME + "/.npm-global"
+  when: npm_prefix.stdout != ansible_facts['ansible_user_dir'] + "/.npm-global"
   ansible.builtin.shell: |
-    . {{ ansible_env.HOME }}/.asdf/asdf.sh
-    npm config set prefix "{{ ansible_env.HOME }}/.npm-global"
+    . {{ ansible_facts['ansible_user_dir'] }}/.asdf/asdf.sh
+    npm config set prefix "{{ ansible_facts['ansible_user_dir'] }}/.npm-global"
   args:
     executable: /bin/bash
 
 - name: Get current deno version
   ansible.builtin.shell: |
-    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    . {{ ansible_facts['ansible_user_dir'] }}/.asdf/asdf.sh
     asdf current deno 2>/dev/null | awk '{print $2}' || echo "none"
   args:
     executable: /bin/bash
@@ -93,7 +93,7 @@
 - name: Install latest Deno
   when: current_deno.stdout == "none" or current_deno.stdout == ""
   ansible.builtin.shell: |
-    . {{ ansible_env.HOME }}/.asdf/asdf.sh
+    . {{ ansible_facts['ansible_user_dir'] }}/.asdf/asdf.sh
     asdf install deno latest
     asdf global deno latest
   args:

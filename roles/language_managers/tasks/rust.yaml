@@ -2,11 +2,11 @@
   ansible.builtin.shell: |
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
   args:
-    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
+    creates: "{{ ansible_facts['ansible_user_dir'] }}/.cargo/bin/rustup"
     executable: /bin/bash
 - name: Check if stable toolchain is installed
   ansible.builtin.shell: |
-    . "{{ ansible_env.HOME }}/.cargo/env"
+    . "{{ ansible_facts['ansible_user_dir'] }}/.cargo/env"
     rustup toolchain list | grep -q "^stable" && echo "installed" || echo "not_installed"
   args:
     executable: /bin/bash
@@ -17,7 +17,7 @@
 - name: Install stable Rust toolchain
   when: stable_toolchain.stdout == "not_installed"
   ansible.builtin.shell: |
-    . "{{ ansible_env.HOME }}/.cargo/env"
+    . "{{ ansible_facts['ansible_user_dir'] }}/.cargo/env"
     rustup toolchain install stable
     rustup default stable
   args:
