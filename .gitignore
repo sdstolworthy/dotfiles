@@ -11,3 +11,4 @@ coc/commands
 .*_inventory.ini
 
 inventory/remote.ini
+inventory/group_vars/all/secrets.yaml
