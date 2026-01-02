@@ -82,6 +82,7 @@ return {
 					require("lspconfig")[server_name].setup(config)
 				end,
 				["jdtls"] = function() end,
+				["rust_analyzer"] = function() end, -- Handled by rustaceanvim
 			},
 		})
 
