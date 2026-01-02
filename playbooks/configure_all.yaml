@@ -2,7 +2,9 @@
   hosts: all
   roles:
     - role: install_software
+      tags: install_software
     - role: fonts
+      tags: fonts
 
 - name: Configure dotfiles
   hosts: all
@@ -10,13 +12,21 @@
     home: "{{ ansible_facts['user_dir'] }}"
   roles:
     - role: zsh
-    # profile role is included via meta dependencies in neovim and language_managers
+      tags: zsh
     - role: neovim
+      tags: neovim
     - role: alacritty
+      tags: alacritty
     - role: starship
+      tags: starship
     - role: workplace_directory
+      tags: workplace_directory
     - role: language_managers
+      tags: language_managers
     - role: zellij
+      tags: zellij
     - role: gitconfig
+      tags: gitconfig
     # - role: sway
+    #   tags: sway
     #   when: ansible_system != 'Darwin'
