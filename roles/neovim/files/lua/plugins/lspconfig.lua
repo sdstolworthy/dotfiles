@@ -68,22 +68,15 @@ return {
 
 		mason.setup()
 
-		local mason_ensure_installed = { "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-language-server" }
+		local mason_ensure_installed =
+			{ "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-language-server" }
 
 		mason_tool_installer.setup({
 			ensure_installed = servers,
 		})
 
 		mason_lspconfig.setup({
-			handlers = {
-				function(server_name)
-					local config = configs[server_name] or {}
-					config.capabilities = default_capabilities
-					require("lspconfig")[server_name].setup(config)
-				end,
-				["jdtls"] = function() end,
-				["rust_analyzer"] = function() end, -- Handled by rustaceanvim
-			},
+			automatic_enable = mason_ensure_installed,
 		})
 
 
