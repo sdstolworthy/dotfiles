@@ -10,3 +10,4 @@ coc/memos.json
 coc/commands
 .*_inventory.ini
 
+inventory/remote.ini

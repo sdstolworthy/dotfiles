@@ -1,0 +1,5 @@
+# Remote-specific variables
+# These override the 'all' group vars for remote hosts
+ansible_user: "{{ lookup('ansible.builtin.env', 'REMOTE_USER', default='') }}"
+ansible_become: true
+ansible_become_method: sudo

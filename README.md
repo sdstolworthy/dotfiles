@@ -8,7 +8,7 @@ See [Ansible's Installation Guide](https://docs.ansible.com/ansible/latest/insta
 
 ### Required Environment Variables
 
-Before running `make install`, set the following environment variables:
+Before running the playbook, set the following environment variables:
 
 ```bash
 export FULL_NAME="Your Full Name"
@@ -18,18 +18,10 @@ export EMAIL="your.email@example.com"
 These are used to configure git user settings.
 
 ## Run plays
-### Running the playbook
 
-To run the playbook against localhost, ensure that the inventory file is set up correctly
+### Running on localhost
 
-```
-# inventory/local.ini
-[localhost]
-127.0.0.1
-```
-
-To install workspace dependencies and configurations,
-run the `configure_all.yaml` playbook.
+To run the playbook against localhost:
 
 ```bash
 # Export environment variables first
@@ -42,6 +34,61 @@ ansible-playbook playbooks/configure_all.yaml -i inventory/local.ini --connectio
 # Or use make
 make install
 ```
+
+### Running on remote machines
+
+There are two ways to run the playbook on remote machines:
+
+#### Option 1: Using inventory file (recommended for multiple VMs)
+
+1. Set up your inventory file:
+```bash
+# Copy the example
+cp inventory/remote.ini.example inventory/remote.ini
+
+# Edit with your VM details
+# inventory/remote.ini
+[remote]
+192.168.1.100 ansible_user=spencer
+my-vm.local ansible_user=spencer
+```
+
+2. Ensure SSH access is configured (password or key-based)
+
+3. Run the playbook:
+```bash
+export FULL_NAME="Your Name"
+export EMAIL="your.email@example.com"
+
+# Install all configurations
+make install-remote
+
+# Or run specific role
+make configure-remote config=neovim
+```
+
+#### Option 2: Ad-hoc remote host (quick one-off setup)
+
+For quickly setting up a single VM without editing inventory files:
+
+```bash
+export FULL_NAME="Your Name"
+export EMAIL="your.email@example.com"
+export REMOTE_HOST="192.168.1.100"  # or hostname
+export REMOTE_USER="spencer"
+
+# Install all configurations
+make install-remote-host
+
+# Or run specific role
+make configure-remote-host config=neovim
+```
+
+### SSH Requirements for Remote Execution
+
+- SSH access to the remote machine (password or key-based)
+- Python installed on the remote machine
+- User must have sudo privileges (will prompt for sudo password with -K flag)
 
 ### Running specific roles
 
