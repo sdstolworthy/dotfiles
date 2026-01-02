@@ -2,7 +2,7 @@
   ansible.builtin.git:
     repo: https://github.com/asdf-vm/asdf.git
     dest: "{{ ansible_env.HOME }}/.asdf"
-    version: v0.14.1
+    version: "{{ asdf_version }}"
     update: no
 - name: Create asdf profile
   when: profiled_directory is defined

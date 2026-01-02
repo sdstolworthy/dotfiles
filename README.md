@@ -67,6 +67,14 @@ Global variables are defined in `inventory/group_vars/localhost/main.yaml`:
 
 Role-specific variables are defined in each role's `vars/main.yaml` file.
 
+### Updating Tool Versions
+
+Tool versions are defined in role variable files:
+- **asdf**: `roles/asdf/vars/main.yaml` - `asdf_version`
+- **FiraCode font**: `roles/install_software/vars/main.yaml` - `firacode_version`
+
+To update a tool version, edit the corresponding vars file and re-run the playbook.
+
 ### Technology Choices
 
 **Version Managers**:
