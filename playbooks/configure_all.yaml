@@ -18,6 +18,7 @@
       tags: neovim
     - role: alacritty
       tags: alacritty
+      when: has_display
     - role: starship
       tags: starship
     - role: workplace_directory
