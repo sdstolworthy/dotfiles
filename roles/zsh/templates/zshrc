@@ -8,8 +8,11 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # Plugins
 zinit light zsh-users/zsh-autosuggestions
+zinit ice wait lucid
 zinit light zsh-users/zsh-completions
+zinit ice wait lucid
 zinit light zsh-users/zsh-history-substring-search
+zinit ice wait lucid
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # History substring search bindings
@@ -18,8 +21,13 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# Load completions
-autoload -Uz compinit && compinit
+# Load completions (cached, regenerates daily)
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 source ~/.profile
 
