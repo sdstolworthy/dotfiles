@@ -1,5 +1,6 @@
 ---
 is_mac: "{{ ansible_facts['os_family'] | lower == 'darwin' }}"
+has_display: "{{ is_mac or lookup('env', 'DISPLAY') != '' or lookup('env', 'WAYLAND_DISPLAY') != '' }}"
 should_become: "{{ is_mac | bool == false }}"
 full_name: "{{ _full_name | default(lookup('ansible.builtin.env', 'FULL_NAME'), true) }}"
 email_address: "{{ _email_address | default(lookup('ansible.builtin.env', 'EMAIL'), true) }}"
