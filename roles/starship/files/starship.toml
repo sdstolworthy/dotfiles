@@ -1,8 +1,26 @@
 format = """
+$time\
+$hostname\
 $directory\
 $git_branch\
 $git_status\
+$cmd_duration\
 $character"""
+
+[time]
+disabled = false
+format = "[$time]($style) "
+style = "dimmed"
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style) "
+style = "bold cyan"
+
+[cmd_duration]
+min_time = 0
+format = "[$duration]($style) "
+style = "yellow"
 
 [directory]
 truncation_length = 3
