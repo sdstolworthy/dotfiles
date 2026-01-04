@@ -16,7 +16,7 @@
     src: gpg-agent.conf
     dest: ~/.gnupg/gpg-agent.conf
     mode: "0600"
-  notify: reload gpg-agent
+  notify: Reload gpg-agent
 
 - name: Configure git commit signing
   community.general.git_config:
