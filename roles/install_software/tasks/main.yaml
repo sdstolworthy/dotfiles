@@ -7,10 +7,9 @@
   become: "{{ should_become }}"
   ansible.builtin.package:
     name:
-      - fzf
       - neovim
     state: present
-  failed_when: false
+
 
 - name: Install cargo packages
   loop: "{{ install_software_cargo_packages }}"
