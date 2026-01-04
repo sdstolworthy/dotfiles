@@ -1,3 +1,4 @@
 ---
-- name: reload gpg-agent
-  ansible.builtin.shell: gpgconf --kill gpg-agent
+- name: Reload gpg-agent
+  ansible.builtin.command: gpgconf --kill gpg-agent
+  changed_when: false
