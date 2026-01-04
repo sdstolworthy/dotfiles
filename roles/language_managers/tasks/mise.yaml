@@ -39,3 +39,10 @@
     executable: /bin/bash
   register: language_managers_mise_install
   changed_when: "'installed' in language_managers_mise_install.stdout"
+  failed_when: false
+
+- name: Warn about failed mise tool installations
+  loop: "{{ language_managers_mise_install.results }}"
+  when: item.rc != 0
+  ansible.builtin.debug:
+    msg: "WARNING: Failed to install {{ item.item }}: {{ item.stderr | default('unknown error') | regex_replace('\\x1b\\[[0-9;]*m', '') }}"

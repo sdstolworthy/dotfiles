@@ -1,8 +1,10 @@
-# Only ask for sudo password on Linux
+# Only ask for sudo password on Linux if not NOPASSWD
 ifeq ($(shell uname -s),Darwin)
 	ASK_BECOME =
-else
+else ifneq ($(shell sudo -n true 2>/dev/null && echo yes),yes)
 	ASK_BECOME = -K
+else
+	ASK_BECOME =
 endif
 
 # Common ansible-playbook command

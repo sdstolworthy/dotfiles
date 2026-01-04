@@ -7,8 +7,13 @@
 
 - name: Install starship (Linux)
   when: not is_mac
-  become: "{{ should_become }}"
   block:
+    - name: Ensure ~/.local/bin exists
+      ansible.builtin.file:
+        path: ~/.local/bin
+        state: directory
+        mode: "0755"
+
     - name: Download starship installer
       ansible.builtin.get_url:
         url: https://starship.rs/install.sh
@@ -18,9 +23,9 @@
     - name: Execute starship installer
       ansible.builtin.shell: |
         set -o pipefail
-        /tmp/starship_install.sh -y
+        /tmp/starship_install.sh -y -b ~/.local/bin
       args:
-        creates: /usr/local/bin/starship
+        creates: ~/.local/bin/starship
         executable: /bin/bash
 
 - name: Create starship config directory

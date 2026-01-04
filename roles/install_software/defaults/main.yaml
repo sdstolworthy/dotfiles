@@ -1,0 +1,7 @@
+---
+install_software_cargo_packages:
+  - bat
+  - eza
+  - git-delta
+  - ripgrep
+  - zoxide
