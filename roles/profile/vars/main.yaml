@@ -1,2 +1,2 @@
 ---
-profile_profiled_directory: "{{ home }}/.profile.d"
+profile_profiled_directory: "{{ ansible_facts['user_dir'] }}/.profile.d"

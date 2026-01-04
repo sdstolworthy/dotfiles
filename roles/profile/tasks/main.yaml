@@ -10,7 +10,7 @@
 - name: Copy profile
   ansible.builtin.copy:
     src: ./profile
-    dest: "{{ home }}/.profile"
+    dest: "{{ ansible_facts['user_dir'] }}/.profile"
     mode: "0644"
 - name: Copy profile.d scripts
   ansible.builtin.copy:
