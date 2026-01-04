@@ -16,6 +16,7 @@ cat > inventory/group_vars/all/secrets.yaml << 'EOF'
 ---
 _full_name: "Your Name"
 _email_address: "your.email@example.com"
+gpg_signing_key: "YOUR_GPG_KEY_ID"  # optional, enables commit signing
 EOF
 ```
 
@@ -113,6 +114,40 @@ Some roles have automatic dependencies declared in `meta/main.yaml`:
 - `starship` - Starship prompt
 - `zellij` - Zellij terminal multiplexer
 - `gitconfig` - Git configuration
+- `gpg` - GPG configuration and commit signing
 - `language_managers` - rustup
 - `workplace_directory` - Create workspace directory
 - `profile` - Shell profile setup
+
+### GPG Setup
+
+The `gpg` role configures GPG with secure defaults and optionally enables git commit signing.
+
+1. Generate a GPG key (if you don't have one):
+   ```bash
+   gpg --full-generate-key
+   ```
+
+2. Get your key ID:
+   ```bash
+   gpg --list-secret-keys --keyid-format=long
+   ```
+
+3. Add the key ID to `secrets.yaml`:
+   ```yaml
+   gpg_signing_key: "YOUR_KEY_ID"
+   ```
+
+4. Run the role:
+   ```bash
+   make configure config=gpg
+   ```
+
+To transfer your key to another machine:
+```bash
+# Export
+gpg --export-secret-keys --armor YOUR_KEY_ID > private.asc
+
+# Import (on new machine)
+gpg --import private.asc
+```

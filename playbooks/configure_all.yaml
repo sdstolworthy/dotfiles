@@ -29,6 +29,8 @@
       tags: zellij
     - role: gitconfig
       tags: gitconfig
+    - role: gpg
+      tags: gpg
     - role: editorconfig
       tags: editorconfig
     # - role: sway
