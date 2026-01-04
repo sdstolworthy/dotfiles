@@ -1,0 +1,29 @@
+---
+- name: Ensure .gnupg directory exists
+  ansible.builtin.file:
+    path: ~/.gnupg
+    state: directory
+    mode: "0700"
+
+- name: Copy gpg.conf
+  ansible.builtin.copy:
+    src: gpg.conf
+    dest: ~/.gnupg/gpg.conf
+    mode: "0600"
+
+- name: Copy gpg-agent.conf
+  ansible.builtin.copy:
+    src: gpg-agent.conf
+    dest: ~/.gnupg/gpg-agent.conf
+    mode: "0600"
+  notify: reload gpg-agent
+
+- name: Configure git commit signing
+  community.general.git_config:
+    name: "{{ item.name }}"
+    scope: global
+    value: "{{ item.value }}"
+  loop:
+    - { name: commit.gpgsign, value: "true" }
+    - { name: user.signingkey, value: "{{ gpg_signing_key }}" }
+  when: gpg_signing_key is defined
