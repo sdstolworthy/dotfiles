@@ -9,7 +9,13 @@
     name:
       - neovim
     state: present
+  register: install_software_packages_result
+  failed_when: false
 
+- name: Warn about failed package installations
+  when: install_software_packages_result.failed | default(false)
+  ansible.builtin.debug:
+    msg: "WARNING: Failed to install packages: {{ install_software_packages_result.msg | default('unknown error') }}"
 
 - name: Install cargo packages
   loop: "{{ install_software_cargo_packages }}"
@@ -20,3 +26,11 @@
   args:
     creates: "{{ ansible_facts['user_dir'] }}/.cargo/bin/{{ item | regex_replace('^git-', '') }}"
     executable: /bin/bash
+  register: install_software_cargo_result
+  failed_when: false
+
+- name: Warn about failed cargo installations
+  loop: "{{ install_software_cargo_result.results }}"
+  when: item.rc is defined and item.rc != 0
+  ansible.builtin.debug:
+    msg: "WARNING: Failed to install {{ item.item }}: {{ item.stderr | default('unknown error') }}"
