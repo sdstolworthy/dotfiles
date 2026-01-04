@@ -32,18 +32,6 @@ return {
 		default_capabilities = vim.tbl_deep_extend("force", default_capabilities, cmp_nvim_lsp.default_capabilities())
 
 		local configs = {
-			rust_analyzer = {
-				settings = {
-					["rust-analyzer"] = {
-						checkOnSave = {
-							command = "clippy",
-						},
-						cargo = {
-							features = "all",
-						},
-					},
-				},
-			},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -65,6 +53,10 @@ return {
 			},
 		}
 
+		for server, config in pairs(configs) do
+			config.capabilities = default_capabilities
+			vim.lsp.config(server, config)
+		end
 
 		mason.setup()
 
@@ -72,7 +64,7 @@ return {
 			{ "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-language-server", "codelldb" }
 
 		mason_tool_installer.setup({
-			ensure_installed = servers,
+			ensure_installed = mason_ensure_installed,
 		})
 
 		mason_lspconfig.setup({
