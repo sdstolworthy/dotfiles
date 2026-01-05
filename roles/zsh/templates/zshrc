@@ -14,6 +14,10 @@ zinit ice wait lucid
 zinit light zsh-users/zsh-history-substring-search
 zinit ice wait lucid
 zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light Aloxaf/fzf-tab
+
+# Fuzzy completion matching
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+l:|=* r:|=*'
 
 # History substring search bindings
 bindkey '^[[A' history-substring-search-up
