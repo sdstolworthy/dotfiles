@@ -2,6 +2,20 @@ if [[ -z "$ZELLIJ" ]]; then
   zellij attach -c main
 fi
 
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt inc_append_history
+setopt hist_ignore_all_dups
+
+# Reload history before fzf Ctrl+R
+fzf-history-widget-with-reload() {
+  fc -R
+  fzf-history-widget
+}
+zle -N fzf-history-widget-with-reload
+
 # Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
@@ -43,6 +57,7 @@ fi
 # Initialize fzf if available
 if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
+  bindkey '^R' fzf-history-widget-with-reload
 fi
 
 # Initialize starship prompt
