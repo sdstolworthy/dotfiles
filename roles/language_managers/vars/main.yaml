@@ -4,3 +4,4 @@ language_managers_mise_tools:
   - node
   - deno
   - fzf
+  - uv
