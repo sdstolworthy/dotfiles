@@ -1,0 +1,37 @@
+---
+- name: Create logseq config directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ ansible_facts['user_dir'] }}/.logseq/config"
+    - "{{ ansible_facts['user_dir'] }}/.logseq/settings"
+
+- name: Symlink logseq config files
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/../roles/logseq/files/config/{{ item }}"
+    dest: "{{ ansible_facts['user_dir'] }}/.logseq/config/{{ item }}"
+    state: link
+  loop:
+    - config.edn
+    - plugins.edn
+
+- name: Symlink logseq preferences
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/../roles/logseq/files/preferences.json"
+    dest: "{{ ansible_facts['user_dir'] }}/.logseq/preferences.json"
+    state: link
+
+- name: Find plugin settings files
+  ansible.builtin.find:
+    paths: "{{ playbook_dir }}/../roles/logseq/files/settings"
+    patterns: "*.json"
+  register: logseq_settings_files
+
+- name: Symlink plugin settings
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_facts['user_dir'] }}/.logseq/settings/{{ item.path | basename }}"
+    state: link
+  loop: "{{ logseq_settings_files.files }}"

@@ -1,0 +1,6 @@
+{:logseq-git {:version "v1.7.0", :repo "haydenull/logseq-plugin-git", :effect true, :theme false}
+ :logseq-vim-shortcuts {:version "v0.2.0", :repo "vipzhicheng/logseq-plugin-vim-shortcuts", :effect true, :theme false}
+ :logseq-todo-plugin {:version "v1.22.0", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false}
+ :logseq-catppuccin {:version "v0.6.4", :repo "catppuccin/logseq", :effect false, :theme true}
+ :logseq-bonofix-theme {:version "v3.10.5", :repo "sansui233/logseq-bonofix-theme", :effect false, :theme true}
+ :logseq-monokai {:version "v0.1.1", :repo "tzcl/logseq-monokai", :effect false, :theme true}}

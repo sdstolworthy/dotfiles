@@ -33,6 +33,8 @@
       tags: gpg
     - role: editorconfig
       tags: editorconfig
+    - role: logseq
+      tags: logseq
     # - role: sway
     #   tags: sway
     #   when: ansible_system != 'Darwin'
