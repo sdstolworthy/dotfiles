@@ -1,0 +1,29 @@
+{
+  "theme": null,
+  "themes": {
+    "mode": "light",
+    "light": {
+      "name": "Bonofix Theme",
+      "url": "file:///Users/sstol/.logseq/plugins/logseq-bonofix-theme/custom.css",
+      "description": "A clean theme",
+      "pid": "logseq-bonofix-theme",
+      "group-first": true,
+      "group-desc": "light & dark themes",
+      "mode": "light",
+      "selected": false
+    },
+    "dark": {
+      "name": "Monokai theme",
+      "url": "file:///Users/sstol/.logseq/plugins/logseq-monokai/custom.css",
+      "description": "A dark theme for Logseq inspired by Monokai and Dracula.",
+      "mode": "dark",
+      "pid": "logseq-monokai",
+      "selected": false
+    }
+  },
+  "externals": [],
+  "pinnedToolbarItems": [
+    "logseq-todo-plugin:logseq-plugin-todo",
+    "logseq-git:git"
+  ]
+}
