@@ -1,23 +1,24 @@
 {
-  "theme": null,
+  "theme": {
+    "name": "Dev theme",
+    "url": "file:///home/spencer/.logseq/plugins/logseq-dev-theme/custom.css",
+    "pid": "logseq-dev-theme"
+  },
   "themes": {
-    "mode": "light",
+    "mode": "dark",
     "light": {
-      "name": "Bonofix Theme",
-      "url": "file:///Users/sstol/.logseq/plugins/logseq-bonofix-theme/custom.css",
-      "description": "A clean theme",
-      "pid": "logseq-bonofix-theme",
-      "group-first": true,
-      "group-desc": "light & dark themes",
+      "name": "Atlas Theme: Light",
+      "url": "file:///home/spencer/.logseq/plugins/logseq-atlas-theme/custom.css",
       "mode": "light",
-      "selected": false
+      "pid": "logseq-atlas-theme"
     },
     "dark": {
-      "name": "Monokai theme",
-      "url": "file:///Users/sstol/.logseq/plugins/logseq-monokai/custom.css",
-      "description": "A dark theme for Logseq inspired by Monokai and Dracula.",
+      "name": "Dev theme",
+      "url": "file:///home/spencer/.logseq/plugins/logseq-dev-theme/custom.css",
+      "pid": "logseq-dev-theme",
+      "group-first": false,
+      "group-desc": null,
       "mode": "dark",
-      "pid": "logseq-monokai",
       "selected": false
     }
   },
