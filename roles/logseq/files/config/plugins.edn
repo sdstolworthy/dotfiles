@@ -3,4 +3,7 @@
  :logseq-todo-plugin {:version "v1.22.0", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false}
  :logseq-catppuccin {:version "v0.6.4", :repo "catppuccin/logseq", :effect false, :theme true}
  :logseq-bonofix-theme {:version "v3.10.5", :repo "sansui233/logseq-bonofix-theme", :effect false, :theme true}
- :logseq-monokai {:version "v0.1.1", :repo "tzcl/logseq-monokai", :effect false, :theme true}}
+ :logseq-monokai {:version "v0.1.1", :repo "tzcl/logseq-monokai", :effect false, :theme true}
+ :logseq-atlas-theme {:version "v0.3.5", :repo "sethfair/logseq-atlas-theme", :effect false, :theme true}
+ :nord-theme {:version "0.0.19", :repo "Bad3r/Logseq-Nord-Theme", :effect false, :theme true}
+ :logseq-dev-theme {:version "v1.26.17", :repo "pengx17/logseq-dev-theme", :effect false, :theme true}}
