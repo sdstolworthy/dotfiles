@@ -69,5 +69,3 @@ alias ls='eza'
 alias ll='eza -l'
 alias la='eza -la'
 alias cd='z'
-
-export PATH="$HOME/.local/bin:$PATH"

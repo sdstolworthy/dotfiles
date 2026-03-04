@@ -50,7 +50,7 @@
   failed_when: false
 
 - name: Warn about failed cargo installations
-  when: install_from_source
+  when: install_from_source and (item.rc | default(0)) != 0
   loop: "{{ install_software_cargo_result.results }}"
   ansible.builtin.debug:
     msg: "WARNING: Failed to install {{ item.item }}: {{ item.stderr | default('unknown error') }}"

@@ -1,6 +1,6 @@
 ---
 - name: Install sway
-  become: true
+  become: "{{ should_become }}"
   ansible.builtin.package:
     name: sway
     state: present

@@ -1,2 +1,3 @@
 ---
 alacritty_config_dir: "{{ home }}/.config/alacritty"
+alacritty_theme_version: "02ed0a1826d008885c0cd4589c9eff892773a62a"

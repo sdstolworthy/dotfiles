@@ -13,7 +13,7 @@
   ansible.builtin.git:
     repo: "https://github.com/alacritty/alacritty-theme.git"
     dest: "{{ alacritty_config_dir }}/themes"
-    version: master
+    version: "{{ alacritty_theme_version }}"
     depth: 1
     update: true
 - name: Copy alacritty.toml

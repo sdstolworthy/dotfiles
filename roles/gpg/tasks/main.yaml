@@ -11,9 +11,9 @@
     dest: ~/.gnupg/gpg.conf
     mode: "0600"
 
-- name: Copy gpg-agent.conf
-  ansible.builtin.copy:
-    src: gpg-agent.conf
+- name: Template gpg-agent.conf
+  ansible.builtin.template:
+    src: gpg-agent.conf.j2
     dest: ~/.gnupg/gpg-agent.conf
     mode: "0600"
   notify: Reload gpg-agent
