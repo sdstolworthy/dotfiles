@@ -1,24 +1,29 @@
 {
   "theme": {
     "name": "Dev theme",
-    "url": "file:///home/spencer/.logseq/plugins/logseq-dev-theme/custom.css",
+    "url": "file:///Users/sstol/.logseq/plugins/logseq-dev-theme/custom.css",
     "pid": "logseq-dev-theme"
   },
   "themes": {
     "mode": "dark",
     "light": {
       "name": "Atlas Theme: Light",
-      "url": "file:///home/spencer/.logseq/plugins/logseq-atlas-theme/custom.css",
+      "url": "file:///Users/sstol/.logseq/plugins/logseq-atlas-theme/custom.css",
       "mode": "light",
       "pid": "logseq-atlas-theme"
     },
     "dark": {
+<<<<<<< Updated upstream
       "name": "Dev theme - WITHOUT bullet threading",
       "url": "file:///home/spencer/.logseq/plugins/logseq-dev-theme/no_bullet_threading.css",
       "description": "Dev theme without bullet threading",
+=======
+      "name": "Dev theme",
+      "url": "file:///Users/sstol/.logseq/plugins/logseq-dev-theme/custom.css",
+>>>>>>> Stashed changes
       "pid": "logseq-dev-theme",
-      "group-first": false,
-      "group-desc": null,
+      "group-first": true,
+      "group-desc": "light & dark themes",
       "mode": "dark",
       "selected": false
     }
