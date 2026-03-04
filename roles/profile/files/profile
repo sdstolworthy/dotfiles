@@ -1,11 +1,10 @@
-if [ -d ${HOME}/.profile.d/ ] && [ $(ls -1 ${HOME}/.profile.d/|wc -l) -gt 0 ]; then
-  # sourcing *.sh
-  for i in ${HOME}/.profile.d/*; do
+if [ -d "${HOME}/.profile.d/" ] && [ "$(ls -1 "${HOME}/.profile.d/" | wc -l)" -gt 0 ]; then
+  for i in "${HOME}"/.profile.d/*; do
     if [ -r "$i" ]; then
       if [ "$PS1" ]; then
-        source $i
+        . "$i"
       else
-        source $i &>/dev/null
+        . "$i" >/dev/null 2>&1
       fi
     fi
   done

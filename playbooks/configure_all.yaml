@@ -12,6 +12,8 @@
   vars:
     home: "{{ ansible_facts['user_dir'] }}"
   roles:
+    - role: profile
+      tags: profile
     - role: zsh
       tags: zsh
     - role: neovim

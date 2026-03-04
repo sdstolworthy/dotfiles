@@ -93,9 +93,6 @@ return {
 				keymap("<leader>ca", vim.lsp.buf.code_action, "Code action")
 				keymap("K", vim.lsp.buf.hover, "Hover docs")
 				keymap("<C-s>", vim.lsp.buf.signature_help, "Signature help")
-				keymap("[d", vim.diagnostic.goto_prev, "Previous diagnostic")
-				keymap("]d", vim.diagnostic.goto_next, "Next diagnostic")
-				keymap("<leader>e", vim.diagnostic.open_float, "Show diagnostic")
 
 				-- Enable inlay hints if supported
 				local client = vim.lsp.get_client_by_id(e.data.client_id)

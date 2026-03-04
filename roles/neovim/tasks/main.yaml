@@ -1,10 +1,4 @@
 ---
-- name: Create neovim directory
-  ansible.builtin.file:
-    path: "{{ home }}/.neovim"
-    state: directory
-    mode: "0755"
-
 - name: Create config folder
   ansible.builtin.file:
     path: "{{ home }}/.config/nvim"

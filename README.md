@@ -115,7 +115,8 @@ Some roles have automatic dependencies declared in `meta/main.yaml`:
 - `zellij` - Zellij terminal multiplexer
 - `gitconfig` - Git configuration
 - `gpg` - GPG configuration and commit signing
-- `language_managers` - rustup
+- `language_managers` - rustup, mise (node, deno, fzf, uv)
+- `logseq` - Logseq configuration and plugin settings
 - `workplace_directory` - Create workspace directory
 - `profile` - Shell profile setup
 

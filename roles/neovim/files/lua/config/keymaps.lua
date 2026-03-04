@@ -9,8 +9,6 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result" })
 
 vim.keymap.set("n", "Q", "<nop>")
 
-vim.keymap.set("n", "<leader>bf", function() require("conform").format({ async = true, lsp_fallback = true }) end, { desc = "Format buffer" })
-
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next location" })
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous location" })
 vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Next quickfix" })
