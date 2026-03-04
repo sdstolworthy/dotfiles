@@ -23,16 +23,22 @@
     dest: "{{ ansible_facts['user_dir'] }}/.gemini/GEMINI.md"
     state: link
 
-- name: Symlink AGENTS.md to copilot instructions dir
+- name: Create copilot config directory
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.copilot"
+    state: directory
+    mode: "0755"
+
+- name: Symlink AGENTS.md to copilot instructions
   ansible.builtin.file:
     src: "{{ playbook_dir }}/../roles/agents_md/files/AGENTS.md"
-    dest: "{{ ansible_facts['user_dir'] }}/.copilot-instructions.md"
+    dest: "{{ ansible_facts['user_dir'] }}/.copilot/copilot-instructions.md"
     state: link
 
 - name: Ensure COPILOT_CUSTOM_INSTRUCTIONS_DIRS is set in profile.d
   when: profile_profiled_directory is defined
   ansible.builtin.copy:
     content: |
-      export COPILOT_CUSTOM_INSTRUCTIONS_DIRS="{{ ansible_facts['user_dir'] }}"
+      export COPILOT_CUSTOM_INSTRUCTIONS_DIRS="{{ ansible_facts['user_dir'] }}/.copilot"
     dest: "{{ profile_profiled_directory }}/copilot.sh"
     mode: "0644"
