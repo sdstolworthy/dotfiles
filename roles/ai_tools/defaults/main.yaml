@@ -1,0 +1,4 @@
+---
+ai_tools_npm_packages:
+  - "@google/gemini-cli"
+  - "@github/copilot"

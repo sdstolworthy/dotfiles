@@ -37,6 +37,10 @@
       tags: editorconfig
     - role: logseq
       tags: logseq
+    - role: ai_tools
+      tags: ai_tools
+    - role: agents_md
+      tags: agents_md
     # - role: sway
     #   tags: sway
     #   when: ansible_system != 'Darwin'
