@@ -5,3 +5,10 @@ install_software_cargo_packages:
   - git-delta
   - ripgrep
   - zoxide
+
+install_software_system_packages:
+  - bat
+  - eza
+  - git-delta
+  - ripgrep
+  - zoxide

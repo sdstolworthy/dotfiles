@@ -1,7 +1,12 @@
 ---
+- name: Install language managers (needed for source builds)
+  when: install_from_source
+  ansible.builtin.include_role:
+    name: language_managers
+
 - name: Print os_family
   ansible.builtin.debug:
-    msg: "OS Family: {{ ansible_facts['os_family'] }}. Should Become: {{ should_become }}"
+    msg: "OS Family: {{ ansible_facts['os_family'] }}. Should Become: {{ should_become }}. Install from source: {{ install_from_source }}"
 
 - name: Install packages
   become: "{{ should_become }}"
@@ -17,7 +22,22 @@
   ansible.builtin.debug:
     msg: "WARNING: Failed to install packages: {{ install_software_packages_result.msg | default('unknown error') }}"
 
+- name: Install tools from system package manager
+  when: not install_from_source
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: "{{ install_software_system_packages }}"
+    state: present
+  register: install_software_system_result
+  failed_when: false
+
+- name: Warn about failed system package installations
+  when: not install_from_source and (install_software_system_result.failed | default(false))
+  ansible.builtin.debug:
+    msg: "WARNING: Failed to install system packages: {{ install_software_system_result.msg | default('unknown error') }}"
+
 - name: Install cargo packages
+  when: install_from_source
   loop: "{{ install_software_cargo_packages }}"
   ansible.builtin.shell: |
     set -o pipefail
@@ -30,7 +50,9 @@
   failed_when: false
 
 - name: Warn about failed cargo installations
+  when: install_from_source
   loop: "{{ install_software_cargo_result.results }}"
-  when: item.rc is defined and item.rc != 0
   ansible.builtin.debug:
     msg: "WARNING: Failed to install {{ item.item }}: {{ item.stderr | default('unknown error') }}"
+  loop_control:
+    label: "{{ item.item }}"

@@ -6,4 +6,10 @@
  :logseq-monokai {:version "v0.1.1", :repo "tzcl/logseq-monokai", :effect false, :theme true}
  :logseq-atlas-theme {:version "v0.3.5", :repo "sethfair/logseq-atlas-theme", :effect false, :theme true}
  :nord-theme {:version "0.0.19", :repo "Bad3r/Logseq-Nord-Theme", :effect false, :theme true}
- :logseq-dev-theme {:version "v1.26.17", :repo "pengx17/logseq-dev-theme", :effect false, :theme true}}
+ :logseq-dev-theme {:version "v1.26.17", :repo "pengx17/logseq-dev-theme", :effect false, :theme true}
+ :logseq-excalidraw {:version "v1.5.1", :repo "haydenull/logseq-plugin-excalidraw", :effect true, :theme false}
+ :logseq-mermaid-plugin {:version "v2.2.3", :repo "benjypng/logseq-mermaid-plugin", :effect true, :theme false}
+ :logseq-awesome-ui {:version "v2.4.0", :repo "yoyurec/logseq-awesome-ui", :effect true, :theme false}
+ :logseq-plugin-gpt3-openai {:version "v1.14.2", :repo "briansunter/logseq-plugin-gpt3-openai", :effect true, :theme false}
+ :ollama-logseq {:version "v1.1.6", :repo "omagdy7/ollama-logseq", :effect true, :theme false}
+ :logseq-bullet-threading {:version "v1.1.4", :repo "pengx17/logseq-plugin-bullet-threading", :effect false, :theme false}}

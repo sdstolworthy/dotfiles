@@ -13,8 +13,9 @@
       "pid": "logseq-atlas-theme"
     },
     "dark": {
-      "name": "Dev theme",
-      "url": "file:///home/spencer/.logseq/plugins/logseq-dev-theme/custom.css",
+      "name": "Dev theme - WITHOUT bullet threading",
+      "url": "file:///home/spencer/.logseq/plugins/logseq-dev-theme/no_bullet_threading.css",
+      "description": "Dev theme without bullet threading",
       "pid": "logseq-dev-theme",
       "group-first": false,
       "group-desc": null,
@@ -25,6 +26,7 @@
   "externals": [],
   "pinnedToolbarItems": [
     "logseq-todo-plugin:logseq-plugin-todo",
-    "logseq-git:git"
+    "logseq-git:git",
+    "ollama-logseq:ollama-ui-open"
   ]
 }
