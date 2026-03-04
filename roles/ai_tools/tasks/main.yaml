@@ -4,6 +4,8 @@
   community.general.homebrew:
     name: kiro-cli
     state: present
+  register: ai_tools_kiro_mac
+  failed_when: false
 
 - name: Install kiro-cli (Linux)
   when: not is_mac
@@ -13,6 +15,14 @@
   args:
     creates: "{{ ansible_facts['user_dir'] }}/.local/bin/kiro-cli"
     executable: /bin/bash
+  register: ai_tools_kiro_linux
+  failed_when: false
+
+- name: Warn about failed kiro-cli installation
+  when: (ai_tools_kiro_mac is defined and ai_tools_kiro_mac.failed | default(false)) or
+        (ai_tools_kiro_linux is defined and ai_tools_kiro_linux.failed | default(false))
+  ansible.builtin.debug:
+    msg: "WARNING: Failed to install kiro-cli"
 
 - name: Install npm-based AI tools
   loop: "{{ ai_tools_npm_packages }}"
