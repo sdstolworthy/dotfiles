@@ -2,8 +2,8 @@
 - name: Install Software
   hosts: all
   roles:
-    - role: install_software
-      tags: install_software
+    - role: packages
+      tags: packages
     - role: fonts
       tags: fonts
 

@@ -29,6 +29,37 @@
     dest: "{{ profile_profiled_directory }}/mise.sh"
     mode: "0644"
 
+- name: Install fzf from package manager
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: fzf
+    state: present
+  register: language_managers_fzf_pm
+  failed_when: false
+
+- name: Check if fzf binary is present
+  ansible.builtin.command: which fzf
+  register: language_managers_fzf_check
+  changed_when: false
+  failed_when: false
+
+- name: Install fzf via mise (fallback when PM did not provide it)
+  when: language_managers_fzf_check.rc != 0
+  ansible.builtin.shell: |
+    set -o pipefail
+    export PATH="$HOME/.local/bin:$PATH"
+    mise use -g fzf@latest
+  args:
+    executable: /bin/bash
+  register: language_managers_fzf_mise
+  changed_when: "'installed' in language_managers_fzf_mise.stdout"
+  failed_when: false
+
+- name: Warn about failed fzf installation
+  when: language_managers_fzf_check.rc != 0 and language_managers_fzf_mise.rc | default(0) != 0
+  ansible.builtin.debug:
+    msg: "WARNING: Failed to install fzf: {{ language_managers_fzf_mise.stderr | default('unknown error') | regex_replace('\\x1b\\[[0-9;]*m', '') }}"
+
 - name: Install tools with mise
   loop: "{{ language_managers_mise_tools }}"
   ansible.builtin.shell: |

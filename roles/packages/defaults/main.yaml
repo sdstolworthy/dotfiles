@@ -1,0 +1,19 @@
+---
+# Each entry: pm_name (package manager name), binary (executable to check),
+# cargo_crate (crate name used as fallback if PM doesn't provide the binary).
+packages_list:
+  - pm_name: bat
+    binary: bat
+    cargo_crate: bat
+  - pm_name: eza
+    binary: eza
+    cargo_crate: eza
+  - pm_name: git-delta
+    binary: delta
+    cargo_crate: git-delta
+  - pm_name: ripgrep
+    binary: rg
+    cargo_crate: ripgrep
+  - pm_name: zoxide
+    binary: zoxide
+    cargo_crate: zoxide

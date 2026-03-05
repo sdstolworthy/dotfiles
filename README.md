@@ -106,7 +106,7 @@ Some roles have automatic dependencies declared in `meta/main.yaml`:
 
 ### Available Roles
 
-- `install_software` - CLI tools (ripgrep, fzf, bat, eza, delta, etc.)
+- `packages` - CLI tools (ripgrep, bat, eza, delta, zoxide) — PM-first, cargo fallback
 - `fonts` - Nerd Fonts (FiraCode, Monaspace)
 - `zsh` - Zsh with zinit plugins
 - `neovim` - Neovim configuration

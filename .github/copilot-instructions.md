@@ -14,7 +14,7 @@ make lint                       # Run ansible-lint
 
 This is an Ansible-based dotfiles manager. Two playbooks drive everything:
 
-- `playbooks/configure_all.yaml` — runs all roles in sequence (install_software and fonts first, then config roles)
+- `playbooks/configure_all.yaml` — runs all roles in sequence (packages and fonts first, then config roles)
 - `playbooks/configure.yaml` — runs a single role specified via `-e config=<role>`
 
 ### How config files are deployed

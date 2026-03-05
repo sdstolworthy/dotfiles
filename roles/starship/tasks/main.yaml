@@ -6,7 +6,7 @@
     state: present
 
 - name: Install starship from package manager (Linux)
-  when: not is_mac and not install_from_source
+  when: not is_mac
   become: "{{ should_become }}"
   ansible.builtin.package:
     name: starship
@@ -15,12 +15,19 @@
   failed_when: false
 
 - name: Warn about failed starship package installation
-  when: not is_mac and not install_from_source and (starship_package_result.failed | default(false))
+  when: not is_mac and (starship_package_result.failed | default(false))
   ansible.builtin.debug:
-    msg: "WARNING: Failed to install starship from package manager: {{ starship_package_result.msg | default('unknown error') }}"
+    msg: "WARNING: Failed to install starship from package manager, will try installer script"
 
-- name: Install starship from source (Linux)
-  when: not is_mac and install_from_source
+- name: Check if starship binary is present
+  when: not is_mac
+  ansible.builtin.command: which starship
+  register: starship_binary_check
+  changed_when: false
+  failed_when: false
+
+- name: Install starship from installer script (Linux, fallback)
+  when: not is_mac and (starship_binary_check.rc | default(1)) != 0
   block:
     - name: Ensure ~/.local/bin exists
       ansible.builtin.file:

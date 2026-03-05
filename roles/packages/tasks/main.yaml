@@ -1,0 +1,56 @@
+---
+- name: Install tools from system package manager
+  become: "{{ should_become }}"
+  ansible.builtin.package:
+    name: "{{ packages_list | map(attribute='pm_name') | list }}"
+    state: present
+  register: packages_pm_result
+  failed_when: false
+
+- name: Check which tool binaries are installed
+  loop: "{{ packages_list }}"
+  loop_control:
+    label: "{{ item.binary }}"
+  ansible.builtin.command: which {{ item.binary }}
+  register: packages_binary_checks
+  changed_when: false
+  failed_when: false
+
+- name: Set cargo fallback list
+  ansible.builtin.set_fact:
+    packages_cargo_fallbacks: >-
+      {{ packages_binary_checks.results
+         | selectattr('rc', 'ne', 0)
+         | map(attribute='item')
+         | list }}
+
+- name: Install Rust toolchain (needed for cargo fallbacks)
+  when: packages_cargo_fallbacks | length > 0
+  ansible.builtin.include_role:
+    name: language_managers
+    tasks_from: rust.yaml
+
+- name: Install missing tools via cargo
+  when: packages_cargo_fallbacks | length > 0
+  loop: "{{ packages_cargo_fallbacks }}"
+  loop_control:
+    label: "{{ item.cargo_crate }}"
+  ansible.builtin.shell: |
+    set -o pipefail
+    . "{{ ansible_facts['user_dir'] }}/.cargo/env"
+    cargo install {{ item.cargo_crate }}
+  args:
+    creates: "{{ ansible_facts['user_dir'] }}/.cargo/bin/{{ item.binary }}"
+    executable: /bin/bash
+  register: packages_cargo_result
+  failed_when: false
+
+- name: Warn about failed cargo installations
+  when:
+    - packages_cargo_fallbacks | length > 0
+    - item.failed | default(false)
+  loop: "{{ packages_cargo_result.results | default([]) }}"
+  loop_control:
+    label: "{{ item.item.cargo_crate }}"
+  ansible.builtin.debug:
+    msg: "WARNING: Failed to install {{ item.item.cargo_crate }} via cargo: {{ item.stderr | default('unknown error') }}"
