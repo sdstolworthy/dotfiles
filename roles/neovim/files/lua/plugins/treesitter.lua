@@ -7,7 +7,7 @@ return {
   build = ":TSUpdate",
   opts = {
     ensure_installed = {
-      "vimdoc", "go", "lua", "java", "rust", "typescript",
+      "vimdoc", "go", "lua", "java", "kotlin", "rust", "typescript",
       "javascript", "json", "yaml", "toml", "markdown", "bash", "html", "css",
     },
     sync_install = false,

@@ -60,8 +60,11 @@ return {
 
 		mason.setup()
 
-		local mason_ensure_installed =
-			{ "ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua", "jdtls", "kotlin-language-server", "codelldb" }
+		local mason_ensure_installed = {
+			"ts_ls", "templ", "rust_analyzer", "lua_ls", "stylua",
+			"jdtls", "kotlin-language-server", "ktlint", "google-java-format",
+			"codelldb",
+		}
 
 		mason_tool_installer.setup({
 			ensure_installed = mason_ensure_installed,
