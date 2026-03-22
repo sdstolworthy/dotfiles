@@ -1,4 +1,4 @@
-if [[ -z "$ZELLIJ" ]]; then
+if [[ -z "$ZELLIJ" ]] && command -v zellij >/dev/null; then
   zellij attach -c main
 fi
 
@@ -63,9 +63,43 @@ fi
 # Initialize starship prompt
 eval "$(starship init zsh)"
 
-# Aliases
-alias cat='bat -p'
-alias ls='eza'
-alias ll='eza -l'
-alias la='eza -la'
-alias cd='z'
+# Command wrappers - check availability on each call for graceful fallback
+cat() {
+  if command -v bat >/dev/null 2>&1; then
+    bat -p "$@"
+  else
+    command cat "$@"
+  fi
+}
+
+ls() {
+  if command -v eza >/dev/null 2>&1; then
+    eza "$@"
+  else
+    command ls "$@"
+  fi
+}
+
+ll() {
+  if command -v eza >/dev/null 2>&1; then
+    eza -l "$@"
+  else
+    command ls -l "$@"
+  fi
+}
+
+la() {
+  if command -v eza >/dev/null 2>&1; then
+    eza -la "$@"
+  else
+    command ls -la "$@"
+  fi
+}
+
+cd() {
+  if command -v zoxide >/dev/null 2>&1; then
+    z "$@"
+  else
+    builtin cd "$@"
+  fi
+}

@@ -1,1 +1,7 @@
-alias vim='nvim'
+vim() {
+  if command -v nvim >/dev/null 2>&1; then
+    nvim "$@"
+  else
+    command vim "$@"
+  fi
+}
