@@ -1,5 +1,3 @@
-vim.keymap.set("n", "<C-f>", "<C-f>zz", { desc = "Page down" })
-vim.keymap.set("n", "<C-b>", "<C-b>zz", { desc = "Page up" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
 vim.keymap.set("n", "<leader>s", "<C-w>s", { desc = "Split horizontal" })

@@ -14,10 +14,12 @@
 - name: Install FiraCode Nerd Font (Linux)
   when: not is_mac
   block:
-    - name: Install unzip
+    - name: Install unzip and fontconfig
       become: "{{ should_become }}"
       ansible.builtin.package:
-        name: unzip
+        name:
+          - unzip
+          - fontconfig
         state: present
 
     - name: Create fonts directory

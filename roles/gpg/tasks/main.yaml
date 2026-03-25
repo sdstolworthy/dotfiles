@@ -11,6 +11,11 @@
     dest: ~/.gnupg/gpg.conf
     mode: "0600"
 
+- name: Detect pinentry program
+  ansible.builtin.shell: command -v pinentry-mac 2>/dev/null || command -v pinentry 2>/dev/null || echo ""
+  register: gpg_pinentry_path
+  changed_when: false
+
 - name: Template gpg-agent.conf
   ansible.builtin.template:
     src: gpg-agent.conf.j2

@@ -1,7 +1,5 @@
 default-cache-ttl 3600
 max-cache-ttl 7200
-{% if is_mac %}
-pinentry-program /opt/homebrew/bin/pinentry-mac
-{% else %}
-pinentry-program /usr/bin/pinentry
+{% if gpg_pinentry_path.stdout %}
+pinentry-program {{ gpg_pinentry_path.stdout }}
 {% endif %}

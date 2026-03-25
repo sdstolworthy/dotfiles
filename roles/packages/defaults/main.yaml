@@ -17,3 +17,5 @@ packages_list:
   - pm_name: zoxide
     binary: zoxide
     cargo_crate: zoxide
+  - pm_name: thefuck
+    binary: thefuck
