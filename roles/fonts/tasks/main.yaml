@@ -1,15 +1,62 @@
 ---
 - name: Install Nerd Fonts (Mac)
   when: is_mac
-  community.general.homebrew_cask:
-    name:
-      - font-fira-code-nerd-font
-      - font-monaspace-nf
-    state: present
-  register: fonts_font_install_mac
-  failed_when:
-    - fonts_font_install_mac.failed
-    - "'already installed' not in fonts_font_install_mac.msg | default('')"
+  block:
+    - name: Create fonts directory
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/Library/Fonts/NerdFonts"
+        state: directory
+        mode: "0755"
+
+    - name: Check if FiraCode already installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/Library/Fonts/NerdFonts/FiraCodeNerdFontMono-Regular.ttf"
+      register: fonts_firacode_mac_check
+
+    - name: Install FiraCode Nerd Font
+      when: not fonts_firacode_mac_check.stat.exists
+      block:
+        - name: Download FiraCode Nerd Font
+          ansible.builtin.get_url:
+            url: "{{ fonts_firacode_url }}"
+            dest: /tmp/FiraCode.zip
+            mode: "0644"
+
+        - name: Extract FiraCode Nerd Font
+          ansible.builtin.unarchive:
+            src: /tmp/FiraCode.zip
+            dest: "{{ ansible_env.HOME }}/Library/Fonts/NerdFonts"
+            remote_src: true
+
+        - name: Cleanup FiraCode zip
+          ansible.builtin.file:
+            path: /tmp/FiraCode.zip
+            state: absent
+
+    - name: Check if Monaspace already installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/Library/Fonts/NerdFonts/MonaspiceArNerdFontMono-Regular.otf"
+      register: fonts_monaspace_mac_check
+
+    - name: Install Monaspace Nerd Font
+      when: not fonts_monaspace_mac_check.stat.exists
+      block:
+        - name: Download Monaspace Nerd Font
+          ansible.builtin.get_url:
+            url: "{{ fonts_monaspace_url }}"
+            dest: /tmp/Monaspace.zip
+            mode: "0644"
+
+        - name: Extract Monaspace Nerd Font
+          ansible.builtin.unarchive:
+            src: /tmp/Monaspace.zip
+            dest: "{{ ansible_env.HOME }}/Library/Fonts/NerdFonts"
+            remote_src: true
+
+        - name: Cleanup Monaspace zip
+          ansible.builtin.file:
+            path: /tmp/Monaspace.zip
+            state: absent
 
 - name: Install FiraCode Nerd Font (Linux)
   when: not is_mac

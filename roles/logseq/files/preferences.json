@@ -4,14 +4,13 @@
     "mode": "dark",
     "light": null,
     "dark": {
-      "name": "Dev theme - WITHOUT bullet threading",
-      "url": "file:///Users/sstol/.logseq/plugins/logseq-dev-theme/no_bullet_threading.css",
-      "description": "Dev theme without bullet threading",
-      "pid": "logseq-dev-theme",
-      "group-first": false,
-      "group-desc": null,
+      "name": "Default Dark Theme",
+      "url": null,
+      "description": "Logseq default dark theme.",
       "mode": "dark",
-      "selected": false
+      "selected": false,
+      "group-first": true,
+      "group-desc": "dark themes"
     }
   },
   "externals": []
