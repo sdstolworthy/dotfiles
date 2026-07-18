@@ -22,8 +22,8 @@
 
 - When making changes, explain what you're doing and why.
 - Prefer small, focused changes over large refactors.
-- Don't add tests unless explicitly asked.
-- Don't modify existing tests unless explicitly asked.
+- Always write tests for new code. Structure code to be testable from the start via dependency injection (see Design Principles and Unit Testing).
+- Keep existing tests passing; update them when behavior intentionally changes, and say so.
 
 ## Unit Testing
 
