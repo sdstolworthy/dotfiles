@@ -17,7 +17,7 @@
 - name: Install zellij from GitHub releases
   when:
     - zellij_exists.rc != 0
-    - zellij_pkg_install.failed | default(false)
+    - zellij_pkg_install is not changed
   block:
     - name: Set architecture facts
       ansible.builtin.set_fact:

@@ -49,7 +49,7 @@ fi
 
 source ~/.profile
 
-# Initialize fzf if available
+# Initialize fzf (zsh-specific keybindings and completion)
 if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
   bindkey '^R' fzf-history-widget-with-reload
@@ -60,43 +60,10 @@ if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
-# Initialize thefuck if available
-if command -v thefuck >/dev/null 2>&1; then
-  eval "$(thefuck --alias)"
+# Initialize zoxide (zsh-specific shell hooks)
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
 fi
-
-# Command wrappers - check availability on each call for graceful fallback
-cat() {
-  if command -v bat >/dev/null 2>&1; then
-    bat -p "$@"
-  else
-    command cat "$@"
-  fi
-}
-
-ls() {
-  if command -v eza >/dev/null 2>&1; then
-    eza "$@"
-  else
-    command ls "$@"
-  fi
-}
-
-ll() {
-  if command -v eza >/dev/null 2>&1; then
-    eza -l "$@"
-  else
-    command ls -l "$@"
-  fi
-}
-
-la() {
-  if command -v eza >/dev/null 2>&1; then
-    eza -la "$@"
-  else
-    command ls -la "$@"
-  fi
-}
 
 cd() {
   if command -v zoxide >/dev/null 2>&1; then
@@ -105,8 +72,3 @@ cd() {
     builtin cd "$@"
   fi
 }
-
-# Initialize zoxide if available (last, so its hooks run after other tools')
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi

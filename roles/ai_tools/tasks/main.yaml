@@ -1,4 +1,11 @@
 ---
+- name: Add copilot profile
+  when: profile_profiled_directory is defined
+  ansible.builtin.copy:
+    src: copilot.sh
+    dest: "{{ profile_profiled_directory }}/copilot.sh"
+    mode: "0644"
+
 - name: Install kiro-cli (Mac)
   when: is_mac
   community.general.homebrew:
