@@ -21,8 +21,8 @@
   block:
     - name: Set architecture facts
       ansible.builtin.set_fact:
-        zellij_arch: "{{ 'x86_64' if ansible_architecture == 'x86_64' else 'aarch64' }}"
-        zellij_os: "{{ 'apple-darwin' if ansible_system == 'Darwin' else 'unknown-linux-musl' }}"
+        zellij_arch: "{{ 'x86_64' if ansible_facts['architecture'] == 'x86_64' else 'aarch64' }}"
+        zellij_os: "{{ 'apple-darwin' if ansible_facts['system'] == 'Darwin' else 'unknown-linux-musl' }}"
 
     - name: Create .local/bin directory
       ansible.builtin.file:

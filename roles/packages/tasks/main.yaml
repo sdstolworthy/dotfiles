@@ -22,6 +22,7 @@
       {{ packages_binary_checks.results
          | selectattr('rc', 'ne', 0)
          | map(attribute='item')
+         | selectattr('cargo_crate', 'defined')
          | list }}
 
 - name: Install Rust toolchain (needed for cargo fallbacks)
